@@ -1,0 +1,9 @@
+{
+ "content": "{\n  \"investigation_id\": \"9aa5b277-00d8-4c95-a285-1c278893cf73\",\n  \"hypotheses\": [\n    {\n      \"reported\": null,\n      \"possible_explanation\": \"The container may have started successfully but is not responding to readiness probes, which could be due to the application not being ready to serve traffic.\",\n      \"not_yet_verified\": \"The readiness probe configuration and the application's startup behavior have not been inspected.\",\n      \"evidence\": [\"ev-0001\", \"ev-0002\", \"ev-0005\", \"ev-0006\", \"ev-0007\", \"ev-0008\"],\n      \"resource\": null,\n      \"verification_check\": \"Check the readiness probe configuration and verify if the application is correctly initializing before becoming ready.\"\n    }\n  ]\n}",
+ "model_attempts": 2,
+ "earlier_attempts": [
+  "{\n  \"investigation_id\": \"9aa5b277-00d8-4c95-a285-1c278893cf73\",\n  \"hypotheses\": [\n    {\n      \"reported\": null,\n      \"possible_explanation\": \"The container may have failed to start due to an issue with its configuration or environment, although no specific reason has been identified by Kubernetes.\",\n      \"not_yet_verified\": \"The underlying cause of the container's failure has not been verified.\",\n      \"evidence\": [\"ev-0001\", \"ev-0002\", \"ev-0005\", \"ev-0006\", \"ev-0007\", \"ev-0008\", \"ev-0009\", \"ev-0010\", \"ev-0011\", \"ev-0012\", \"ev-0013\", \"ev-0014\"],\n      \"resource\": null,\n      \"verification_check\": \"Check the container's configuration and environment to ensure all required parameters are correctly set and that there are no missing dependencies.\"\n    }\n  ]\n}"
+ ],
+ "latency_s": 3.178,
+ "requested_investigation_id": "9aa5b277-00d8-4c95-a285-1c278893cf73"
+}

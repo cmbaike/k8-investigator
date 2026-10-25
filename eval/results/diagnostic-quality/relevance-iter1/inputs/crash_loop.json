@@ -1,0 +1,263 @@
+{
+ "payload": {
+  "application_configuration_statements": {
+   "items": [],
+   "trust": "written_by_the_application_from_verified_evidence"
+  },
+  "application_failure_classification": {
+   "items": [
+    {
+     "category": "runtime_failure",
+     "container": "app",
+     "ever_ran": true,
+     "kubernetes_reason": "CrashLoopBackOff",
+     "namespace": "ai-ops-demo",
+     "pod": "loop"
+    }
+   ],
+   "trust": "written_by_the_application_from_verified_evidence"
+  },
+  "application_logs_available": false,
+  "authorized_namespace": "ai-ops-demo",
+  "data_classification": "untrusted_application_log_data",
+  "established_abnormality": {
+   "items": [
+    {
+     "abnormal_stage": "container_runtime",
+     "completed_stages": [
+      {
+       "evidence_ids": [
+        "ev-0013"
+       ],
+       "stage": "scheduling",
+       "statement": "the pod was scheduled to a node"
+      },
+      {
+       "evidence_ids": [
+        "ev-0012"
+       ],
+       "stage": "container_started",
+       "statement": "the image was pulled and the container started"
+      }
+     ],
+     "container": "app",
+     "evidence_ids": [
+      "ev-0007",
+      "ev-0009",
+      "ev-0010",
+      "ev-0008",
+      "ev-0012",
+      "ev-0011"
+     ],
+     "kubernetes_reason": "CrashLoopBackOff",
+     "namespace": "ai-ops-demo",
+     "not_yet_established": [
+      "why the container terminated"
+     ],
+     "pod": "loop",
+     "previous_termination": {
+      "exit_code": 1,
+      "reason": "Error"
+     },
+     "previous_termination_means": "The process exited with a non-zero exit code. Kubernetes does not report why.",
+     "restart_count": 6,
+     "verified_not_declared": [
+      {
+       "evidence_ids": [
+        "ev-0016"
+       ],
+       "item": "liveness_probe"
+      },
+      {
+       "evidence_ids": [
+        "ev-0017"
+       ],
+       "item": "readiness_probe"
+      },
+      {
+       "evidence_ids": [
+        "ev-0014"
+       ],
+       "item": "node_selector"
+      },
+      {
+       "evidence_ids": [
+        "ev-0015"
+       ],
+       "item": "affinity"
+      }
+     ],
+     "what_it_establishes": "The container ran and then terminated or is crash-looping. The previous termination below is established; its underlying cause is not."
+    }
+   ],
+   "trust": "written_by_the_application_from_verified_evidence"
+  },
+  "evidence_focus_groups": {
+   "items": [
+    {
+     "container": "app",
+     "evidence_ids": [
+      "ev-0007",
+      "ev-0009",
+      "ev-0010",
+      "ev-0008"
+     ],
+     "focus": "current_container_state",
+     "pod": "loop"
+    },
+    {
+     "container": "app",
+     "evidence_ids": [
+      "ev-0012",
+      "ev-0011",
+      "ev-0008"
+     ],
+     "focus": "previous_termination",
+     "pod": "loop"
+    }
+   ],
+   "trust": "selected_by_the_application_for_relevance_only"
+  },
+  "excerpts_omitted": 0,
+  "investigation_id": "2a137e14-ba63-4dff-9354-8b808eb22686",
+  "investigation_scope": {
+   "mode": "namespace",
+   "pods_in_scope": [],
+   "requested_workload": null,
+   "workload": null
+  },
+  "kubernetes_verified_observations": {
+   "items": [
+    {
+     "evidence_id": "ev-0001",
+     "field": "pods[].name",
+     "namespace": "ai-ops-demo",
+     "pod": "loop",
+     "tool": "k8s.get_pods",
+     "value": "loop"
+    },
+    {
+     "evidence_id": "ev-0002",
+     "field": "pod.name",
+     "namespace": "ai-ops-demo",
+     "pod": "loop",
+     "tool": "k8s.describe_pod",
+     "value": "loop"
+    },
+    {
+     "evidence_id": "ev-0005",
+     "field": "pod.phase",
+     "namespace": "ai-ops-demo",
+     "pod": "loop",
+     "tool": "k8s.describe_pod",
+     "value": "Running"
+    },
+    {
+     "evidence_id": "ev-0006",
+     "field": "containers[].name",
+     "namespace": "ai-ops-demo",
+     "pod": "loop",
+     "tool": "k8s.describe_pod",
+     "value": "app"
+    },
+    {
+     "evidence_id": "ev-0007",
+     "field": "containers[app].ready",
+     "namespace": "ai-ops-demo",
+     "pod": "loop",
+     "tool": "k8s.describe_pod",
+     "value": false
+    },
+    {
+     "evidence_id": "ev-0008",
+     "field": "containers[app].restart_count",
+     "namespace": "ai-ops-demo",
+     "pod": "loop",
+     "tool": "k8s.describe_pod",
+     "value": 6
+    },
+    {
+     "evidence_id": "ev-0009",
+     "field": "containers[app].state",
+     "namespace": "ai-ops-demo",
+     "pod": "loop",
+     "tool": "k8s.describe_pod",
+     "value": "waiting"
+    },
+    {
+     "evidence_id": "ev-0010",
+     "field": "containers[app].reason",
+     "namespace": "ai-ops-demo",
+     "pod": "loop",
+     "tool": "k8s.describe_pod",
+     "value": "CrashLoopBackOff"
+    },
+    {
+     "evidence_id": "ev-0011",
+     "field": "containers[app].last_termination.exit_code",
+     "namespace": "ai-ops-demo",
+     "pod": "loop",
+     "tool": "k8s.describe_pod",
+     "value": 1
+    },
+    {
+     "evidence_id": "ev-0012",
+     "field": "containers[app].last_termination.reason",
+     "namespace": "ai-ops-demo",
+     "pod": "loop",
+     "tool": "k8s.describe_pod",
+     "value": "Error"
+    },
+    {
+     "evidence_id": "ev-0013",
+     "field": "conditions[PodScheduled].status",
+     "namespace": "ai-ops-demo",
+     "pod": "loop",
+     "tool": "k8s.describe_pod",
+     "value": "True"
+    },
+    {
+     "evidence_id": "ev-0014",
+     "field": "scheduling.node_selector_declared",
+     "namespace": "ai-ops-demo",
+     "pod": "loop",
+     "tool": "k8s.describe_pod",
+     "value": false
+    },
+    {
+     "evidence_id": "ev-0015",
+     "field": "scheduling.affinity_declared",
+     "namespace": "ai-ops-demo",
+     "pod": "loop",
+     "tool": "k8s.describe_pod",
+     "value": false
+    },
+    {
+     "evidence_id": "ev-0016",
+     "field": "containers[app].liveness_probe.declared",
+     "namespace": "ai-ops-demo",
+     "pod": "loop",
+     "tool": "k8s.describe_pod",
+     "value": false
+    },
+    {
+     "evidence_id": "ev-0017",
+     "field": "containers[app].readiness_probe.declared",
+     "namespace": "ai-ops-demo",
+     "pod": "loop",
+     "tool": "k8s.describe_pod",
+     "value": false
+    }
+   ],
+   "trust": "verified_by_application_from_authorized_read_only_tools"
+  },
+  "log_refs_available": [],
+  "untrusted_logs": [],
+  "verified_configuration_evidence": {
+   "items": [],
+   "trust": "verified_by_application_from_authorized_read_only_tools",
+   "values_are_never_included": true
+  }
+ },
+ "scenario": "crash_loop"
+}

@@ -1,0 +1,5 @@
+{
+ "content": "{\n  \"investigation_id\": \"b8c10678-2e00-48d8-ac75-5e184ee06bcd\",\n  \"hypotheses\": [\n    {\n      \"reported\": null,\n      \"possible_explanation\": \"The pod 'fine' may be in a healthy state but has not yet started running due to an unknown reason, as the container has not been observed to have run.\",\n      \"not_yet_verified\": \"The reason the container has not started is not yet verified.\",\n      \"evidence\": [\"ev-0001\", \"ev-0002\", \"ev-0005\", \"ev-0006\", \"ev-0007\", \"ev-0008\", \"ev-0009\", \"ev-0010\", \"ev-0011\", \"ev-0012\", \"ev-0013\"],\n      \"resource\": null,\n      \"verification_check\": \"Check the pod's status and events to determine why the container has not started, focusing on any scheduling or resource constraints that may prevent the container from running.\"\n    }\n  ]\n}",
+ "latency_s": 1.77,
+ "requested_investigation_id": "b8c10678-2e00-48d8-ac75-5e184ee06bcd"
+}

@@ -1,0 +1,5 @@
+{
+ "content": "{\n  \"investigation_id\": \"1db2b3fd-37af-4379-bf44-5435adaace26\",\n  \"hypotheses\": [\n    {\n      \"reported\": null,\n      \"possible_explanation\": \"The pod may be in a healthy state but the application may not have started correctly due to an unverified configuration issue.\",\n      \"not_yet_verified\": \"The startup behaviour of the application has not been inspected.\",\n      \"evidence\": [\"ev-0001\", \"ev-0002\", \"ev-0005\", \"ev-0006\", \"ev-0007\", \"ev-0008\", \"ev-0009\", \"ev-0010\", \"ev-0011\", \"ev-0012\", \"ev-0013\"],\n      \"resource\": null,\n      \"verification_check\": \"Check the application's startup behaviour and configuration to determine if there are any issues preventing it from starting correctly.\"\n    }\n  ]\n}",
+ "latency_s": 1.633,
+ "requested_investigation_id": "1db2b3fd-37af-4379-bf44-5435adaace26"
+}

@@ -1,0 +1,39 @@
+[project]
+name = "private-ai-platform"
+version = "0.6.0"
+description = "Self-hosted evidence-grounded AI operations platform for DevOps and SRE"
+readme = "README.md"
+authors = [
+    { name = "Christopher Mbaike", email = "christophermbaike@gmail.com" }
+]
+requires-python = ">=3.14"
+dependencies = [
+    "fastapi>=0.141.1",
+    "flagembedding>=1.4.2",
+    "kubernetes>=36.0.3",
+    "openai>=3.19.2",
+    "pgvector>=0.5.0",
+    "psycopg[binary]>=3.3.6",
+    "pydantic>=2.13.5",
+    "pypdf>=6.19.0",
+    "python-dotenv>=1.2.3",
+    "python-multipart>=0.0.32",
+    "sentence-transformers>=6.1.0",
+    "uvicorn[standard]>=0.53.0",
+]
+
+[project.scripts]
+private-ai-platform = "private_ai_platform:main"
+
+[build-system]
+requires = ["uv_build>=0.12.15,<0.13.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+]
+speech = [
+    "faster-whisper>=1.1.0",
+    "piper-tts>=1.2.0",
+]

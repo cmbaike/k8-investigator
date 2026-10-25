@@ -1,0 +1,232 @@
+{
+ "payload": {
+  "application_configuration_statements": {
+   "items": [],
+   "trust": "written_by_the_application_from_verified_evidence"
+  },
+  "application_failure_classification": {
+   "items": [
+    {
+     "category": "restarted_running",
+     "container": "app",
+     "ever_ran": true,
+     "kubernetes_reason": "Completed",
+     "namespace": "ai-ops-demo",
+     "pod": "steady"
+    }
+   ],
+   "trust": "written_by_the_application_from_verified_evidence"
+  },
+  "application_logs_available": false,
+  "authorized_namespace": "ai-ops-demo",
+  "data_classification": "untrusted_application_log_data",
+  "established_abnormality": {
+   "items": [
+    {
+     "abnormal_stage": "past_restart",
+     "completed_stages": [
+      {
+       "stage": "scheduling",
+       "statement": "the pod was scheduled to a node"
+      },
+      {
+       "stage": "container_started",
+       "statement": "the image was pulled and the container started"
+      },
+      {
+       "stage": "readiness",
+       "statement": "the container is ready now"
+      }
+     ],
+     "container": "app",
+     "kubernetes_reason": "Completed",
+     "namespace": "ai-ops-demo",
+     "open_question": "why the container was restarted",
+     "pod": "steady",
+     "previous_termination": {
+      "exit_code": 0,
+      "reason": "Completed"
+     },
+     "previous_termination_means": "The process ended with exit code 0, reporting no error. That does not by itself show a crash, an out-of-memory kill or resource exhaustion. Kubernetes restarts an exited container according to the pod's restart policy, which was not observed.",
+     "restart_count": 2,
+     "verified_not_declared": [
+      {
+       "item": "liveness_probe"
+      },
+      {
+       "item": "readiness_probe"
+      }
+     ],
+     "what_it_establishes": "The container is running and ready now. Kubernetes records that it was restarted after the previous termination below; the restart is history, not a current failure."
+    }
+   ],
+   "trust": "written_by_the_application_from_verified_evidence"
+  },
+  "evidence_focus_groups": {
+   "items": [
+    {
+     "container": "app",
+     "evidence_ids": [
+      "ev-0007",
+      "ev-0009",
+      "ev-0008"
+     ],
+     "focus": "current_container_state",
+     "pod": "steady"
+    },
+    {
+     "container": "app",
+     "evidence_ids": [
+      "ev-0011",
+      "ev-0010",
+      "ev-0008"
+     ],
+     "focus": "previous_termination",
+     "pod": "steady"
+    },
+    {
+     "container": "app",
+     "evidence_ids": [
+      "ev-0015"
+     ],
+     "focus": "liveness_probe_configuration",
+     "pod": "steady"
+    }
+   ],
+   "trust": "selected_by_the_application_for_relevance_only"
+  },
+  "excerpts_omitted": 0,
+  "investigation_id": "90d6e32c-7eaa-40b7-910e-d2711c8978d7",
+  "investigation_scope": {
+   "mode": "namespace",
+   "pods_in_scope": [],
+   "requested_workload": null,
+   "workload": null
+  },
+  "kubernetes_verified_observations": {
+   "items": [
+    {
+     "evidence_id": "ev-0001",
+     "field": "pods[].name",
+     "namespace": "ai-ops-demo",
+     "pod": "steady",
+     "tool": "k8s.get_pods",
+     "value": "steady"
+    },
+    {
+     "evidence_id": "ev-0002",
+     "field": "pod.name",
+     "namespace": "ai-ops-demo",
+     "pod": "steady",
+     "tool": "k8s.describe_pod",
+     "value": "steady"
+    },
+    {
+     "evidence_id": "ev-0005",
+     "field": "pod.phase",
+     "namespace": "ai-ops-demo",
+     "pod": "steady",
+     "tool": "k8s.describe_pod",
+     "value": "Running"
+    },
+    {
+     "evidence_id": "ev-0006",
+     "field": "containers[].name",
+     "namespace": "ai-ops-demo",
+     "pod": "steady",
+     "tool": "k8s.describe_pod",
+     "value": "app"
+    },
+    {
+     "evidence_id": "ev-0007",
+     "field": "containers[app].ready",
+     "namespace": "ai-ops-demo",
+     "pod": "steady",
+     "tool": "k8s.describe_pod",
+     "value": true
+    },
+    {
+     "evidence_id": "ev-0008",
+     "field": "containers[app].restart_count",
+     "namespace": "ai-ops-demo",
+     "pod": "steady",
+     "tool": "k8s.describe_pod",
+     "value": 2
+    },
+    {
+     "evidence_id": "ev-0009",
+     "field": "containers[app].state",
+     "namespace": "ai-ops-demo",
+     "pod": "steady",
+     "tool": "k8s.describe_pod",
+     "value": "running"
+    },
+    {
+     "evidence_id": "ev-0010",
+     "field": "containers[app].last_termination.exit_code",
+     "namespace": "ai-ops-demo",
+     "pod": "steady",
+     "tool": "k8s.describe_pod",
+     "value": 0
+    },
+    {
+     "evidence_id": "ev-0011",
+     "field": "containers[app].last_termination.reason",
+     "namespace": "ai-ops-demo",
+     "pod": "steady",
+     "tool": "k8s.describe_pod",
+     "value": "Completed"
+    },
+    {
+     "evidence_id": "ev-0012",
+     "field": "conditions[PodScheduled].status",
+     "namespace": "ai-ops-demo",
+     "pod": "steady",
+     "tool": "k8s.describe_pod",
+     "value": "True"
+    },
+    {
+     "evidence_id": "ev-0013",
+     "field": "scheduling.node_selector_declared",
+     "namespace": "ai-ops-demo",
+     "pod": "steady",
+     "tool": "k8s.describe_pod",
+     "value": false
+    },
+    {
+     "evidence_id": "ev-0014",
+     "field": "scheduling.affinity_declared",
+     "namespace": "ai-ops-demo",
+     "pod": "steady",
+     "tool": "k8s.describe_pod",
+     "value": false
+    },
+    {
+     "evidence_id": "ev-0015",
+     "field": "containers[app].liveness_probe.declared",
+     "namespace": "ai-ops-demo",
+     "pod": "steady",
+     "tool": "k8s.describe_pod",
+     "value": false
+    },
+    {
+     "evidence_id": "ev-0016",
+     "field": "containers[app].readiness_probe.declared",
+     "namespace": "ai-ops-demo",
+     "pod": "steady",
+     "tool": "k8s.describe_pod",
+     "value": false
+    }
+   ],
+   "trust": "verified_by_application_from_authorized_read_only_tools"
+  },
+  "log_refs_available": [],
+  "untrusted_logs": [],
+  "verified_configuration_evidence": {
+   "items": [],
+   "trust": "verified_by_application_from_authorized_read_only_tools",
+   "values_are_never_included": true
+  }
+ },
+ "scenario": "restart_history"
+}

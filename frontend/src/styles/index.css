@@ -1,0 +1,96 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-border: var(--border);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-ring: var(--ring);
+
+  --color-critical: var(--critical);
+  --color-warning: var(--warning);
+  --color-ok: var(--ok);
+  --color-info: var(--info);
+  --color-unverified: var(--unverified);
+}
+
+/* Restrained, neutral surfaces; colour is reserved for status. */
+:root {
+  --background: #fafafa;
+  --surface: #ffffff;
+  --surface-2: #f4f4f5;
+  --border: #e4e4e7;
+  --foreground: #18181b;
+  --muted: #4a4c55;
+  --accent: #4f5bd5;
+  --accent-foreground: #ffffff;
+  --ring: #4f5bd5;
+  --critical: #c8372d;
+  --warning: #96640a;
+  --ok: #1e7a45;
+  --info: #4f5bd5;
+  --unverified: #7048b8;
+}
+
+.dark {
+  --background: #09090b;
+  --surface: #0f0f12;
+  --surface-2: #17171b;
+  --border: #2b2b32;
+  --foreground: #ededf0;
+  --muted: #b6b8c1;
+  --accent: #8393ff;
+  --accent-foreground: #09090b;
+  --ring: #8393ff;
+  --critical: #f27269;
+  --warning: #d9a441;
+  --ok: #55b985;
+  --info: #8393ff;
+  --unverified: #b49cf5;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+@utility eyebrow {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.5;
+  font-feature-settings: "cv11", "ss01";
+  -webkit-font-smoothing: antialiased;
+}
+
+*:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}

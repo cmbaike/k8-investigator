@@ -1,0 +1,9 @@
+{
+ "content": "{\n  \"investigation_id\": \"e6ca4309-6888-48ba-b7b3-3a00ce76f6f9\",\n  \"hypotheses\": [\n    {\n      \"reported\": null,\n      \"possible_explanation\": \"The pod may not be schedulable due to a node selector mismatch, as the scheduler reported this constraint and the pod declares a node selector but no affinity.\",\n      \"not_yet_verified\": \"The underlying cause of the node selector mismatch has not been verified.\",\n      \"evidence\": [\"ev-0005\", \"ev-0007\", \"ev-0008\", \"ev-0009\", \"ev-0010\", \"ev-0016\"],\n      \"resource\": null,\n      \"verification_check\": \"Compare the node selector declared by the pod with the node labels and ensure the nodes in the cluster have the required labels.\"\n    }\n  ]\n}",
+ "model_attempts": 2,
+ "earlier_attempts": [
+  "{\n  \"investigation_id\": \"e6ca4309-6888-48ba-b7b3-3a00ce76f6f9\",\n  \"hypotheses\": [\n    {\n      \"reported\": null,\n      \"possible_explanation\": \"The pod may not be schedulable because the node selector declared in the pod's configuration does not match any available nodes' labels, which is a known constraint reported by the scheduler.\",\n      \"not_yet_verified\": \"The exact reason why the node selector mismatch is occurring has not been verified.\",\n      \"evidence\": [\"ev-0005\", \"ev-0007\", \"ev-0008\", \"ev-0009\", \"ev-0010\", \"ev-0015\", \"ev-0016\"],\n      \"resource\": null,\n      \"verification_check\": \"Compare the node labels on the available nodes with the node selector declared in the pod's configuration to confirm the mismatch.\"\n    }\n  ]\n}"
+ ],
+ "latency_s": 3.097,
+ "requested_investigation_id": "e6ca4309-6888-48ba-b7b3-3a00ce76f6f9"
+}

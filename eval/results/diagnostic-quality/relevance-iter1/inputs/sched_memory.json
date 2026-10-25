@@ -1,0 +1,247 @@
+{
+ "payload": {
+  "application_configuration_statements": {
+   "items": [],
+   "trust": "written_by_the_application_from_verified_evidence"
+  },
+  "application_failure_classification": {
+   "items": [
+    {
+     "category": "unknown",
+     "container": "app",
+     "ever_ran": false,
+     "kubernetes_reason": null,
+     "namespace": "ai-ops-demo",
+     "pod": "mem-hog"
+    },
+    {
+     "category": "unschedulable",
+     "container": null,
+     "ever_ran": false,
+     "kubernetes_reason": "Unschedulable",
+     "namespace": "ai-ops-demo",
+     "pod": "mem-hog"
+    }
+   ],
+   "trust": "written_by_the_application_from_verified_evidence"
+  },
+  "application_logs_available": false,
+  "authorized_namespace": "ai-ops-demo",
+  "data_classification": "untrusted_application_log_data",
+  "established_abnormality": {
+   "items": [
+    {
+     "abnormal_stage": "scheduling",
+     "completed_stages": [],
+     "container": null,
+     "evidence_ids": [
+      "ev-0005",
+      "ev-0008",
+      "ev-0009",
+      "ev-0010",
+      "ev-0016",
+      "ev-0017"
+     ],
+     "namespace": "ai-ops-demo",
+     "not_yet_established": [
+      "why the scheduler could not place the pod beyond the constraints it reported"
+     ],
+     "pod": "mem-hog",
+     "scheduler_reported_constraints": [
+      "insufficient_memory"
+     ],
+     "verified_not_declared": [
+      {
+       "evidence_ids": [
+        "ev-0011"
+       ],
+       "item": "node_selector"
+      },
+      {
+       "evidence_ids": [
+        "ev-0012"
+       ],
+       "item": "affinity"
+      }
+     ],
+     "what_it_establishes": "The scheduler could not place the pod on any node, so no container exists. The constraints the scheduler reported are listed."
+    }
+   ],
+   "trust": "written_by_the_application_from_verified_evidence"
+  },
+  "evidence_focus_groups": {
+   "items": [
+    {
+     "container": null,
+     "evidence_ids": [
+      "ev-0005",
+      "ev-0008",
+      "ev-0009",
+      "ev-0010"
+     ],
+     "focus": "scheduling_status",
+     "pod": "mem-hog"
+    },
+    {
+     "container": null,
+     "evidence_ids": [
+      "ev-0016",
+      "ev-0017"
+     ],
+     "focus": "scheduler_events",
+     "pod": "mem-hog"
+    },
+    {
+     "container": "app",
+     "evidence_ids": [
+      "ev-0007"
+     ],
+     "focus": "declared_placement_requirements",
+     "pod": "mem-hog"
+    }
+   ],
+   "trust": "selected_by_the_application_for_relevance_only"
+  },
+  "excerpts_omitted": 0,
+  "investigation_id": "a8c9501b-27c0-4012-9c51-08203f966f64",
+  "investigation_scope": {
+   "mode": "namespace",
+   "pods_in_scope": [],
+   "requested_workload": null,
+   "workload": null
+  },
+  "kubernetes_verified_observations": {
+   "items": [
+    {
+     "evidence_id": "ev-0001",
+     "field": "pods[].name",
+     "namespace": "ai-ops-demo",
+     "pod": "mem-hog",
+     "tool": "k8s.get_pods",
+     "value": "mem-hog"
+    },
+    {
+     "evidence_id": "ev-0002",
+     "field": "pod.name",
+     "namespace": "ai-ops-demo",
+     "pod": "mem-hog",
+     "tool": "k8s.describe_pod",
+     "value": "mem-hog"
+    },
+    {
+     "evidence_id": "ev-0005",
+     "field": "pod.phase",
+     "namespace": "ai-ops-demo",
+     "pod": "mem-hog",
+     "tool": "k8s.describe_pod",
+     "value": "Pending"
+    },
+    {
+     "evidence_id": "ev-0006",
+     "field": "containers[].name",
+     "namespace": "ai-ops-demo",
+     "pod": "mem-hog",
+     "tool": "k8s.describe_pod",
+     "value": "app"
+    },
+    {
+     "evidence_id": "ev-0007",
+     "field": "containers[app].resources.memory_request",
+     "namespace": "ai-ops-demo",
+     "pod": "mem-hog",
+     "tool": "k8s.describe_pod",
+     "value": "900Gi"
+    },
+    {
+     "evidence_id": "ev-0008",
+     "field": "conditions[PodScheduled].status",
+     "namespace": "ai-ops-demo",
+     "pod": "mem-hog",
+     "tool": "k8s.describe_pod",
+     "value": "False"
+    },
+    {
+     "evidence_id": "ev-0009",
+     "field": "conditions[PodScheduled].reason",
+     "namespace": "ai-ops-demo",
+     "pod": "mem-hog",
+     "tool": "k8s.describe_pod",
+     "value": "Unschedulable"
+    },
+    {
+     "evidence_id": "ev-0010",
+     "field": "conditions[PodScheduled].signal[insufficient_memory]",
+     "namespace": "ai-ops-demo",
+     "pod": "mem-hog",
+     "tool": "k8s.describe_pod",
+     "value": true
+    },
+    {
+     "evidence_id": "ev-0011",
+     "field": "scheduling.node_selector_declared",
+     "namespace": "ai-ops-demo",
+     "pod": "mem-hog",
+     "tool": "k8s.describe_pod",
+     "value": false
+    },
+    {
+     "evidence_id": "ev-0012",
+     "field": "scheduling.affinity_declared",
+     "namespace": "ai-ops-demo",
+     "pod": "mem-hog",
+     "tool": "k8s.describe_pod",
+     "value": false
+    },
+    {
+     "evidence_id": "ev-0013",
+     "field": "containers[app].liveness_probe.declared",
+     "namespace": "ai-ops-demo",
+     "pod": "mem-hog",
+     "tool": "k8s.describe_pod",
+     "value": false
+    },
+    {
+     "evidence_id": "ev-0014",
+     "field": "containers[app].readiness_probe.declared",
+     "namespace": "ai-ops-demo",
+     "pod": "mem-hog",
+     "tool": "k8s.describe_pod",
+     "value": false
+    },
+    {
+     "evidence_id": "ev-0015",
+     "field": "events[FailedScheduling].type",
+     "namespace": "ai-ops-demo",
+     "pod": "mem-hog",
+     "tool": "k8s.get_events",
+     "value": "Warning"
+    },
+    {
+     "evidence_id": "ev-0016",
+     "field": "events[FailedScheduling].count",
+     "namespace": "ai-ops-demo",
+     "pod": "mem-hog",
+     "tool": "k8s.get_events",
+     "value": 3
+    },
+    {
+     "evidence_id": "ev-0017",
+     "field": "events[FailedScheduling].signal[insufficient_memory]",
+     "namespace": "ai-ops-demo",
+     "pod": "mem-hog",
+     "tool": "k8s.get_events",
+     "value": true
+    }
+   ],
+   "trust": "verified_by_application_from_authorized_read_only_tools"
+  },
+  "log_refs_available": [],
+  "untrusted_logs": [],
+  "verified_configuration_evidence": {
+   "items": [],
+   "trust": "verified_by_application_from_authorized_read_only_tools",
+   "values_are_never_included": true
+  }
+ },
+ "scenario": "sched_memory"
+}

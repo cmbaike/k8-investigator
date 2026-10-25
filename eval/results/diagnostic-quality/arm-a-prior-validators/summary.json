@@ -1,0 +1,261 @@
+{
+ "rubric_version": "2",
+ "rubric_sha256": "fe8c65c841ee137f29929b73972a16cacd76fbc62efb15a4acea8c5eed9152bb",
+ "runs": 26,
+ "technical": {
+  "raw_hypotheses": 92,
+  "raw_with_error": 15,
+  "raw_errors_by_type": {
+   "contradiction": 3,
+   "inverted_taint_toleration": 1,
+   "selector_absence_blamed_for_unschedulable": 11
+  },
+  "check_errors_in_raw": 6,
+  "accepted_hypotheses": 72,
+  "escapes_accepted_with_error": 2,
+  "escape_rate": 0.028,
+  "escapes": [
+   {
+    "scenario": "sched_multiple",
+    "repeat": 1,
+    "errors": [
+     "inverted_taint_toleration",
+     "inverted_taint_toleration"
+    ],
+    "raw": {
+     "possible_explanation": "The pod may not be schedulable due to a combination of insufficient CPU, memory, and node taint constraints that prevent it from being placed on any node.",
+     "not_yet_verified": "The combined effect of CPU, memory, and taint constraints on the pod's schedulability has not been verified.",
+     "verification_check": "Investigate the combined impact of CPU, memory, and taint constraints on the pod's ability to be scheduled."
+    }
+   },
+   {
+    "scenario": "running_not_ready",
+    "repeat": 0,
+    "errors": [
+     "contradiction:\\b(?:is|are|was|remains?"
+    ],
+    "raw": {
+     "possible_explanation": "The container may be unable to meet the readiness probe requirements, which could be due to incorrect probe configuration or the application not being ready to serve requests.",
+     "not_yet_verified": "The readiness probe configuration and the application's readiness to serve requests have not been verified.",
+     "verification_check": "Check the readiness probe configuration and verify if the application is ready to serve requests."
+    }
+   }
+  ]
+ },
+ "relevance": {
+  "raw_relevant_rate": 0.902,
+  "raw_specific_rate": 0.5,
+  "accepted_relevant_rate": 0.903,
+  "accepted_specific_rate": 0.611,
+  "top_accepted_relevant": 0.96,
+  "top_accepted_specific": 0.958,
+  "runs_with_distinct_alternatives": "18/22",
+  "multi_constraint_coverage": {
+   "sched_multiple#0": "3/3",
+   "sched_multiple#1": "3/3"
+  }
+ },
+ "checks": {
+  "raw_checks": 92,
+  "raw_relevant": 0.663,
+  "raw_not_read_only": 4,
+  "raw_out_of_scope": 1,
+  "raw_technically_unclean": 6,
+  "shown_checks": 68,
+  "withheld_checks": 4,
+  "withheld_by_reason": {
+   "incorrect_kubernetes_semantics": 1,
+   "remediation_in_check": 3
+  },
+  "withheld_rubric_confirms_defect": 4,
+  "withheld_but_rubric_clean": 0,
+  "accepted_relevant": 0.676,
+  "accepted_not_read_only": 1,
+  "accepted_out_of_scope": 0,
+  "accepted_technically_unclean": 2
+ },
+ "validation": {
+  "proposed": 92,
+  "accepted": 72,
+  "rejected": 20,
+  "rejected_by_reason": {
+   "contradicts_container_state": 2,
+   "contradicts_established_evidence": 1,
+   "duplicate_hypothesis": 4,
+   "incorrect_kubernetes_semantics": 11,
+   "too_many_references": 2
+  },
+  "whole_response_failures": 0,
+  "whole_response_codes": {},
+  "candidate_false_positive_rejections": 4,
+  "candidate_false_positives": [
+   {
+    "scenario": "liveness_failure",
+    "repeat": 0,
+    "code": "duplicate_hypothesis",
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The container may have been restarted due to a failure in the liveness probe, which could be caused by the application not being ready to handle traffic or a delay in initialization.",
+     "not_yet_verified": "The initialization process or readiness of the application has not been verified.",
+     "evidence": [
+      "ev-0024",
+      "ev-0025",
+      "ev-0027",
+      "ev-0028",
+      "ev-0015",
+      "ev-0016"
+     ],
+     "resource": null,
+     "verification_check": "Verify the application's startup behavior and ensure the liveness probe is configured to account for any initialization delays."
+    }
+   },
+   {
+    "scenario": "liveness_failure",
+    "repeat": 1,
+    "code": "too_many_references",
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The container may have been restarted due to liveness probe failures, which could be caused by the application not being ready to handle traffic or a dependency not being resolved.",
+     "not_yet_verified": "The reason the application is not ready to handle traffic has not been verified.",
+     "evidence": [
+      "ev-0025",
+      "ev-0028",
+      "ev-0015",
+      "ev-0016",
+      "ev-0017",
+      "ev-0018",
+      "ev-0024",
+      "ev-0027"
+     ],
+     "resource": null,
+     "verification_check": "Verify if the application is properly initialized and if any dependencies are being resolved before the liveness probe is triggered."
+    }
+   },
+   {
+    "scenario": "healthy",
+    "repeat": 1,
+    "code": "duplicate_hypothesis",
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The pod may be healthy but not yet ready due to a misconfigured readiness probe that has not been verified.",
+     "not_yet_verified": "The readiness probe configuration and its expected behavior have not been verified.",
+     "evidence": [
+      "ev-0007",
+      "ev-0013"
+     ],
+     "resource": null,
+     "verification_check": "Check the readiness probe configuration and ensure it aligns with the application's expected behavior."
+    }
+   },
+   {
+    "scenario": "healthy",
+    "repeat": 1,
+    "code": "duplicate_hypothesis",
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The pod may be healthy but not yet ready due to a misconfigured readiness probe that has not been verified.",
+     "not_yet_verified": "The readiness probe configuration and its expected behavior have not been verified.",
+     "evidence": [
+      "ev-0007",
+      "ev-0013"
+     ],
+     "resource": null,
+     "verification_check": "Check the readiness probe configuration and ensure it aligns with the application's expected behavior."
+    }
+   }
+  ]
+ },
+ "operations": {
+  "completion_rate": 1.0,
+  "analysis_states": {
+   "generated": 25,
+   "all_omitted": 1
+  },
+  "tool_coverage_mean": 0.949,
+  "ai_stage_latency_s_mean": 3.59,
+  "ai_stage_latency_s_max": 5.05
+ },
+ "per_scenario": {
+  "sched_cpu": {
+   "runs": 2,
+   "accepted": 6,
+   "proposed": 8,
+   "whole_response_failures": 0
+  },
+  "sched_memory": {
+   "runs": 2,
+   "accepted": 4,
+   "proposed": 8,
+   "whole_response_failures": 0
+  },
+  "sched_taint": {
+   "runs": 2,
+   "accepted": 4,
+   "proposed": 8,
+   "whole_response_failures": 0
+  },
+  "sched_selector": {
+   "runs": 2,
+   "accepted": 2,
+   "proposed": 2,
+   "whole_response_failures": 0
+  },
+  "sched_multiple": {
+   "runs": 2,
+   "accepted": 6,
+   "proposed": 8,
+   "whole_response_failures": 0
+  },
+  "sched_missing_pvc": {
+   "runs": 2,
+   "accepted": 4,
+   "proposed": 5,
+   "whole_response_failures": 0
+  },
+  "image_pull": {
+   "runs": 2,
+   "accepted": 8,
+   "proposed": 8,
+   "whole_response_failures": 0
+  },
+  "oom_killed": {
+   "runs": 2,
+   "accepted": 8,
+   "proposed": 8,
+   "whole_response_failures": 0
+  },
+  "running_not_ready": {
+   "runs": 2,
+   "accepted": 8,
+   "proposed": 8,
+   "whole_response_failures": 0
+  },
+  "liveness_failure": {
+   "runs": 2,
+   "accepted": 5,
+   "proposed": 8,
+   "whole_response_failures": 0
+  },
+  "mount_failure": {
+   "runs": 2,
+   "accepted": 7,
+   "proposed": 8,
+   "whole_response_failures": 0
+  },
+  "crash_loop": {
+   "runs": 2,
+   "accepted": 8,
+   "proposed": 8,
+   "whole_response_failures": 0
+  },
+  "healthy": {
+   "runs": 2,
+   "accepted": 2,
+   "proposed": 5,
+   "whole_response_failures": 0
+  }
+ },
+ "system_prompt_sha256": "eb524502dcfd00b3f5ff1ffaa06a4fa24c2df6d7b4d6c79ddf2021c190f028f4",
+ "label": "final",
+ "replay_of": null
+}

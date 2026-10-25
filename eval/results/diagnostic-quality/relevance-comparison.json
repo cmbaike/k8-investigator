@@ -1,0 +1,793 @@
+{
+ "closeout-revalidated": {
+  "runs": 45,
+  "proposed": 177,
+  "accepted": 122,
+  "useful_accepted_v2": 102,
+  "accepted_with_technical_inaccuracy_v2": 5,
+  "evidence_attribution_errors_in_accepted": 0,
+  "ai_latency_s_mean": 3.91,
+  "ai_latency_s_max": 9.53,
+  "whole_response_failures": 0,
+  "accepted_relevant": 71,
+  "accepted_generic": 15,
+  "accepted_irrelevant": 36,
+  "irrelevant_share_of_accepted": 0.295,
+  "runs_with_a_displayed_hypothesis": 42,
+  "top_ranked_relevant": 35,
+  "top_ranked_generic": 2,
+  "top_ranked_irrelevant": 5,
+  "top_ranked_relevant_rate": 0.833,
+  "relevant_rejected_for_validation": 5,
+  "irrelevant_rejected_for_validation_or_wording": 45,
+  "wording_rejected": 1,
+  "_irrelevant_accepted": [
+   {
+    "scenario": "sched_cpu",
+    "repeat": 0,
+    "text": "The pod may be unschedulable due to a lack of appropriate tolerations, which could prevent it from being scheduled on nodes with specific taints.",
+    "off_stage": [
+     "taint"
+    ]
+   },
+   {
+    "scenario": "sched_cpu",
+    "repeat": 1,
+    "text": "The pod may not be schedulable due to a lack of tolerations, as the pod does not have any tolerations declared to match node taints.",
+    "off_stage": [
+     "taint"
+    ]
+   },
+   {
+    "scenario": "sched_cpu",
+    "repeat": 2,
+    "text": "The pod may not be schedulable due to a lack of tolerations that match the node taints on the available nodes.",
+    "off_stage": [
+     "taint"
+    ]
+   },
+   {
+    "scenario": "sched_taint",
+    "repeat": 0,
+    "text": "The pod may not be schedulable due to insufficient resources on the node, as the scheduler events indicate failed scheduling.",
+    "off_stage": [
+     "cpu_memory_capacity"
+    ]
+   },
+   {
+    "scenario": "sched_taint",
+    "repeat": 1,
+    "text": "The pod may be unschedulable due to insufficient resources on the available nodes, as the scheduler is unable to find a suitable node.",
+    "off_stage": [
+     "cpu_memory_capacity"
+    ]
+   },
+   {
+    "scenario": "sched_taint",
+    "repeat": 2,
+    "text": "The pod may be unschedulable due to insufficient resources on the available nodes, as the scheduler events indicate failed scheduling.",
+    "off_stage": [
+     "cpu_memory_capacity"
+    ]
+   },
+   {
+    "scenario": "sched_selector",
+    "repeat": 0,
+    "text": "The pod may be unschedulable due to insufficient resources on the available nodes, even if no explicit resource requests are declared.",
+    "off_stage": [
+     "cpu_memory_capacity"
+    ]
+   },
+   {
+    "scenario": "sched_selector",
+    "repeat": 0,
+    "text": "The pod may be unschedulable due to a lack of tolerations, even if no node taints are present on the available nodes.",
+    "off_stage": [
+     "taint"
+    ]
+   },
+   {
+    "scenario": "sched_selector",
+    "repeat": 2,
+    "text": "The pod may be unschedulable due to a lack of tolerations, even if a node selector is declared, as the scheduler may not tolerate the pod's requirements.",
+    "off_stage": [
+     "taint"
+    ]
+   },
+   {
+    "scenario": "sched_selector",
+    "repeat": 2,
+    "text": "The pod may be unschedulable due to insufficient resources on the available nodes, even if no explicit resource requests are declared.",
+    "off_stage": [
+     "cpu_memory_capacity"
+    ]
+   },
+   {
+    "scenario": "sched_missing_pvc",
+    "repeat": 0,
+    "text": "The pod may not be schedulable due to insufficient resources on the available nodes, as the scheduler reported failed scheduling events.",
+    "off_stage": [
+     "cpu_memory_capacity"
+    ]
+   },
+   {
+    "scenario": "sched_missing_pvc",
+    "repeat": 0,
+    "text": "The pod may not be schedulable due to a mismatch with node taints, as the scheduler reported failed scheduling events.",
+    "off_stage": [
+     "taint"
+    ]
+   },
+   {
+    "scenario": "sched_missing_pvc",
+    "repeat": 1,
+    "text": "The pod may be unschedulable due to insufficient resources on the available nodes, as the scheduler is unable to find a suitable node.",
+    "off_stage": [
+     "cpu_memory_capacity"
+    ]
+   },
+   {
+    "scenario": "sched_missing_pvc",
+    "repeat": 2,
+    "text": "The pod may not be schedulable due to insufficient resources on the available nodes, as the scheduler reported failed scheduling events.",
+    "off_stage": [
+     "cpu_memory_capacity"
+    ]
+   },
+   {
+    "scenario": "image_pull",
+    "repeat": 0,
+    "text": "The pod may be unable to schedule due to node taints or affinity constraints that are not being met.",
+    "off_stage": [
+     "scheduling"
+    ]
+   },
+   {
+    "scenario": "image_pull",
+    "repeat": 0,
+    "text": "The pod may be unable to schedule due to insufficient resource requests or allocatable capacity on the nodes.",
+    "off_stage": [
+     "scheduling"
+    ]
+   },
+   {
+    "scenario": "image_pull",
+    "repeat": 0,
+    "text": "The pod may be unable to schedule due to a mismatch between the node selector and the available nodes.",
+    "off_stage": [
+     "scheduling"
+    ]
+   },
+   {
+    "scenario": "image_pull",
+    "repeat": 1,
+    "text": "The pod may be unable to schedule due to insufficient resources on the available nodes or misconfigured node selectors and affinities.",
+    "off_stage": [
+     "scheduling"
+    ]
+   },
+   {
+    "scenario": "image_pull",
+    "repeat": 1,
+    "text": "The pod may be unable to schedule due to a node taint that the pod does not tolerate.",
+    "off_stage": [
+     "scheduling"
+    ]
+   },
+   {
+    "scenario": "image_pull",
+    "repeat": 1,
+    "text": "The pod may be unable to schedule due to a mismatch between the pod's resource requests and the node's allocatable capacity.",
+    "off_stage": [
+     "scheduling"
+    ]
+   },
+   {
+    "scenario": "image_pull",
+    "repeat": 2,
+    "text": "The pod may be unable to schedule due to node taints or affinity constraints that are not being met.",
+    "off_stage": [
+     "scheduling"
+    ]
+   },
+   {
+    "scenario": "image_pull",
+    "repeat": 2,
+    "text": "The pod may be unable to schedule due to insufficient resource requests or allocatable capacity on the nodes.",
+    "off_stage": [
+     "scheduling"
+    ]
+   },
+   {
+    "scenario": "image_pull",
+    "repeat": 2,
+    "text": "The pod may be unable to schedule due to a mismatch between the node selector and the available nodes.",
+    "off_stage": [
+     "scheduling"
+    ]
+   },
+   {
+    "scenario": "oom_killed",
+    "repeat": 0,
+    "text": "The container may be encountering issues with its startup process, as it has been restarted multiple times and is currently in a waiting state with a CrashLoopBackOff reason.",
+    "off_stage": [
+     "startup_command"
+    ]
+   },
+   {
+    "scenario": "oom_killed",
+    "repeat": 0,
+    "text": "The container may be failing due to a misconfigured readiness probe, as the container is not ready and has not been successfully probed.",
+    "off_stage": [
+     "readiness_probe",
+     "probe_any"
+    ]
+   },
+   {
+    "scenario": "oom_killed",
+    "repeat": 1,
+    "text": "The container may be experiencing issues with its readiness probe configuration, leading to it being marked as not ready, even though it is running and has restarted multiple times.",
+    "off_stage": [
+     "readiness_probe",
+     "probe_any"
+    ]
+   },
+   {
+    "scenario": "oom_killed",
+    "repeat": 2,
+    "text": "The container may be encountering issues with its startup process, leading to repeated restarts and a CrashLoopBackOff status.",
+    "off_stage": [
+     "startup_command"
+    ]
+   },
+   {
+    "scenario": "liveness_failure",
+    "repeat": 0,
+    "text": "The container may have been restarted due to an unexpected termination, which could be caused by an out-of-memory condition or a crash that the application did not log.",
+    "off_stage": [
+     "oom_strict"
+    ]
+   },
+   {
+    "scenario": "liveness_failure",
+    "repeat": 2,
+    "text": "The container may have exited with an error code due to an unhandled exception or a crash in the application logic, which could be related to resource constraints or a bug in the application.",
+    "off_stage": [
+     "resource_exhaustion"
+    ]
+   },
+   {
+    "scenario": "mount_failure",
+    "repeat": 0,
+    "text": "The pod may be unable to proceed due to a lack of node selector or affinity configuration, which could prevent it from being scheduled on a suitable node.",
+    "off_stage": [
+     "scheduling"
+    ]
+   },
+   {
+    "scenario": "mount_failure",
+    "repeat": 1,
+    "text": "The pod may be unable to proceed with container creation due to a lack of node selector or affinity constraints that could be preventing it from being scheduled on an appropriate node.",
+    "off_stage": [
+     "scheduling"
+    ]
+   },
+   {
+    "scenario": "mount_failure",
+    "repeat": 2,
+    "text": "The pod may be unable to proceed due to a lack of node selector or affinity configuration, which could prevent it from being scheduled on a suitable node.",
+    "off_stage": [
+     "scheduling"
+    ]
+   },
+   {
+    "scenario": "crash_loop",
+    "repeat": 0,
+    "text": "The container may be failing due to an issue with the application's readiness probe, which could be misconfigured or not correctly detecting the application's readiness.",
+    "off_stage": [
+     "readiness_probe",
+     "probe_any"
+    ]
+   },
+   {
+    "scenario": "restart_history",
+    "repeat": 2,
+    "text": "The container may have restarted due to a resource constraint that was resolved after the previous termination, though the specific resource constraint has not been verified.",
+    "off_stage": [
+     "resource_exhaustion"
+    ]
+   },
+   {
+    "scenario": "oom_recovered",
+    "repeat": 0,
+    "text": "The container may have been restarted due to a resource request mismatch, such as insufficient memory on the node or a misconfigured resource limit.",
+    "off_stage": [
+     "scheduling"
+    ]
+   },
+   {
+    "scenario": "oom_recovered",
+    "repeat": 1,
+    "text": "The container may have been restarted due to a resource request mismatch, such as insufficient memory on the node or a misconfigured memory limit.",
+    "off_stage": [
+     "scheduling"
+    ]
+   }
+  ],
+  "_relevant_rejected": [
+   {
+    "scenario": "sched_selector",
+    "repeat": 0,
+    "code": "incorrect_kubernetes_semantics",
+    "text": "The pod may not have any affinity rules declared, which could contribute to the scheduling failure."
+   },
+   {
+    "scenario": "sched_selector",
+    "repeat": 1,
+    "code": "incorrect_kubernetes_semantics",
+    "text": "The pod may not have affinity rules defined, which could prevent it from being scheduled on the desired nodes."
+   },
+   {
+    "scenario": "sched_selector",
+    "repeat": 1,
+    "code": "incorrect_kubernetes_semantics",
+    "text": "The pod may not have a node selector defined, which could prevent it from being scheduled on the desired nodes."
+   },
+   {
+    "scenario": "oom_recovered",
+    "repeat": 0,
+    "code": "incorrect_kubernetes_semantics",
+    "text": "The container may have been terminated due to an out-of-memory (OOM) condition, which could be caused by the application using more memory than the requested 64Mi limit."
+   },
+   {
+    "scenario": "oom_recovered",
+    "repeat": 1,
+    "code": "incorrect_kubernetes_semantics",
+    "text": "The container may have been terminated due to an out-of-memory (OOM) condition, which could be caused by the application using more memory than the requested 64Mi limit."
+   }
+  ]
+ },
+ "relevance-replay-closeout-final": {
+  "runs": 45,
+  "proposed": 177,
+  "accepted": 106,
+  "useful_accepted_v2": 101,
+  "accepted_with_technical_inaccuracy_v2": 2,
+  "evidence_attribution_errors_in_accepted": 0,
+  "ai_latency_s_mean": 3.91,
+  "ai_latency_s_max": 9.53,
+  "whole_response_failures": 0,
+  "accepted_relevant": 71,
+  "accepted_generic": 14,
+  "accepted_irrelevant": 21,
+  "irrelevant_share_of_accepted": 0.198,
+  "runs_with_a_displayed_hypothesis": 42,
+  "top_ranked_relevant": 38,
+  "top_ranked_generic": 2,
+  "top_ranked_irrelevant": 2,
+  "top_ranked_relevant_rate": 0.905,
+  "relevant_rejected_for_validation": 5,
+  "irrelevant_rejected_for_validation_or_wording": 60,
+  "wording_rejected": 1,
+  "_irrelevant_accepted": [
+   {
+    "scenario": "sched_cpu",
+    "repeat": 0,
+    "text": "The pod may be unschedulable due to a lack of appropriate tolerations, which could prevent it from being scheduled on nodes with specific taints.",
+    "off_stage": [
+     "taint"
+    ]
+   },
+   {
+    "scenario": "sched_cpu",
+    "repeat": 1,
+    "text": "The pod may not be schedulable due to a lack of tolerations, as the pod does not have any tolerations declared to match node taints.",
+    "off_stage": [
+     "taint"
+    ]
+   },
+   {
+    "scenario": "sched_cpu",
+    "repeat": 2,
+    "text": "The pod may not be schedulable due to a lack of tolerations that match the node taints on the available nodes.",
+    "off_stage": [
+     "taint"
+    ]
+   },
+   {
+    "scenario": "sched_taint",
+    "repeat": 0,
+    "text": "The pod may not be schedulable due to insufficient resources on the node, as the scheduler events indicate failed scheduling.",
+    "off_stage": [
+     "cpu_memory_capacity"
+    ]
+   },
+   {
+    "scenario": "sched_taint",
+    "repeat": 1,
+    "text": "The pod may be unschedulable due to insufficient resources on the available nodes, as the scheduler is unable to find a suitable node.",
+    "off_stage": [
+     "cpu_memory_capacity"
+    ]
+   },
+   {
+    "scenario": "sched_taint",
+    "repeat": 2,
+    "text": "The pod may be unschedulable due to insufficient resources on the available nodes, as the scheduler events indicate failed scheduling.",
+    "off_stage": [
+     "cpu_memory_capacity"
+    ]
+   },
+   {
+    "scenario": "sched_selector",
+    "repeat": 0,
+    "text": "The pod may be unschedulable due to insufficient resources on the available nodes, even if no explicit resource requests are declared.",
+    "off_stage": [
+     "cpu_memory_capacity"
+    ]
+   },
+   {
+    "scenario": "sched_selector",
+    "repeat": 0,
+    "text": "The pod may be unschedulable due to a lack of tolerations, even if no node taints are present on the available nodes.",
+    "off_stage": [
+     "taint"
+    ]
+   },
+   {
+    "scenario": "sched_selector",
+    "repeat": 2,
+    "text": "The pod may be unschedulable due to a lack of tolerations, even if a node selector is declared, as the scheduler may not tolerate the pod's requirements.",
+    "off_stage": [
+     "taint"
+    ]
+   },
+   {
+    "scenario": "sched_selector",
+    "repeat": 2,
+    "text": "The pod may be unschedulable due to insufficient resources on the available nodes, even if no explicit resource requests are declared.",
+    "off_stage": [
+     "cpu_memory_capacity"
+    ]
+   },
+   {
+    "scenario": "sched_missing_pvc",
+    "repeat": 0,
+    "text": "The pod may not be schedulable due to insufficient resources on the available nodes, as the scheduler reported failed scheduling events.",
+    "off_stage": [
+     "cpu_memory_capacity"
+    ]
+   },
+   {
+    "scenario": "sched_missing_pvc",
+    "repeat": 0,
+    "text": "The pod may not be schedulable due to a mismatch with node taints, as the scheduler reported failed scheduling events.",
+    "off_stage": [
+     "taint"
+    ]
+   },
+   {
+    "scenario": "sched_missing_pvc",
+    "repeat": 1,
+    "text": "The pod may be unschedulable due to insufficient resources on the available nodes, as the scheduler is unable to find a suitable node.",
+    "off_stage": [
+     "cpu_memory_capacity"
+    ]
+   },
+   {
+    "scenario": "sched_missing_pvc",
+    "repeat": 2,
+    "text": "The pod may not be schedulable due to insufficient resources on the available nodes, as the scheduler reported failed scheduling events.",
+    "off_stage": [
+     "cpu_memory_capacity"
+    ]
+   },
+   {
+    "scenario": "oom_killed",
+    "repeat": 0,
+    "text": "The container may be encountering issues with its startup process, as it has been restarted multiple times and is currently in a waiting state with a CrashLoopBackOff reason.",
+    "off_stage": [
+     "startup_command"
+    ]
+   },
+   {
+    "scenario": "oom_killed",
+    "repeat": 2,
+    "text": "The container may be encountering issues with its startup process, leading to repeated restarts and a CrashLoopBackOff status.",
+    "off_stage": [
+     "startup_command"
+    ]
+   },
+   {
+    "scenario": "liveness_failure",
+    "repeat": 0,
+    "text": "The container may have been restarted due to an unexpected termination, which could be caused by an out-of-memory condition or a crash that the application did not log.",
+    "off_stage": [
+     "oom_strict"
+    ]
+   },
+   {
+    "scenario": "liveness_failure",
+    "repeat": 2,
+    "text": "The container may have exited with an error code due to an unhandled exception or a crash in the application logic, which could be related to resource constraints or a bug in the application.",
+    "off_stage": [
+     "resource_exhaustion"
+    ]
+   },
+   {
+    "scenario": "restart_history",
+    "repeat": 2,
+    "text": "The container may have restarted due to a resource constraint that was resolved after the previous termination, though the specific resource constraint has not been verified.",
+    "off_stage": [
+     "resource_exhaustion"
+    ]
+   },
+   {
+    "scenario": "oom_recovered",
+    "repeat": 0,
+    "text": "The container may have been restarted due to a resource request mismatch, such as insufficient memory on the node or a misconfigured resource limit.",
+    "off_stage": [
+     "scheduling"
+    ]
+   },
+   {
+    "scenario": "oom_recovered",
+    "repeat": 1,
+    "text": "The container may have been restarted due to a resource request mismatch, such as insufficient memory on the node or a misconfigured memory limit.",
+    "off_stage": [
+     "scheduling"
+    ]
+   }
+  ],
+  "_relevant_rejected": [
+   {
+    "scenario": "sched_selector",
+    "repeat": 0,
+    "code": "incorrect_kubernetes_semantics",
+    "text": "The pod may not have any affinity rules declared, which could contribute to the scheduling failure."
+   },
+   {
+    "scenario": "sched_selector",
+    "repeat": 1,
+    "code": "incorrect_kubernetes_semantics",
+    "text": "The pod may not have affinity rules defined, which could prevent it from being scheduled on the desired nodes."
+   },
+   {
+    "scenario": "sched_selector",
+    "repeat": 1,
+    "code": "incorrect_kubernetes_semantics",
+    "text": "The pod may not have a node selector defined, which could prevent it from being scheduled on the desired nodes."
+   },
+   {
+    "scenario": "oom_recovered",
+    "repeat": 0,
+    "code": "incorrect_kubernetes_semantics",
+    "text": "The container may have been terminated due to an out-of-memory (OOM) condition, which could be caused by the application using more memory than the requested 64Mi limit."
+   },
+   {
+    "scenario": "oom_recovered",
+    "repeat": 1,
+    "code": "incorrect_kubernetes_semantics",
+    "text": "The container may have been terminated due to an out-of-memory (OOM) condition, which could be caused by the application using more memory than the requested 64Mi limit."
+   }
+  ]
+ },
+ "relevance-final": {
+  "runs": 45,
+  "proposed": 156,
+  "accepted": 137,
+  "useful_accepted_v2": 133,
+  "accepted_with_technical_inaccuracy_v2": 2,
+  "evidence_attribution_errors_in_accepted": 0,
+  "ai_latency_s_mean": 4.1,
+  "ai_latency_s_max": 10.14,
+  "whole_response_failures": 0,
+  "accepted_relevant": 113,
+  "accepted_generic": 14,
+  "accepted_irrelevant": 10,
+  "irrelevant_share_of_accepted": 0.073,
+  "runs_with_a_displayed_hypothesis": 42,
+  "top_ranked_relevant": 41,
+  "top_ranked_generic": 0,
+  "top_ranked_irrelevant": 1,
+  "top_ranked_relevant_rate": 0.976,
+  "relevant_rejected_for_validation": 2,
+  "irrelevant_rejected_for_validation_or_wording": 10,
+  "wording_rejected": 7,
+  "_irrelevant_accepted": [
+   {
+    "scenario": "sched_taint",
+    "repeat": 0,
+    "text": "The scheduler may have failed to place the pod on any node due to insufficient resources, such as CPU or memory, on all available nodes.",
+    "off_stage": [
+     "cpu_memory_capacity"
+    ]
+   },
+   {
+    "scenario": "sched_taint",
+    "repeat": 0,
+    "text": "The pod may not be schedulable because there are no nodes available that meet the required conditions, such as node selectors or affinity rules, even though they are not declared.",
+    "off_stage": [
+     "placement"
+    ]
+   },
+   {
+    "scenario": "sched_taint",
+    "repeat": 1,
+    "text": "The scheduler may have failed to place the pod on any node due to insufficient resources on all available nodes.",
+    "off_stage": [
+     "cpu_memory_capacity"
+    ]
+   },
+   {
+    "scenario": "sched_taint",
+    "repeat": 2,
+    "text": "The scheduler may have failed to schedule the pod due to insufficient resources on all available nodes, as the pod is in a Pending state with no container started.",
+    "off_stage": [
+     "cpu_memory_capacity"
+    ]
+   },
+   {
+    "scenario": "liveness_failure",
+    "repeat": 0,
+    "text": "The container may have been restarted due to a resource exhaustion issue, such as memory or CPU limits being exceeded, leading to an OOMKilled or similar termination.",
+    "off_stage": [
+     "oom_strict",
+     "resource_exhaustion"
+    ]
+   },
+   {
+    "scenario": "liveness_failure",
+    "repeat": 1,
+    "text": "The container may have been restarted due to an issue with the application's readiness, as the liveness probe is configured to check /healthz on port 8080, which may not be the correct endpoint or path for the application.",
+    "off_stage": [
+     "readiness_probe"
+    ]
+   },
+   {
+    "scenario": "liveness_failure",
+    "repeat": 2,
+    "text": "The container may have been restarted due to an application crash or failure, which could be caused by an error in the application logic or resource constraints.",
+    "off_stage": [
+     "resource_exhaustion"
+    ]
+   },
+   {
+    "scenario": "mount_failure",
+    "repeat": 1,
+    "text": "The volume mount failure may be due to the pod's scheduling or resource constraints, as indicated by the 'ContainerCreating' state and the 'FailedMount' events.",
+    "off_stage": [
+     "scheduling"
+    ]
+   },
+   {
+    "scenario": "restart_history",
+    "repeat": 0,
+    "text": "The container may have been restarted due to a temporary issue that resolved itself, such as a transient network problem or a temporary resource constraint that was overcome after the container restarted.",
+    "off_stage": [
+     "resource_exhaustion"
+    ]
+   },
+   {
+    "scenario": "restart_history",
+    "repeat": 0,
+    "text": "The container may have been restarted due to a scheduling or resource allocation issue that was resolved after the container restarted, leading to it being ready and running again.",
+    "off_stage": [
+     "scheduling"
+    ]
+   }
+  ],
+  "_relevant_rejected": [
+   {
+    "scenario": "sched_multiple",
+    "repeat": 0,
+    "code": "inverted_scheduling_terms",
+    "text": "The pod may not be schedulable due to an untolerated taint on the nodes, as indicated by the scheduler's reported constraints."
+   },
+   {
+    "scenario": "running_not_ready",
+    "repeat": 2,
+    "code": "contradicts_established_evidence",
+    "text": "The readiness probe may have been configured with an incorrect initial delay, causing it to start checking the endpoint too early before the application is ready."
+   }
+  ]
+ },
+ "relevance-final-revalidated": {
+  "runs": 45,
+  "proposed": 156,
+  "accepted": 136,
+  "useful_accepted_v2": 131,
+  "accepted_with_technical_inaccuracy_v2": 3,
+  "evidence_attribution_errors_in_accepted": 0,
+  "ai_latency_s_mean": 4.1,
+  "ai_latency_s_max": 10.14,
+  "whole_response_failures": 0,
+  "accepted_relevant": 114,
+  "accepted_generic": 14,
+  "accepted_irrelevant": 8,
+  "irrelevant_share_of_accepted": 0.059,
+  "runs_with_a_displayed_hypothesis": 42,
+  "top_ranked_relevant": 41,
+  "top_ranked_generic": 0,
+  "top_ranked_irrelevant": 1,
+  "top_ranked_relevant_rate": 0.976,
+  "relevant_rejected_for_validation": 1,
+  "irrelevant_rejected_for_validation_or_wording": 12,
+  "wording_rejected": 7,
+  "_irrelevant_accepted": [
+   {
+    "scenario": "sched_taint",
+    "repeat": 0,
+    "text": "The scheduler may have failed to place the pod on any node due to insufficient resources, such as CPU or memory, on all available nodes.",
+    "off_stage": [
+     "cpu_memory_capacity"
+    ]
+   },
+   {
+    "scenario": "sched_taint",
+    "repeat": 0,
+    "text": "The pod may not be schedulable because there are no nodes available that meet the required conditions, such as node selectors or affinity rules, even though they are not declared.",
+    "off_stage": [
+     "placement"
+    ]
+   },
+   {
+    "scenario": "sched_taint",
+    "repeat": 1,
+    "text": "The scheduler may have failed to place the pod on any node due to insufficient resources on all available nodes.",
+    "off_stage": [
+     "cpu_memory_capacity"
+    ]
+   },
+   {
+    "scenario": "sched_taint",
+    "repeat": 2,
+    "text": "The scheduler may have failed to schedule the pod due to insufficient resources on all available nodes, as the pod is in a Pending state with no container started.",
+    "off_stage": [
+     "cpu_memory_capacity"
+    ]
+   },
+   {
+    "scenario": "liveness_failure",
+    "repeat": 0,
+    "text": "The container may have been restarted due to a resource exhaustion issue, such as memory or CPU limits being exceeded, leading to an OOMKilled or similar termination.",
+    "off_stage": [
+     "oom_strict",
+     "resource_exhaustion"
+    ]
+   },
+   {
+    "scenario": "liveness_failure",
+    "repeat": 1,
+    "text": "The container may have been restarted due to an issue with the application's readiness, as the liveness probe is configured to check /healthz on port 8080, which may not be the correct endpoint or path for the application.",
+    "off_stage": [
+     "readiness_probe"
+    ]
+   },
+   {
+    "scenario": "liveness_failure",
+    "repeat": 2,
+    "text": "The container may have been restarted due to an application crash or failure, which could be caused by an error in the application logic or resource constraints.",
+    "off_stage": [
+     "resource_exhaustion"
+    ]
+   },
+   {
+    "scenario": "restart_history",
+    "repeat": 0,
+    "text": "The container may have been restarted due to a temporary issue that resolved itself, such as a transient network problem or a temporary resource constraint that was overcome after the container restarted.",
+    "off_stage": [
+     "resource_exhaustion"
+    ]
+   }
+  ],
+  "_relevant_rejected": [
+   {
+    "scenario": "sched_multiple",
+    "repeat": 0,
+    "code": "inverted_scheduling_terms",
+    "text": "The pod may not be schedulable due to an untolerated taint on the nodes, as indicated by the scheduler's reported constraints."
+   }
+  ]
+ }
+}

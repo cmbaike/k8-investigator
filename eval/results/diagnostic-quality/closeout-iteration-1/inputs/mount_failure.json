@@ -1,0 +1,231 @@
+{
+ "payload": {
+  "application_configuration_statements": {
+   "items": [],
+   "trust": "written_by_the_application_from_verified_evidence"
+  },
+  "application_failure_classification": {
+   "items": [
+    {
+     "category": "unknown",
+     "container": "app",
+     "ever_ran": false,
+     "kubernetes_reason": null,
+     "namespace": "ai-ops-demo",
+     "pod": "vol"
+    },
+    {
+     "category": "volume_mount_failure",
+     "container": null,
+     "ever_ran": false,
+     "kubernetes_reason": "ContainerCreating",
+     "namespace": "ai-ops-demo",
+     "pod": "vol"
+    }
+   ],
+   "trust": "written_by_the_application_from_verified_evidence"
+  },
+  "application_logs_available": false,
+  "authorized_namespace": "ai-ops-demo",
+  "data_classification": "untrusted_application_log_data",
+  "evidence_focus_groups": {
+   "items": [
+    {
+     "container": null,
+     "evidence_ids": [
+      "ev-0017",
+      "ev-0018",
+      "ev-0019",
+      "ev-0020"
+     ],
+     "focus": "volume_mount_events",
+     "pod": "vol"
+    },
+    {
+     "container": "app",
+     "evidence_ids": [
+      "ev-0005",
+      "ev-0009",
+      "ev-0010"
+     ],
+     "focus": "pod_creation_state",
+     "pod": "vol"
+    },
+    {
+     "container": null,
+     "evidence_ids": [
+      "ev-0012"
+     ],
+     "focus": "declared_volumes",
+     "pod": "vol"
+    }
+   ],
+   "trust": "selected_by_the_application_for_relevance_only"
+  },
+  "excerpts_omitted": 0,
+  "investigation_id": "d65ae4de-6443-4732-a12b-d4d575d7d6e3",
+  "investigation_scope": {
+   "mode": "namespace",
+   "pods_in_scope": [],
+   "requested_workload": null,
+   "workload": null
+  },
+  "kubernetes_verified_observations": {
+   "items": [
+    {
+     "evidence_id": "ev-0001",
+     "field": "pods[].name",
+     "namespace": "ai-ops-demo",
+     "pod": "vol",
+     "tool": "k8s.get_pods",
+     "value": "vol"
+    },
+    {
+     "evidence_id": "ev-0002",
+     "field": "pod.name",
+     "namespace": "ai-ops-demo",
+     "pod": "vol",
+     "tool": "k8s.describe_pod",
+     "value": "vol"
+    },
+    {
+     "evidence_id": "ev-0005",
+     "field": "pod.phase",
+     "namespace": "ai-ops-demo",
+     "pod": "vol",
+     "tool": "k8s.describe_pod",
+     "value": "Pending"
+    },
+    {
+     "evidence_id": "ev-0006",
+     "field": "containers[].name",
+     "namespace": "ai-ops-demo",
+     "pod": "vol",
+     "tool": "k8s.describe_pod",
+     "value": "app"
+    },
+    {
+     "evidence_id": "ev-0007",
+     "field": "containers[app].ready",
+     "namespace": "ai-ops-demo",
+     "pod": "vol",
+     "tool": "k8s.describe_pod",
+     "value": false
+    },
+    {
+     "evidence_id": "ev-0008",
+     "field": "containers[app].restart_count",
+     "namespace": "ai-ops-demo",
+     "pod": "vol",
+     "tool": "k8s.describe_pod",
+     "value": 0
+    },
+    {
+     "evidence_id": "ev-0009",
+     "field": "containers[app].state",
+     "namespace": "ai-ops-demo",
+     "pod": "vol",
+     "tool": "k8s.describe_pod",
+     "value": "waiting"
+    },
+    {
+     "evidence_id": "ev-0010",
+     "field": "containers[app].reason",
+     "namespace": "ai-ops-demo",
+     "pod": "vol",
+     "tool": "k8s.describe_pod",
+     "value": "ContainerCreating"
+    },
+    {
+     "evidence_id": "ev-0011",
+     "field": "conditions[PodScheduled].status",
+     "namespace": "ai-ops-demo",
+     "pod": "vol",
+     "tool": "k8s.describe_pod",
+     "value": "True"
+    },
+    {
+     "evidence_id": "ev-0012",
+     "field": "volumes[cfg].source",
+     "namespace": "ai-ops-demo",
+     "pod": "vol",
+     "tool": "k8s.describe_pod",
+     "value": "config_map"
+    },
+    {
+     "evidence_id": "ev-0013",
+     "field": "scheduling.node_selector_declared",
+     "namespace": "ai-ops-demo",
+     "pod": "vol",
+     "tool": "k8s.describe_pod",
+     "value": false
+    },
+    {
+     "evidence_id": "ev-0014",
+     "field": "scheduling.affinity_declared",
+     "namespace": "ai-ops-demo",
+     "pod": "vol",
+     "tool": "k8s.describe_pod",
+     "value": false
+    },
+    {
+     "evidence_id": "ev-0015",
+     "field": "containers[app].liveness_probe.declared",
+     "namespace": "ai-ops-demo",
+     "pod": "vol",
+     "tool": "k8s.describe_pod",
+     "value": false
+    },
+    {
+     "evidence_id": "ev-0016",
+     "field": "events[FailedMount].type",
+     "namespace": "ai-ops-demo",
+     "pod": "vol",
+     "tool": "k8s.get_events",
+     "value": "Warning"
+    },
+    {
+     "evidence_id": "ev-0017",
+     "field": "events[FailedMount].count",
+     "namespace": "ai-ops-demo",
+     "pod": "vol",
+     "tool": "k8s.get_events",
+     "value": 3
+    },
+    {
+     "evidence_id": "ev-0018",
+     "field": "events[FailedMount].signal[config_map_not_found]",
+     "namespace": "ai-ops-demo",
+     "pod": "vol",
+     "tool": "k8s.get_events",
+     "value": true
+    },
+    {
+     "evidence_id": "ev-0019",
+     "field": "events[FailedMount].signal[mount_setup_failed]",
+     "namespace": "ai-ops-demo",
+     "pod": "vol",
+     "tool": "k8s.get_events",
+     "value": true
+    },
+    {
+     "evidence_id": "ev-0020",
+     "field": "events[FailedMount].volume[cfg]",
+     "namespace": "ai-ops-demo",
+     "pod": "vol",
+     "tool": "k8s.get_events",
+     "value": true
+    }
+   ],
+   "trust": "verified_by_application_from_authorized_read_only_tools"
+  },
+  "log_refs_available": [],
+  "untrusted_logs": [],
+  "verified_configuration_evidence": {
+   "items": [],
+   "trust": "verified_by_application_from_authorized_read_only_tools",
+   "values_are_never_included": true
+  }
+ },
+ "scenario": "mount_failure"
+}

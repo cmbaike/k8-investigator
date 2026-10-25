@@ -1,0 +1,305 @@
+{
+ "investigation_id": "cf7f20e4-c3c3-4fe7-bcc4-f36962d69b1e",
+ "summary": "Investigation of namespace 'ai-ops-demo': 11 verified finding(s) (1 critical, 10 info) from 48 trusted evidence item(s).\nScope: only namespace 'ai-ops-demo' and the resources observed during this investigation. This is not an assessment of the rest of the cluster or of other namespaces.\nTarget: Deployment 'broken-image', verified through Kubernetes owner references. Inspected only its 1 pod(s): 'broken-image-8666686c99-4hgd2'. The other 7 pod(s) listed in the namespace were not inspected.\nMost significant findings, in priority order:\n1. [critical] Container could not be started: Container 'app' has not started: Kubernetes reports it waiting with reason 'ImagePullBackOff' (corroborated by independent evidence from events and pod state and workload configuration; evidence ev-0009, ev-0010, ev-0008, ev-0005 and 3 more).\n2. [info] Container state reason observed: Kubernetes reported container 'app' state reason as 'ImagePullBackOff' (single source: pod state; evidence ev-0010).\n3. [info] Container readiness observed: Kubernetes reported container 'app' readiness as False (single source: pod state; evidence ev-0007).\n4. [info] Pod identified: Kubernetes returned pod 'broken-image-8666686c99-4hgd2' in a pod description (single source: pod state; evidence ev-0002).\n7 further finding(s), including informational observations such as pod discovery, are listed in the report.\n5 uncertaint(ies) are recorded. These findings describe observed behavior only: the underlying cause is not established by this report, and any AI-generated hypotheses are listed separately and remain unverified.",
+ "findings": [
+  {
+   "title": "Pod discovered",
+   "description": "Pod 'broken-image-8666686c99-4hgd2' appeared in a successful Kubernetes pod listing. Resource: namespace 'ai-ops-demo', pod 'broken-image-8666686c99-4hgd2'. Observed during tool execution '3762ad21-6548-45a1-842f-59cebc556231-step-1'.",
+   "severity": "info",
+   "evidence": [
+    {
+     "evidence_id": "ev-0001"
+    }
+   ],
+   "scheduling_constraints": []
+  },
+  {
+   "title": "Pod identified",
+   "description": "Kubernetes returned pod 'broken-image-8666686c99-4hgd2' in a pod description. Resource: namespace 'ai-ops-demo', pod 'broken-image-8666686c99-4hgd2'. Observed during tool execution '3762ad21-6548-45a1-842f-59cebc556231-step-2'.",
+   "severity": "info",
+   "evidence": [
+    {
+     "evidence_id": "ev-0002"
+    }
+   ],
+   "scheduling_constraints": []
+  },
+  {
+   "title": "Pod phase observed",
+   "description": "Kubernetes reported pod phase 'Pending'. Resource: namespace 'ai-ops-demo', pod 'broken-image-8666686c99-4hgd2'. Observed during tool execution '3762ad21-6548-45a1-842f-59cebc556231-step-2'.",
+   "severity": "info",
+   "evidence": [
+    {
+     "evidence_id": "ev-0005"
+    }
+   ],
+   "scheduling_constraints": []
+  },
+  {
+   "title": "Container readiness observed",
+   "description": "Kubernetes reported container 'app' readiness as False. Resource: namespace 'ai-ops-demo', pod 'broken-image-8666686c99-4hgd2'. Observed during tool execution '3762ad21-6548-45a1-842f-59cebc556231-step-2'.",
+   "severity": "info",
+   "evidence": [
+    {
+     "evidence_id": "ev-0007"
+    }
+   ],
+   "scheduling_constraints": []
+  },
+  {
+   "title": "Container restart count observed",
+   "description": "Kubernetes reported container 'app' restart count as 0. Resource: namespace 'ai-ops-demo', pod 'broken-image-8666686c99-4hgd2'. Observed during tool execution '3762ad21-6548-45a1-842f-59cebc556231-step-2'.",
+   "severity": "info",
+   "evidence": [
+    {
+     "evidence_id": "ev-0008"
+    }
+   ],
+   "scheduling_constraints": []
+  },
+  {
+   "title": "Container state observed",
+   "description": "Kubernetes reported container 'app' state as 'waiting'. Resource: namespace 'ai-ops-demo', pod 'broken-image-8666686c99-4hgd2'. Observed during tool execution '3762ad21-6548-45a1-842f-59cebc556231-step-2'.",
+   "severity": "info",
+   "evidence": [
+    {
+     "evidence_id": "ev-0009"
+    }
+   ],
+   "scheduling_constraints": []
+  },
+  {
+   "title": "Container state reason observed",
+   "description": "Kubernetes reported container 'app' state reason as 'ImagePullBackOff'. Resource: namespace 'ai-ops-demo', pod 'broken-image-8666686c99-4hgd2'. Observed during tool execution '3762ad21-6548-45a1-842f-59cebc556231-step-2'.",
+   "severity": "info",
+   "evidence": [
+    {
+     "evidence_id": "ev-0010"
+    }
+   ],
+   "scheduling_constraints": []
+  },
+  {
+   "title": "Owning workload identified",
+   "description": "Pod 'broken-image-8666686c99-4hgd2' is controlled by Deployment 'broken-image', verified through Kubernetes owner references and UIDs. Resource: namespace 'ai-ops-demo', pod 'broken-image-8666686c99-4hgd2'.",
+   "severity": "info",
+   "evidence": [
+    {
+     "evidence_id": "ev-0023"
+    },
+    {
+     "evidence_id": "ev-0024"
+    }
+   ],
+   "scheduling_constraints": []
+  },
+  {
+   "title": "Container configuration observed",
+   "description": "Container 'app': image 'nonexistent-registry.example.invalid/ghost/app:999'; declares no environment variables and no ConfigMap or Secret environment sources; declares no readiness probe; no startup command override is declared (the image default applies and was not inspected). Environment values and command text are never collected, and this describes the declared spec only, not the complete runtime environment. Resource: namespace 'ai-ops-demo', pod 'broken-image-8666686c99-4hgd2'.",
+   "severity": "info",
+   "evidence": [
+    {
+     "evidence_id": "ev-0029"
+    },
+    {
+     "evidence_id": "ev-0030"
+    },
+    {
+     "evidence_id": "ev-0032"
+    },
+    {
+     "evidence_id": "ev-0035"
+    }
+   ],
+   "scheduling_constraints": []
+  },
+  {
+   "title": "Container could not be started",
+   "description": "Container 'app' has not started: Kubernetes reports it waiting with reason 'ImagePullBackOff'. Kubernetes reports that pulling the container image failed and the kubelet is backing off before it retries. It has restarted 0 times. The pod phase is 'Pending'. The configured image reference is 'nonexistent-registry.example.invalid/ghost/app:999' (from the Deployment spec). Kubernetes also recorded Warning events for this pod: 'Failed' (x20). This report establishes the state Kubernetes reports, not its cause: it does not by itself show that the image does not exist or that the configuration is wrong. Resource: namespace 'ai-ops-demo', pod 'broken-image-8666686c99-4hgd2'.",
+   "severity": "critical",
+   "evidence": [
+    {
+     "evidence_id": "ev-0009"
+    },
+    {
+     "evidence_id": "ev-0010"
+    },
+    {
+     "evidence_id": "ev-0008"
+    },
+    {
+     "evidence_id": "ev-0005"
+    },
+    {
+     "evidence_id": "ev-0029"
+    },
+    {
+     "evidence_id": "ev-0037"
+    },
+    {
+     "evidence_id": "ev-0038"
+    }
+   ],
+   "scheduling_constraints": []
+  },
+  {
+   "title": "Kubernetes events recorded for the pod",
+   "description": "Kubernetes recorded 4 event reasons for pod 'broken-image-8666686c99-4hgd2': Warning 'Failed' (x20), Normal 'BackOff' (x21), Normal 'Pulling' (x5), Normal 'Scheduled' (x1). Only each event's reason, type and count are used. The event messages are untrusted text and are not part of this report. These records show that Kubernetes logged the events, not why they occurred. Resource: namespace 'ai-ops-demo', pod 'broken-image-8666686c99-4hgd2'.",
+   "severity": "info",
+   "evidence": [
+    {
+     "evidence_id": "ev-0037"
+    },
+    {
+     "evidence_id": "ev-0038"
+    },
+    {
+     "evidence_id": "ev-0040"
+    },
+    {
+     "evidence_id": "ev-0041"
+    },
+    {
+     "evidence_id": "ev-0043"
+    },
+    {
+     "evidence_id": "ev-0044"
+    },
+    {
+     "evidence_id": "ev-0045"
+    },
+    {
+     "evidence_id": "ev-0046"
+    }
+   ],
+   "scheduling_constraints": []
+  }
+ ],
+ "uncertainties": [
+  "Pod 'broken-image-8666686c99-4hgd2' in namespace 'ai-ops-demo': environment variable values, ConfigMap contents and Secret contents are never inspected, so whether any variable is set correctly has not been established.",
+  "Pod 'broken-image-8666686c99-4hgd2' in namespace 'ai-ops-demo', container 'app': startup behavior could not be established by static analysis. This is not evidence that startup is correct.",
+  "Pod 'broken-image-8666686c99-4hgd2' in namespace 'ai-ops-demo', container 'app': no environment variables are declared in its spec, which does not establish the complete runtime environment (variables may come from the image or other mechanisms).",
+  "Pod 'broken-image-8666686c99-4hgd2', container 'app': application logs were not requested because Kubernetes reports the container has not started; there is no application-level evidence about it.",
+  "Underlying failure causes and log-derived failures have not been established by trusted report evidence."
+ ],
+ "suggested_checks": [
+  "Read the event messages Kubernetes recorded for pod 'broken-image-8666686c99-4hgd2' (for example with kubectl describe pod): they name the specific error. They are not retained in this report.",
+  "Confirm that the image reference 'nonexistent-registry.example.invalid/ghost/app:999' for container 'app' in pod 'broken-image-8666686c99-4hgd2' names an image and tag that exist in the registry it points to. Compare it with the registry's published tags (read-only).",
+  "Check that the registry host for container 'app' in pod 'broken-image-8666686c99-4hgd2' is reachable from the cluster's nodes, and whether the pod spec lists image pull secret names. Names only: never read Secret contents."
+ ],
+ "ai_hypotheses": [
+  {
+   "explanation": "Possible explanation (unverified): The container may be unable to pull the image due to authentication issues with the registry, such as missing or incorrect credentials. Not yet verified: The underlying cause has not been verified.",
+   "status": "unverified",
+   "reported": null,
+   "possible_explanation": "The container may be unable to pull the image due to authentication issues with the registry, such as missing or incorrect credentials.",
+   "not_yet_verified": "The underlying cause has not been verified.",
+   "evidence_refs": [
+    "ev-0039",
+    "ev-0042"
+   ],
+   "resource": {
+    "namespace": "ai-ops-demo",
+    "pod": "broken-image-8666686c99-4hgd2",
+    "container": null
+   },
+   "verification_check": "Verify that the registry requires authentication and that the appropriate credentials are configured in the cluster.",
+   "check_withheld_reason": null,
+   "independently_established": null,
+   "established_refs": [],
+   "configuration_context": "Container 'app' declares no environment variables and no ConfigMap or Secret environment sources in its spec. This describes the declared workload spec only. Values, variables baked into the image and variables supplied by other mechanisms are not established, so it does not show the complete runtime environment.",
+   "configuration_refs": [
+    "ev-0030",
+    "ev-0031"
+   ]
+  },
+  {
+   "explanation": "Possible explanation (unverified): The container may be unable to pull the image because the registry is unreachable or there is a network issue preventing communication with the registry. Not yet verified: The underlying cause has not been verified.",
+   "status": "unverified",
+   "reported": null,
+   "possible_explanation": "The container may be unable to pull the image because the registry is unreachable or there is a network issue preventing communication with the registry.",
+   "not_yet_verified": "The underlying cause has not been verified.",
+   "evidence_refs": [
+    "ev-0039",
+    "ev-0042"
+   ],
+   "resource": {
+    "namespace": "ai-ops-demo",
+    "pod": "broken-image-8666686c99-4hgd2",
+    "container": null
+   },
+   "verification_check": "Check the network connectivity between the cluster and the registry to ensure there are no firewall or routing issues.",
+   "check_withheld_reason": null,
+   "independently_established": null,
+   "established_refs": [],
+   "configuration_context": "Container 'app' declares no environment variables and no ConfigMap or Secret environment sources in its spec. This describes the declared workload spec only. Values, variables baked into the image and variables supplied by other mechanisms are not established, so it does not show the complete runtime environment.",
+   "configuration_refs": [
+    "ev-0030",
+    "ev-0031"
+   ]
+  },
+  {
+   "explanation": "Possible explanation (unverified): The container may not be able to pull the image from the registry because the image reference may not exist or the registry may be unreachable. Not yet verified: The underlying cause has not been verified.",
+   "status": "unverified",
+   "reported": null,
+   "possible_explanation": "The container may not be able to pull the image from the registry because the image reference may not exist or the registry may be unreachable.",
+   "not_yet_verified": "The underlying cause has not been verified.",
+   "evidence_refs": [
+    "ev-0010",
+    "ev-0039",
+    "ev-0042"
+   ],
+   "resource": {
+    "namespace": "ai-ops-demo",
+    "pod": "broken-image-8666686c99-4hgd2",
+    "container": "app"
+   },
+   "verification_check": "Check if the image reference 'nonexistent-registry.example.invalid/ghost/app:999' exists in the registry and if the registry is reachable from the cluster.",
+   "check_withheld_reason": null,
+   "independently_established": null,
+   "established_refs": [],
+   "configuration_context": "Container 'app' declares no environment variables and no ConfigMap or Secret environment sources in its spec. This describes the declared workload spec only. Values, variables baked into the image and variables supplied by other mechanisms are not established, so it does not show the complete runtime environment.",
+   "configuration_refs": [
+    "ev-0030",
+    "ev-0031"
+   ]
+  },
+  {
+   "explanation": "Possible explanation (unverified): The container may be unable to pull the image because the registry is misconfigured or the image name is incorrect. Not yet verified: The underlying cause has not been verified.",
+   "status": "unverified",
+   "reported": null,
+   "possible_explanation": "The container may be unable to pull the image because the registry is misconfigured or the image name is incorrect.",
+   "not_yet_verified": "The underlying cause has not been verified.",
+   "evidence_refs": [
+    "ev-0029",
+    "ev-0039",
+    "ev-0042"
+   ],
+   "resource": {
+    "namespace": "ai-ops-demo",
+    "pod": "broken-image-8666686c99-4hgd2",
+    "container": "app"
+   },
+   "verification_check": null,
+   "check_withheld_reason": "remediation_in_check",
+   "independently_established": null,
+   "established_refs": [],
+   "configuration_context": "Container 'app' declares no environment variables and no ConfigMap or Secret environment sources in its spec. This describes the declared workload spec only. Values, variables baked into the image and variables supplied by other mechanisms are not established, so it does not show the complete runtime environment.",
+   "configuration_refs": [
+    "ev-0030",
+    "ev-0031"
+   ]
+  }
+ ],
+ "ai_analysis": {
+  "state": "generated",
+  "reason": null,
+  "message": "AI-generated hypotheses are unverified interpretations.",
+  "log_excerpts_used": 0,
+  "log_excerpts_omitted": 0,
+  "hypotheses_omitted": 0,
+  "hypotheses_proposed": 4,
+  "omission_reasons": {},
+  "rejection_category": null
+ }
+}

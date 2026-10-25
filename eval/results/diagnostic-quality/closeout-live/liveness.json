@@ -1,0 +1,333 @@
+{
+ "investigation_id": "c22b0d44-9c0f-4d7a-b67e-35f363e4b303",
+ "summary": "Investigation of namespace 'ai-ops-demo': 14 verified finding(s) (1 critical, 13 info) from 66 trusted evidence item(s).\nScope: only namespace 'ai-ops-demo' and the resources observed during this investigation. This is not an assessment of the rest of the cluster or of other namespaces.\nTarget: Deployment 'bad-liveness', verified through Kubernetes owner references. Inspected only its 1 pod(s): 'bad-liveness-794795bdf7-ngqv6'. The other 7 pod(s) listed in the namespace were not inspected.\nMost significant findings, in priority order:\n1. [critical] Container is crash-looping: Container 'app' started and then failed: Kubernetes reports it not ready, state 'waiting', reason 'CrashLoopBackOff' (corroborated by independent evidence from events and pod state; evidence ev-0007, ev-0009, ev-0010, ev-0012 and 11 more).\n2. [info] Container restart count observed: Kubernetes reported container 'app' restart count as 7 (single source: pod state; evidence ev-0008).\n3. [info] Container state reason observed: Kubernetes reported container 'app' state reason as 'CrashLoopBackOff' (single source: pod state; evidence ev-0010).\n4. [info] Container readiness observed: Kubernetes reported container 'app' readiness as False (single source: pod state; evidence ev-0007).\n10 further finding(s), including informational observations such as pod discovery, are listed in the report.\n5 uncertaint(ies) are recorded. These findings describe observed behavior only: the underlying cause is not established by this report, and any AI-generated hypotheses are listed separately and remain unverified.",
+ "findings": [
+  {
+   "title": "Pod discovered",
+   "description": "Pod 'bad-liveness-794795bdf7-ngqv6' appeared in a successful Kubernetes pod listing. Resource: namespace 'ai-ops-demo', pod 'bad-liveness-794795bdf7-ngqv6'. Observed during tool execution 'fe7d1db3-319d-4b05-9f4b-2cc3284adc02-step-1'.",
+   "severity": "info",
+   "evidence": [
+    {
+     "evidence_id": "ev-0001"
+    }
+   ],
+   "scheduling_constraints": []
+  },
+  {
+   "title": "Pod identified",
+   "description": "Kubernetes returned pod 'bad-liveness-794795bdf7-ngqv6' in a pod description. Resource: namespace 'ai-ops-demo', pod 'bad-liveness-794795bdf7-ngqv6'. Observed during tool execution 'fe7d1db3-319d-4b05-9f4b-2cc3284adc02-step-2'.",
+   "severity": "info",
+   "evidence": [
+    {
+     "evidence_id": "ev-0002"
+    }
+   ],
+   "scheduling_constraints": []
+  },
+  {
+   "title": "Pod phase observed",
+   "description": "Kubernetes reported pod phase 'Running'. Resource: namespace 'ai-ops-demo', pod 'bad-liveness-794795bdf7-ngqv6'. Observed during tool execution 'fe7d1db3-319d-4b05-9f4b-2cc3284adc02-step-2'.",
+   "severity": "info",
+   "evidence": [
+    {
+     "evidence_id": "ev-0005"
+    }
+   ],
+   "scheduling_constraints": []
+  },
+  {
+   "title": "Container readiness observed",
+   "description": "Kubernetes reported container 'app' readiness as False. Resource: namespace 'ai-ops-demo', pod 'bad-liveness-794795bdf7-ngqv6'. Observed during tool execution 'fe7d1db3-319d-4b05-9f4b-2cc3284adc02-step-2'.",
+   "severity": "info",
+   "evidence": [
+    {
+     "evidence_id": "ev-0007"
+    }
+   ],
+   "scheduling_constraints": []
+  },
+  {
+   "title": "Container restart count observed",
+   "description": "Kubernetes reported container 'app' restart count as 7. Resource: namespace 'ai-ops-demo', pod 'bad-liveness-794795bdf7-ngqv6'. Observed during tool execution 'fe7d1db3-319d-4b05-9f4b-2cc3284adc02-step-2'.",
+   "severity": "info",
+   "evidence": [
+    {
+     "evidence_id": "ev-0008"
+    }
+   ],
+   "scheduling_constraints": []
+  },
+  {
+   "title": "Container state observed",
+   "description": "Kubernetes reported container 'app' state as 'waiting'. Resource: namespace 'ai-ops-demo', pod 'bad-liveness-794795bdf7-ngqv6'. Observed during tool execution 'fe7d1db3-319d-4b05-9f4b-2cc3284adc02-step-2'.",
+   "severity": "info",
+   "evidence": [
+    {
+     "evidence_id": "ev-0009"
+    }
+   ],
+   "scheduling_constraints": []
+  },
+  {
+   "title": "Container state reason observed",
+   "description": "Kubernetes reported container 'app' state reason as 'CrashLoopBackOff'. Resource: namespace 'ai-ops-demo', pod 'bad-liveness-794795bdf7-ngqv6'. Observed during tool execution 'fe7d1db3-319d-4b05-9f4b-2cc3284adc02-step-2'.",
+   "severity": "info",
+   "evidence": [
+    {
+     "evidence_id": "ev-0010"
+    }
+   ],
+   "scheduling_constraints": []
+  },
+  {
+   "title": "Previous container exit code observed",
+   "description": "Kubernetes reported that container 'app' previously terminated with exit code 0. Resource: namespace 'ai-ops-demo', pod 'bad-liveness-794795bdf7-ngqv6'. Observed during tool execution 'fe7d1db3-319d-4b05-9f4b-2cc3284adc02-step-2'.",
+   "severity": "info",
+   "evidence": [
+    {
+     "evidence_id": "ev-0011"
+    }
+   ],
+   "scheduling_constraints": []
+  },
+  {
+   "title": "Previous container termination reason observed",
+   "description": "Kubernetes reported that container 'app' previously terminated with reason 'Completed'. Resource: namespace 'ai-ops-demo', pod 'bad-liveness-794795bdf7-ngqv6'. Observed during tool execution 'fe7d1db3-319d-4b05-9f4b-2cc3284adc02-step-2'.",
+   "severity": "info",
+   "evidence": [
+    {
+     "evidence_id": "ev-0012"
+    }
+   ],
+   "scheduling_constraints": []
+  },
+  {
+   "title": "Container logs retrieved",
+   "description": "Container logs were retrieved successfully. Log contents have not been established as verified root-cause evidence. Resource: namespace 'ai-ops-demo', pod 'bad-liveness-794795bdf7-ngqv6'. Observed during tool execution 'fe7d1db3-319d-4b05-9f4b-2cc3284adc02-step-3'.",
+   "severity": "info",
+   "evidence": [
+    {
+     "evidence_id": "ev-0031"
+    }
+   ],
+   "scheduling_constraints": []
+  },
+  {
+   "title": "Owning workload identified",
+   "description": "Pod 'bad-liveness-794795bdf7-ngqv6' is controlled by Deployment 'bad-liveness', verified through Kubernetes owner references and UIDs. Resource: namespace 'ai-ops-demo', pod 'bad-liveness-794795bdf7-ngqv6'.",
+   "severity": "info",
+   "evidence": [
+    {
+     "evidence_id": "ev-0034"
+    },
+    {
+     "evidence_id": "ev-0035"
+    }
+   ],
+   "scheduling_constraints": []
+  },
+  {
+   "title": "Container configuration observed",
+   "description": "Container 'app': image 'nginx:1.27'; declares no environment variables and no ConfigMap or Secret environment sources; declares no readiness probe; no startup command override is declared (the image default applies and was not inspected). Environment values and command text are never collected, and this describes the declared spec only, not the complete runtime environment. Resource: namespace 'ai-ops-demo', pod 'bad-liveness-794795bdf7-ngqv6'.",
+   "severity": "info",
+   "evidence": [
+    {
+     "evidence_id": "ev-0040"
+    },
+    {
+     "evidence_id": "ev-0041"
+    },
+    {
+     "evidence_id": "ev-0043"
+    },
+    {
+     "evidence_id": "ev-0046"
+    }
+   ],
+   "scheduling_constraints": []
+  },
+  {
+   "title": "Container is crash-looping",
+   "description": "Container 'app' started and then failed: Kubernetes reports it not ready, state 'waiting', reason 'CrashLoopBackOff'. Its previous termination reported reason 'Completed' and exit code 0. It has restarted 7 times. The pod phase is 'Running'. Kubernetes also recorded Warning events for this pod: 'Unhealthy' (x16), 'BackOff' (x10). Kubernetes also recorded events for this pod that were classified (fixed patterns; the messages are untrusted and not retained) as liveness-probe failures. They belong to the pod, not to one container, and do not by themselves establish that the probe caused this failure or why it failed. The cause of the failure is not established by this finding. Resource: namespace 'ai-ops-demo', pod 'bad-liveness-794795bdf7-ngqv6'.",
+   "severity": "critical",
+   "evidence": [
+    {
+     "evidence_id": "ev-0007"
+    },
+    {
+     "evidence_id": "ev-0009"
+    },
+    {
+     "evidence_id": "ev-0010"
+    },
+    {
+     "evidence_id": "ev-0012"
+    },
+    {
+     "evidence_id": "ev-0011"
+    },
+    {
+     "evidence_id": "ev-0008"
+    },
+    {
+     "evidence_id": "ev-0005"
+    },
+    {
+     "evidence_id": "ev-0048"
+    },
+    {
+     "evidence_id": "ev-0049"
+    },
+    {
+     "evidence_id": "ev-0051"
+    },
+    {
+     "evidence_id": "ev-0052"
+    },
+    {
+     "evidence_id": "ev-0050"
+    },
+    {
+     "evidence_id": "ev-0058"
+    },
+    {
+     "evidence_id": "ev-0059"
+    },
+    {
+     "evidence_id": "ev-0060"
+    }
+   ],
+   "scheduling_constraints": []
+  },
+  {
+   "title": "Kubernetes events recorded for the pod",
+   "description": "Kubernetes recorded 7 event reasons for pod 'bad-liveness-794795bdf7-ngqv6': Warning 'Unhealthy' (x16), Warning 'BackOff' (x10), Normal 'Pulled' (x8), Normal 'Created' (x6), Normal 'Killing' (x6), Normal 'Started' (x6) and 1 more. Only each event's reason, type and count are used. The event messages are untrusted text and are not part of this report. These records show that Kubernetes logged the events, not why they occurred. Resource: namespace 'ai-ops-demo', pod 'bad-liveness-794795bdf7-ngqv6'.",
+   "severity": "info",
+   "evidence": [
+    {
+     "evidence_id": "ev-0048"
+    },
+    {
+     "evidence_id": "ev-0049"
+    },
+    {
+     "evidence_id": "ev-0051"
+    },
+    {
+     "evidence_id": "ev-0052"
+    },
+    {
+     "evidence_id": "ev-0054"
+    },
+    {
+     "evidence_id": "ev-0055"
+    },
+    {
+     "evidence_id": "ev-0056"
+    },
+    {
+     "evidence_id": "ev-0057"
+    },
+    {
+     "evidence_id": "ev-0058"
+    },
+    {
+     "evidence_id": "ev-0059"
+    },
+    {
+     "evidence_id": "ev-0061"
+    },
+    {
+     "evidence_id": "ev-0062"
+    }
+   ],
+   "scheduling_constraints": []
+  }
+ ],
+ "uncertainties": [
+  "Log retrieval for pod 'bad-liveness-794795bdf7-ngqv6' in namespace 'ai-ops-demo' during execution 'fe7d1db3-319d-4b05-9f4b-2cc3284adc02-step-3' (k8s.get_logs) was bounded. The retrieved excerpt may omit relevant log entries.",
+  "Pod 'bad-liveness-794795bdf7-ngqv6' in namespace 'ai-ops-demo': environment variable values, ConfigMap contents and Secret contents are never inspected, so whether any variable is set correctly has not been established.",
+  "Pod 'bad-liveness-794795bdf7-ngqv6' in namespace 'ai-ops-demo', container 'app': startup behavior could not be established by static analysis. This is not evidence that startup is correct.",
+  "Pod 'bad-liveness-794795bdf7-ngqv6' in namespace 'ai-ops-demo', container 'app': no environment variables are declared in its spec, which does not establish the complete runtime environment (variables may come from the image or other mechanisms).",
+  "Underlying failure causes and log-derived failures have not been established by trusted report evidence."
+ ],
+ "suggested_checks": [
+  "Startup behavior of container 'app' in pod 'bad-liveness-794795bdf7-ngqv6' could not be established by static analysis. Ask the workload owner to review its entrypoint and the image's default command.",
+  "If the application reports a required setting for container 'app' in pod 'bad-liveness-794795bdf7-ngqv6', confirm with the workload owner how it is meant to be supplied (the Deployment manifest or deployment tooling, image defaults or an init step). The inspected spec declares no environment sources, which does not establish the complete runtime environment.",
+  "Compare what the application logs report for container 'app' in pod 'bad-liveness-794795bdf7-ngqv6' (untrusted, not retained) with the declared environment variable names, and confirm any claimed missing setting in the Deployment definition before changing anything."
+ ],
+ "ai_hypotheses": [
+  {
+   "explanation": "Possible explanation (unverified): The container may be failing due to a liveness probe that is not correctly configured to check the health of the application, leading to repeated restarts. Not yet verified: The actual health check path or port that the liveness probe is using may not match what the application is serving, and the probe timing may be too tight.",
+   "status": "unverified",
+   "reported": null,
+   "possible_explanation": "The container may be failing due to a liveness probe that is not correctly configured to check the health of the application, leading to repeated restarts.",
+   "not_yet_verified": "The actual health check path or port that the liveness probe is using may not match what the application is serving, and the probe timing may be too tight.",
+   "evidence_refs": [
+    "ev-0024",
+    "ev-0025",
+    "ev-0026",
+    "ev-0027",
+    "ev-0028",
+    "ev-0029"
+   ],
+   "resource": {
+    "namespace": "ai-ops-demo",
+    "pod": "bad-liveness-794795bdf7-ngqv6",
+    "container": "app"
+   },
+   "verification_check": null,
+   "check_withheld_reason": "remediation_in_check",
+   "independently_established": null,
+   "established_refs": [],
+   "configuration_context": "Container 'app' declares no environment variables and no ConfigMap or Secret environment sources in its spec. This describes the declared workload spec only. Values, variables baked into the image and variables supplied by other mechanisms are not established, so it does not show the complete runtime environment.",
+   "configuration_refs": [
+    "ev-0041",
+    "ev-0042"
+   ]
+  },
+  {
+   "explanation": "Possible explanation (unverified): The container may be failing due to a misconfigured liveness probe that is incorrectly identifying the application as unhealthy, leading to repeated restarts. Not yet verified: The exact reason the liveness probe is failing may be due to the application not being ready on the specified path or port, or the probe timing may be too tight.",
+   "status": "unverified",
+   "reported": null,
+   "possible_explanation": "The container may be failing due to a misconfigured liveness probe that is incorrectly identifying the application as unhealthy, leading to repeated restarts.",
+   "not_yet_verified": "The exact reason the liveness probe is failing may be due to the application not being ready on the specified path or port, or the probe timing may be too tight.",
+   "evidence_refs": [
+    "ev-0049",
+    "ev-0050",
+    "ev-0059",
+    "ev-0060",
+    "ev-0008",
+    "ev-0012"
+   ],
+   "resource": {
+    "namespace": "ai-ops-demo",
+    "pod": "bad-liveness-794795bdf7-ngqv6",
+    "container": "app"
+   },
+   "verification_check": null,
+   "check_withheld_reason": "remediation_in_check",
+   "independently_established": null,
+   "established_refs": [],
+   "configuration_context": "Container 'app' declares no environment variables and no ConfigMap or Secret environment sources in its spec. This describes the declared workload spec only. Values, variables baked into the image and variables supplied by other mechanisms are not established, so it does not show the complete runtime environment.",
+   "configuration_refs": [
+    "ev-0041",
+    "ev-0042"
+   ]
+  }
+ ],
+ "ai_analysis": {
+  "state": "generated",
+  "reason": null,
+  "message": "AI-generated hypotheses are unverified interpretations. 2 other proposed hypothesis(es) omitted by validation.",
+  "log_excerpts_used": 1,
+  "log_excerpts_omitted": 0,
+  "hypotheses_omitted": 2,
+  "hypotheses_proposed": 4,
+  "omission_reasons": {
+   "duplicate_hypothesis": 1,
+   "contradicts_established_evidence": 1
+  },
+  "rejection_category": null
+ }
+}

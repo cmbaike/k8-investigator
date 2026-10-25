@@ -1,0 +1,5 @@
+{
+ "content": "{\n  \"investigation_id\": \"cc4b1612-476d-4e6c-9922-298533387fcf\",\n  \"hypotheses\": [\n    {\n      \"reported\": null,\n      \"possible_explanation\": \"The pod may be in a healthy state but the application's logs may not have been captured due to the container never starting or not generating any output.\",\n      \"not_yet_verified\": \"The startup behaviour of the container has not been inspected.\",\n      \"evidence\": [\"ev-0001\", \"ev-0002\", \"ev-0005\", \"ev-0006\", \"ev-0007\", \"ev-0008\", \"ev-0009\", \"ev-0010\", \"ev-0011\", \"ev-0012\", \"ev-0013\"],\n      \"resource\": null,\n      \"verification_check\": \"Check the container's startup behaviour and ensure the application is configured to generate logs when the container starts.\"\n    }\n  ]\n}",
+ "latency_s": 1.707,
+ "requested_investigation_id": "cc4b1612-476d-4e6c-9922-298533387fcf"
+}

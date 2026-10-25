@@ -1,0 +1,174 @@
+{
+ "payload": {
+  "application_configuration_statements": {
+   "items": [],
+   "trust": "written_by_the_application_from_verified_evidence"
+  },
+  "application_failure_classification": {
+   "items": [
+    {
+     "category": "unschedulable",
+     "container": null,
+     "ever_ran": false,
+     "kubernetes_reason": "Unschedulable",
+     "namespace": "ai-ops-demo",
+     "pod": "gpu-job"
+    }
+   ],
+   "trust": "written_by_the_application_from_verified_evidence"
+  },
+  "application_logs_available": false,
+  "authorized_namespace": "ai-ops-demo",
+  "data_classification": "untrusted_application_log_data",
+  "evidence_focus_groups": {
+   "items": [
+    {
+     "container": null,
+     "evidence_ids": [
+      "ev-0005",
+      "ev-0007",
+      "ev-0008",
+      "ev-0009"
+     ],
+     "focus": "scheduling_status",
+     "pod": "gpu-job"
+    },
+    {
+     "container": null,
+     "evidence_ids": [
+      "ev-0014",
+      "ev-0015"
+     ],
+     "focus": "scheduler_events",
+     "pod": "gpu-job"
+    }
+   ],
+   "trust": "selected_by_the_application_for_relevance_only"
+  },
+  "excerpts_omitted": 0,
+  "investigation_id": "390bff0f-71e7-4951-9fd2-0342fd5d8403",
+  "investigation_scope": {
+   "mode": "namespace",
+   "pods_in_scope": [],
+   "requested_workload": null,
+   "workload": null
+  },
+  "kubernetes_verified_observations": {
+   "items": [
+    {
+     "evidence_id": "ev-0001",
+     "field": "pods[].name",
+     "namespace": "ai-ops-demo",
+     "pod": "gpu-job",
+     "tool": "k8s.get_pods",
+     "value": "gpu-job"
+    },
+    {
+     "evidence_id": "ev-0002",
+     "field": "pod.name",
+     "namespace": "ai-ops-demo",
+     "pod": "gpu-job",
+     "tool": "k8s.describe_pod",
+     "value": "gpu-job"
+    },
+    {
+     "evidence_id": "ev-0005",
+     "field": "pod.phase",
+     "namespace": "ai-ops-demo",
+     "pod": "gpu-job",
+     "tool": "k8s.describe_pod",
+     "value": "Pending"
+    },
+    {
+     "evidence_id": "ev-0006",
+     "field": "containers[].name",
+     "namespace": "ai-ops-demo",
+     "pod": "gpu-job",
+     "tool": "k8s.describe_pod",
+     "value": "app"
+    },
+    {
+     "evidence_id": "ev-0007",
+     "field": "conditions[PodScheduled].status",
+     "namespace": "ai-ops-demo",
+     "pod": "gpu-job",
+     "tool": "k8s.describe_pod",
+     "value": "False"
+    },
+    {
+     "evidence_id": "ev-0008",
+     "field": "conditions[PodScheduled].reason",
+     "namespace": "ai-ops-demo",
+     "pod": "gpu-job",
+     "tool": "k8s.describe_pod",
+     "value": "Unschedulable"
+    },
+    {
+     "evidence_id": "ev-0009",
+     "field": "conditions[PodScheduled].signal[untolerated_taint]",
+     "namespace": "ai-ops-demo",
+     "pod": "gpu-job",
+     "tool": "k8s.describe_pod",
+     "value": true
+    },
+    {
+     "evidence_id": "ev-0010",
+     "field": "scheduling.node_selector_declared",
+     "namespace": "ai-ops-demo",
+     "pod": "gpu-job",
+     "tool": "k8s.describe_pod",
+     "value": false
+    },
+    {
+     "evidence_id": "ev-0011",
+     "field": "scheduling.affinity_declared",
+     "namespace": "ai-ops-demo",
+     "pod": "gpu-job",
+     "tool": "k8s.describe_pod",
+     "value": false
+    },
+    {
+     "evidence_id": "ev-0012",
+     "field": "containers[app].liveness_probe.declared",
+     "namespace": "ai-ops-demo",
+     "pod": "gpu-job",
+     "tool": "k8s.describe_pod",
+     "value": false
+    },
+    {
+     "evidence_id": "ev-0013",
+     "field": "events[FailedScheduling].type",
+     "namespace": "ai-ops-demo",
+     "pod": "gpu-job",
+     "tool": "k8s.get_events",
+     "value": "Warning"
+    },
+    {
+     "evidence_id": "ev-0014",
+     "field": "events[FailedScheduling].count",
+     "namespace": "ai-ops-demo",
+     "pod": "gpu-job",
+     "tool": "k8s.get_events",
+     "value": 3
+    },
+    {
+     "evidence_id": "ev-0015",
+     "field": "events[FailedScheduling].signal[untolerated_taint]",
+     "namespace": "ai-ops-demo",
+     "pod": "gpu-job",
+     "tool": "k8s.get_events",
+     "value": true
+    }
+   ],
+   "trust": "verified_by_application_from_authorized_read_only_tools"
+  },
+  "log_refs_available": [],
+  "untrusted_logs": [],
+  "verified_configuration_evidence": {
+   "items": [],
+   "trust": "verified_by_application_from_authorized_read_only_tools",
+   "values_are_never_included": true
+  }
+ },
+ "scenario": "sched_taint"
+}

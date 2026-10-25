@@ -1,0 +1,22 @@
+# ============================================================
+# Scenario 7: Unschedulable Pod
+# ============================================================
+# ---
+# apiVersion: v1
+# kind: Namespace
+# metadata:
+#   name: scenario-scheduling
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: milk
+  namespace: ai-ops-demo
+spec:
+  containers:
+    - name: app
+      image: nginx:1.27
+      resources:
+        requests:
+          cpu: "100"
+          memory: "256Gi"

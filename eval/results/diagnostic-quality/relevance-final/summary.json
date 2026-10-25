@@ -1,0 +1,429 @@
+{
+ "headline": {
+  "proposed": 156,
+  "accepted": 137,
+  "accepted_with_technical_inaccuracy": 2,
+  "accepted_technical_inaccuracies_by_type": {
+   "unsupported_certainty": 2
+  },
+  "false_positive_rejections_candidate": 12,
+  "evidence_attribution_errors_in_accepted": 0,
+  "evidence_attribution_errors_in_raw": 0,
+  "attribution_omissions_by_application": 0,
+  "useful_accepted": 133,
+  "top_accepted_relevant_rate": 1.0,
+  "ai_stage_latency_s_mean": 4.1,
+  "ai_stage_latency_s_max": 10.14
+ },
+ "lifecycle": {
+  "raw_with_error": 0,
+  "raw_errors_by_type": {},
+  "accepted_with_error": 0
+ },
+ "rubric_version": "2",
+ "rubric_sha256": "fe8c65c841ee137f29929b73972a16cacd76fbc62efb15a4acea8c5eed9152bb",
+ "runs": 45,
+ "technical": {
+  "raw_hypotheses": 156,
+  "raw_with_error": 7,
+  "raw_errors_by_type": {
+   "contradiction": 4,
+   "selector_absence_blamed_for_unschedulable": 3
+  },
+  "check_errors_in_raw": 7,
+  "accepted_hypotheses": 137,
+  "escapes_accepted_with_error": 2,
+  "escape_rate": 0.015,
+  "escapes": [
+   {
+    "scenario": "running_not_ready",
+    "repeat": 1,
+    "errors": [
+     "unsupported_certainty"
+    ],
+    "raw": {
+     "possible_explanation": "The readiness probe may have failed to respond to the expected endpoint due to a misconfiguration in the probe's path or port.",
+     "not_yet_verified": "It has not been verified whether the readiness probe's path or port is correctly configured to match the application's endpoint.",
+     "verification_check": "Confirm that the readiness probe's path and port are correctly configured to match the application's endpoint."
+    }
+   },
+   {
+    "scenario": "running_not_ready",
+    "repeat": 2,
+    "errors": [
+     "unsupported_certainty"
+    ],
+    "raw": {
+     "possible_explanation": "The readiness probe may have been configured with an incorrect path or port, leading to the probe failing to reach the expected endpoint.",
+     "not_yet_verified": "The exact path and port that the readiness probe is using and whether they match the application's expected endpoint have not been verified.",
+     "verification_check": "Confirm that the readiness probe's path and port match the application's expected endpoint and that the application is correctly configured to respond to them."
+    }
+   }
+  ]
+ },
+ "relevance": {
+  "raw_relevant_rate": 0.987,
+  "raw_specific_rate": 0.846,
+  "accepted_relevant_rate": 0.985,
+  "accepted_specific_rate": 0.898,
+  "top_accepted_relevant": 1.0,
+  "top_accepted_specific": 0.976,
+  "runs_with_distinct_alternatives": "22/37",
+  "multi_constraint_coverage": {
+   "sched_multiple#0": "2/3",
+   "sched_multiple#1": "3/3",
+   "sched_multiple#2": "3/3"
+  }
+ },
+ "checks": {
+  "raw_checks": 156,
+  "raw_relevant": 0.897,
+  "raw_not_read_only": 4,
+  "raw_out_of_scope": 0,
+  "raw_technically_unclean": 7,
+  "shown_checks": 111,
+  "withheld_checks": 26,
+  "withheld_by_reason": {
+   "remediation_in_check": 26
+  },
+  "withheld_rubric_confirms_defect": 5,
+  "withheld_but_rubric_clean": 21,
+  "accepted_relevant": 0.946,
+  "accepted_not_read_only": 0,
+  "accepted_out_of_scope": 0,
+  "accepted_technically_unclean": 2
+ },
+ "validation": {
+  "proposed": 156,
+  "accepted": 137,
+  "rejected": 19,
+  "rejected_by_reason": {
+   "contradicts_established_evidence": 5,
+   "duplicate_hypothesis": 3,
+   "incorrect_kubernetes_semantics": 6,
+   "insufficiently_cautious": 1,
+   "inverted_scheduling_terms": 1,
+   "too_long": 2,
+   "too_many_references": 1
+  },
+  "whole_response_failures": 0,
+  "whole_response_codes": {},
+  "candidate_false_positive_rejections": 12,
+  "candidate_false_positives": [
+   {
+    "scenario": "sched_taint",
+    "repeat": 1,
+    "code": "contradicts_established_evidence",
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The pod may not be schedulable due to a node selector or affinity constraint that is not declared but may be inferred from the pod's configuration.",
+     "not_yet_verified": "The inferred node selector or affinity constraints have not been verified in detail.",
+     "evidence": [
+      "ev-0010",
+      "ev-0011"
+     ],
+     "resource": null,
+     "verification_check": "Review the pod's configuration for any implicit node selector or affinity constraints."
+    }
+   },
+   {
+    "scenario": "sched_taint",
+    "repeat": 2,
+    "code": "contradicts_established_evidence",
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The pod may not be schedulable due to a node selector or affinity constraint that is not declared, as the scheduler reported an untolerated taint.",
+     "not_yet_verified": "The presence of any implicit node selector or affinity constraints has not been verified.",
+     "evidence": [
+      "ev-0010",
+      "ev-0011"
+     ],
+     "resource": null,
+     "verification_check": "Check for any implicit node selector or affinity constraints in the pod's specification."
+    }
+   },
+   {
+    "scenario": "sched_selector",
+    "repeat": 0,
+    "code": "duplicate_hypothesis",
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The pod may not be schedulable because the node selector declared in the pod's configuration does not match any available nodes' labels, as the scheduler reported a node_selector_mismatch constraint.",
+     "not_yet_verified": "The specific node labels and the pod's node selector configuration have not been verified.",
+     "evidence": [
+      "ev-0009",
+      "ev-0010",
+      "ev-0016"
+     ],
+     "resource": null,
+     "verification_check": "Compare the node labels on the cluster with the node selector declared in the pod's configuration to confirm a mismatch."
+    }
+   },
+   {
+    "scenario": "sched_selector",
+    "repeat": 1,
+    "code": "duplicate_hypothesis",
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The scheduler may not be able to place the pod on any node because the node selector is declared but no nodes in the cluster have the required labels, leading to a mismatch.",
+     "not_yet_verified": "The specific labels required by the node selector have not been verified.",
+     "evidence": [
+      "ev-0010",
+      "ev-0009",
+      "ev-0016"
+     ],
+     "resource": null,
+     "verification_check": "Verify the node labels in the cluster to ensure they match the pod's node selector."
+    }
+   },
+   {
+    "scenario": "sched_selector",
+    "repeat": 1,
+    "code": "duplicate_hypothesis",
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The scheduler may not be able to place the pod on any node because the node selector is declared but no nodes in the cluster have the required labels, leading to a mismatch.",
+     "not_yet_verified": "The specific labels required by the node selector have not been verified.",
+     "evidence": [
+      "ev-0010",
+      "ev-0009",
+      "ev-0016"
+     ],
+     "resource": null,
+     "verification_check": "Verify the node labels in the cluster to ensure they match the pod's node selector."
+    }
+   },
+   {
+    "scenario": "sched_multiple",
+    "repeat": 0,
+    "code": "inverted_scheduling_terms",
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The pod may not be schedulable due to an untolerated taint on the nodes, as indicated by the scheduler's reported constraints.",
+     "not_yet_verified": "The specific taint and toleration configuration on the nodes has not been verified.",
+     "evidence": [
+      "ev-0012",
+      "ev-0019",
+      "ev-0021"
+     ],
+     "resource": null,
+     "verification_check": "Review the taints on the nodes and the tolerations declared by the pod to confirm if there is a mismatch."
+    }
+   },
+   {
+    "scenario": "liveness_failure",
+    "repeat": 0,
+    "code": "insufficiently_cautious",
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The container may have encountered an internal error that caused it to exit with a non-zero code, leading to a restart. The exact cause of the error is not known.",
+     "not_yet_verified": "The specific internal error that caused the container to exit with code 137 is not yet verified.",
+     "evidence": [
+      "ev-0011",
+      "ev-0010",
+      "ev-0008"
+     ],
+     "resource": null,
+     "verification_check": "Inspect the container logs (if available) to determine the cause of the exit code 137. Check for any runtime errors or exceptions that may have occurred."
+    }
+   },
+   {
+    "scenario": "liveness_failure",
+    "repeat": 2,
+    "code": "too_many_references",
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The container may have been restarted due to liveness probe failures, which could indicate that the application is not responding to health checks as expected.",
+     "not_yet_verified": "The exact reason for the liveness probe failures has not been verified.",
+     "evidence": [
+      "ev-0025",
+      "ev-0026",
+      "ev-0028",
+      "ev-0029",
+      "ev-0015",
+      "ev-0016",
+      "ev-0017",
+      "ev-0018",
+      "ev-0019",
+      "ev-0020"
+     ],
+     "resource": null,
+     "verification_check": "Check the liveness probe configuration and ensure the endpoint is accessible and responding as expected."
+    }
+   },
+   {
+    "scenario": "crash_loop",
+    "repeat": 1,
+    "code": "contradicts_established_evidence",
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The container may have failed due to an issue with the application's readiness or liveness probes, though no probes are declared in the configuration.",
+     "not_yet_verified": "The absence of declared probes means the cause of the container termination cannot be determined through probe-related issues.",
+     "evidence": [
+      "ev-0016",
+      "ev-0017"
+     ],
+     "resource": null,
+     "verification_check": "Review the application's intended behavior and ensure that any required probes are correctly configured or declared."
+    }
+   },
+   {
+    "scenario": "crash_loop",
+    "repeat": 2,
+    "code": "contradicts_established_evidence",
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The container may have failed due to an issue with the application's readiness or liveness probes, even though they are not declared in the configuration.",
+     "not_yet_verified": "The exact reason for the container's failure related to probes has not been verified.",
+     "evidence": [
+      "ev-0012",
+      "ev-0011",
+      "ev-0008"
+     ],
+     "resource": null,
+     "verification_check": "Review the application's expected behavior and ensure that the container is properly configured to handle startup and readiness checks."
+    }
+   },
+   {
+    "scenario": "restart_history",
+    "repeat": 1,
+    "code": "too_long",
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The container may have exited due to a normal process termination, and Kubernetes restarted it according to the pod's restart policy. The exit code 0 indicates the process finished successfully, but the restart policy may have been configured to automatically restart containers that exit with a zero exit code.",
+     "not_yet_verified": "The specific reason for the restart policy triggering a restart is not verified.",
+     "evidence": [
+      "ev-0011",
+      "ev-0010",
+      "ev-0008"
+     ],
+     "resource": null,
+     "verification_check": "Review the pod's restart policy configuration to understand why the container was restarted after completing normally."
+    }
+   },
+   {
+    "scenario": "restart_history",
+    "repeat": 2,
+    "code": "too_long",
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The container may have exited due to a normal process termination, and Kubernetes restarted it according to the pod's restart policy. The exit code 0 indicates the process finished successfully, but the restart policy may have been configured to automatically restart containers that exit with a zero exit code.",
+     "not_yet_verified": "The specific reason for the restart policy triggering a restart is not verified.",
+     "evidence": [
+      "ev-0011",
+      "ev-0010",
+      "ev-0008"
+     ],
+     "resource": null,
+     "verification_check": "Review the pod's restart policy configuration to understand why the container was restarted after completing normally."
+    }
+   }
+  ]
+ },
+ "operations": {
+  "runs_needing_a_second_model_attempt": 3,
+  "completion_rate": 1.0,
+  "analysis_states": {
+   "generated": 42,
+   "none_proposed": 3
+  },
+  "tool_coverage_mean": 0.956,
+  "ai_stage_latency_s_mean": 4.1,
+  "ai_stage_latency_s_max": 10.14
+ },
+ "per_scenario": {
+  "sched_cpu": {
+   "runs": 3,
+   "accepted": 12,
+   "proposed": 12,
+   "whole_response_failures": 0
+  },
+  "sched_memory": {
+   "runs": 3,
+   "accepted": 12,
+   "proposed": 12,
+   "whole_response_failures": 0
+  },
+  "sched_taint": {
+   "runs": 3,
+   "accepted": 10,
+   "proposed": 12,
+   "whole_response_failures": 0
+  },
+  "sched_selector": {
+   "runs": 3,
+   "accepted": 6,
+   "proposed": 9,
+   "whole_response_failures": 0
+  },
+  "sched_multiple": {
+   "runs": 3,
+   "accepted": 5,
+   "proposed": 12,
+   "whole_response_failures": 0
+  },
+  "sched_missing_pvc": {
+   "runs": 3,
+   "accepted": 3,
+   "proposed": 3,
+   "whole_response_failures": 0
+  },
+  "image_pull": {
+   "runs": 3,
+   "accepted": 12,
+   "proposed": 12,
+   "whole_response_failures": 0
+  },
+  "oom_killed": {
+   "runs": 3,
+   "accepted": 12,
+   "proposed": 12,
+   "whole_response_failures": 0
+  },
+  "running_not_ready": {
+   "runs": 3,
+   "accepted": 11,
+   "proposed": 12,
+   "whole_response_failures": 0
+  },
+  "liveness_failure": {
+   "runs": 3,
+   "accepted": 10,
+   "proposed": 12,
+   "whole_response_failures": 0
+  },
+  "mount_failure": {
+   "runs": 3,
+   "accepted": 12,
+   "proposed": 12,
+   "whole_response_failures": 0
+  },
+  "crash_loop": {
+   "runs": 3,
+   "accepted": 10,
+   "proposed": 12,
+   "whole_response_failures": 0
+  },
+  "healthy": {
+   "runs": 3,
+   "accepted": 0,
+   "proposed": 0,
+   "whole_response_failures": 0
+  },
+  "restart_history": {
+   "runs": 3,
+   "accepted": 10,
+   "proposed": 12,
+   "whole_response_failures": 0
+  },
+  "oom_recovered": {
+   "runs": 3,
+   "accepted": 12,
+   "proposed": 12,
+   "whole_response_failures": 0
+  }
+ },
+ "system_prompt_sha256": "8b0fb74d9464d1305ee92429fb66b0538b1b120913f3d4128e749ea96094097d",
+ "label": "relevance-final",
+ "replay_of": null
+}

@@ -1,0 +1,180 @@
+{
+ "payload": {
+  "application_configuration_statements": {
+   "items": [],
+   "trust": "written_by_the_application_from_verified_evidence"
+  },
+  "application_failure_classification": {
+   "items": [
+    {
+     "category": "running_not_ready",
+     "container": "app",
+     "ever_ran": true,
+     "kubernetes_reason": null,
+     "namespace": "ai-ops-demo",
+     "pod": "slow"
+    }
+   ],
+   "trust": "written_by_the_application_from_verified_evidence"
+  },
+  "application_logs_available": false,
+  "authorized_namespace": "ai-ops-demo",
+  "data_classification": "untrusted_application_log_data",
+  "evidence_focus_groups": {
+   "items": [
+    {
+     "container": "app",
+     "evidence_ids": [
+      "ev-0007",
+      "ev-0009",
+      "ev-0008"
+     ],
+     "focus": "current_container_state",
+     "pod": "slow"
+    },
+    {
+     "container": null,
+     "evidence_ids": [
+      "ev-0015",
+      "ev-0016"
+     ],
+     "focus": "kubernetes_events",
+     "pod": "slow"
+    }
+   ],
+   "trust": "selected_by_the_application_for_relevance_only"
+  },
+  "excerpts_omitted": 0,
+  "investigation_id": "6a4c50af-0626-41b7-8673-b2943bffbd8f",
+  "investigation_scope": {
+   "mode": "namespace",
+   "pods_in_scope": [],
+   "requested_workload": null,
+   "workload": null
+  },
+  "kubernetes_verified_observations": {
+   "items": [
+    {
+     "evidence_id": "ev-0001",
+     "field": "pods[].name",
+     "namespace": "ai-ops-demo",
+     "pod": "slow",
+     "tool": "k8s.get_pods",
+     "value": "slow"
+    },
+    {
+     "evidence_id": "ev-0002",
+     "field": "pod.name",
+     "namespace": "ai-ops-demo",
+     "pod": "slow",
+     "tool": "k8s.describe_pod",
+     "value": "slow"
+    },
+    {
+     "evidence_id": "ev-0005",
+     "field": "pod.phase",
+     "namespace": "ai-ops-demo",
+     "pod": "slow",
+     "tool": "k8s.describe_pod",
+     "value": "Running"
+    },
+    {
+     "evidence_id": "ev-0006",
+     "field": "containers[].name",
+     "namespace": "ai-ops-demo",
+     "pod": "slow",
+     "tool": "k8s.describe_pod",
+     "value": "app"
+    },
+    {
+     "evidence_id": "ev-0007",
+     "field": "containers[app].ready",
+     "namespace": "ai-ops-demo",
+     "pod": "slow",
+     "tool": "k8s.describe_pod",
+     "value": false
+    },
+    {
+     "evidence_id": "ev-0008",
+     "field": "containers[app].restart_count",
+     "namespace": "ai-ops-demo",
+     "pod": "slow",
+     "tool": "k8s.describe_pod",
+     "value": 0
+    },
+    {
+     "evidence_id": "ev-0009",
+     "field": "containers[app].state",
+     "namespace": "ai-ops-demo",
+     "pod": "slow",
+     "tool": "k8s.describe_pod",
+     "value": "running"
+    },
+    {
+     "evidence_id": "ev-0010",
+     "field": "conditions[PodScheduled].status",
+     "namespace": "ai-ops-demo",
+     "pod": "slow",
+     "tool": "k8s.describe_pod",
+     "value": "True"
+    },
+    {
+     "evidence_id": "ev-0011",
+     "field": "scheduling.node_selector_declared",
+     "namespace": "ai-ops-demo",
+     "pod": "slow",
+     "tool": "k8s.describe_pod",
+     "value": false
+    },
+    {
+     "evidence_id": "ev-0012",
+     "field": "scheduling.affinity_declared",
+     "namespace": "ai-ops-demo",
+     "pod": "slow",
+     "tool": "k8s.describe_pod",
+     "value": false
+    },
+    {
+     "evidence_id": "ev-0013",
+     "field": "containers[app].liveness_probe.declared",
+     "namespace": "ai-ops-demo",
+     "pod": "slow",
+     "tool": "k8s.describe_pod",
+     "value": false
+    },
+    {
+     "evidence_id": "ev-0014",
+     "field": "events[Unhealthy].type",
+     "namespace": "ai-ops-demo",
+     "pod": "slow",
+     "tool": "k8s.get_events",
+     "value": "Warning"
+    },
+    {
+     "evidence_id": "ev-0015",
+     "field": "events[Unhealthy].count",
+     "namespace": "ai-ops-demo",
+     "pod": "slow",
+     "tool": "k8s.get_events",
+     "value": 3
+    },
+    {
+     "evidence_id": "ev-0016",
+     "field": "events[Unhealthy].signal[readiness_probe_failed]",
+     "namespace": "ai-ops-demo",
+     "pod": "slow",
+     "tool": "k8s.get_events",
+     "value": true
+    }
+   ],
+   "trust": "verified_by_application_from_authorized_read_only_tools"
+  },
+  "untrusted_logs": [],
+  "verified_configuration_evidence": {
+   "items": [],
+   "trust": "verified_by_application_from_authorized_read_only_tools",
+   "values_are_never_included": true
+  }
+ },
+ "scenario": "running_not_ready"
+}

@@ -1,0 +1,137 @@
+{
+ "payload": {
+  "application_configuration_statements": {
+   "items": [],
+   "trust": "written_by_the_application_from_verified_evidence"
+  },
+  "application_failure_classification": {
+   "items": [
+    {
+     "category": "healthy",
+     "container": "app",
+     "ever_ran": false,
+     "kubernetes_reason": null,
+     "namespace": "ai-ops-demo",
+     "pod": "fine"
+    }
+   ],
+   "trust": "written_by_the_application_from_verified_evidence"
+  },
+  "application_logs_available": false,
+  "authorized_namespace": "ai-ops-demo",
+  "data_classification": "untrusted_application_log_data",
+  "evidence_focus_groups": {
+   "items": [],
+   "trust": "selected_by_the_application_for_relevance_only"
+  },
+  "excerpts_omitted": 0,
+  "investigation_id": "30569d3e-4537-48aa-80b7-86615898005c",
+  "investigation_scope": {
+   "mode": "namespace",
+   "pods_in_scope": [],
+   "requested_workload": null,
+   "workload": null
+  },
+  "kubernetes_verified_observations": {
+   "items": [
+    {
+     "evidence_id": "ev-0001",
+     "field": "pods[].name",
+     "namespace": "ai-ops-demo",
+     "pod": "fine",
+     "tool": "k8s.get_pods",
+     "value": "fine"
+    },
+    {
+     "evidence_id": "ev-0002",
+     "field": "pod.name",
+     "namespace": "ai-ops-demo",
+     "pod": "fine",
+     "tool": "k8s.describe_pod",
+     "value": "fine"
+    },
+    {
+     "evidence_id": "ev-0005",
+     "field": "pod.phase",
+     "namespace": "ai-ops-demo",
+     "pod": "fine",
+     "tool": "k8s.describe_pod",
+     "value": "Running"
+    },
+    {
+     "evidence_id": "ev-0006",
+     "field": "containers[].name",
+     "namespace": "ai-ops-demo",
+     "pod": "fine",
+     "tool": "k8s.describe_pod",
+     "value": "app"
+    },
+    {
+     "evidence_id": "ev-0007",
+     "field": "containers[app].ready",
+     "namespace": "ai-ops-demo",
+     "pod": "fine",
+     "tool": "k8s.describe_pod",
+     "value": true
+    },
+    {
+     "evidence_id": "ev-0008",
+     "field": "containers[app].restart_count",
+     "namespace": "ai-ops-demo",
+     "pod": "fine",
+     "tool": "k8s.describe_pod",
+     "value": 0
+    },
+    {
+     "evidence_id": "ev-0009",
+     "field": "containers[app].state",
+     "namespace": "ai-ops-demo",
+     "pod": "fine",
+     "tool": "k8s.describe_pod",
+     "value": "running"
+    },
+    {
+     "evidence_id": "ev-0010",
+     "field": "conditions[PodScheduled].status",
+     "namespace": "ai-ops-demo",
+     "pod": "fine",
+     "tool": "k8s.describe_pod",
+     "value": "True"
+    },
+    {
+     "evidence_id": "ev-0011",
+     "field": "scheduling.node_selector_declared",
+     "namespace": "ai-ops-demo",
+     "pod": "fine",
+     "tool": "k8s.describe_pod",
+     "value": false
+    },
+    {
+     "evidence_id": "ev-0012",
+     "field": "scheduling.affinity_declared",
+     "namespace": "ai-ops-demo",
+     "pod": "fine",
+     "tool": "k8s.describe_pod",
+     "value": false
+    },
+    {
+     "evidence_id": "ev-0013",
+     "field": "containers[app].liveness_probe.declared",
+     "namespace": "ai-ops-demo",
+     "pod": "fine",
+     "tool": "k8s.describe_pod",
+     "value": false
+    }
+   ],
+   "trust": "verified_by_application_from_authorized_read_only_tools"
+  },
+  "log_refs_available": [],
+  "untrusted_logs": [],
+  "verified_configuration_evidence": {
+   "items": [],
+   "trust": "verified_by_application_from_authorized_read_only_tools",
+   "values_are_never_included": true
+  }
+ },
+ "scenario": "healthy"
+}

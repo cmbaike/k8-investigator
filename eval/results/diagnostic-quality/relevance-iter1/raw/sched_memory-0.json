@@ -1,0 +1,7 @@
+{
+ "content": "{\n  \"investigation_id\": \"f4e87137-59a6-4c0c-b90c-b621365d0d85\",\n  \"hypotheses\": [\n    {\n      \"reported\": null,\n      \"possible_explanation\": \"The pod may not be schedulable due to insufficient memory on all available nodes, as indicated by the scheduler's reported constraint.\",\n      \"not_yet_verified\": \"The underlying cause of the memory insufficiency has not been verified.\",\n      \"evidence\": [\"ev-0005\", \"ev-0008\", \"ev-0009\", \"ev-0010\", \"ev-0016\", \"ev-0017\"],\n      \"resource\": null,\n      \"verification_check\": \"Check the memory capacity of all nodes in the namespace and ensure the pod's memory request is not higher than the available capacity on any node.\"\n    }\n  ]\n}",
+ "model_attempts": 1,
+ "earlier_attempts": [],
+ "latency_s": 1.565,
+ "requested_investigation_id": "f4e87137-59a6-4c0c-b90c-b621365d0d85"
+}

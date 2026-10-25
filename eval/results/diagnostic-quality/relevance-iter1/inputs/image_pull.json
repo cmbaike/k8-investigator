@@ -1,0 +1,258 @@
+{
+ "payload": {
+  "application_configuration_statements": {
+   "items": [],
+   "trust": "written_by_the_application_from_verified_evidence"
+  },
+  "application_failure_classification": {
+   "items": [
+    {
+     "category": "pre_start_failure",
+     "container": "app",
+     "ever_ran": false,
+     "kubernetes_reason": "ImagePullBackOff",
+     "namespace": "ai-ops-demo",
+     "pod": "pull"
+    }
+   ],
+   "trust": "written_by_the_application_from_verified_evidence"
+  },
+  "application_logs_available": false,
+  "authorized_namespace": "ai-ops-demo",
+  "data_classification": "untrusted_application_log_data",
+  "established_abnormality": {
+   "items": [
+    {
+     "abnormal_stage": "image_pull",
+     "completed_stages": [
+      {
+       "evidence_ids": [
+        "ev-0011"
+       ],
+       "stage": "scheduling",
+       "statement": "the pod was scheduled to a node"
+      }
+     ],
+     "container": "app",
+     "evidence_ids": [
+      "ev-0007",
+      "ev-0009",
+      "ev-0010",
+      "ev-0008",
+      "ev-0017",
+      "ev-0018"
+     ],
+     "kubernetes_reason": "ImagePullBackOff",
+     "namespace": "ai-ops-demo",
+     "not_yet_established": [
+      "why the image pull failed"
+     ],
+     "pod": "pull",
+     "restart_count": 0,
+     "verified_not_declared": [
+      {
+       "evidence_ids": [
+        "ev-0014"
+       ],
+       "item": "liveness_probe"
+      },
+      {
+       "evidence_ids": [
+        "ev-0015"
+       ],
+       "item": "readiness_probe"
+      },
+      {
+       "evidence_ids": [
+        "ev-0012"
+       ],
+       "item": "node_selector"
+      },
+      {
+       "evidence_ids": [
+        "ev-0013"
+       ],
+       "item": "affinity"
+      }
+     ],
+     "what_it_establishes": "Pulling the container image failed, so the container never ran. This names the failed operation, not why it failed."
+    }
+   ],
+   "trust": "written_by_the_application_from_verified_evidence"
+  },
+  "evidence_focus_groups": {
+   "items": [
+    {
+     "container": "app",
+     "evidence_ids": [
+      "ev-0007",
+      "ev-0009",
+      "ev-0010",
+      "ev-0008"
+     ],
+     "focus": "current_container_state",
+     "pod": "pull"
+    },
+    {
+     "container": null,
+     "evidence_ids": [
+      "ev-0017",
+      "ev-0018"
+     ],
+     "focus": "kubernetes_events",
+     "pod": "pull"
+    }
+   ],
+   "trust": "selected_by_the_application_for_relevance_only"
+  },
+  "excerpts_omitted": 0,
+  "investigation_id": "893656e1-bd7c-4b9a-955e-a9e3b4f6d086",
+  "investigation_scope": {
+   "mode": "namespace",
+   "pods_in_scope": [],
+   "requested_workload": null,
+   "workload": null
+  },
+  "kubernetes_verified_observations": {
+   "items": [
+    {
+     "evidence_id": "ev-0001",
+     "field": "pods[].name",
+     "namespace": "ai-ops-demo",
+     "pod": "pull",
+     "tool": "k8s.get_pods",
+     "value": "pull"
+    },
+    {
+     "evidence_id": "ev-0002",
+     "field": "pod.name",
+     "namespace": "ai-ops-demo",
+     "pod": "pull",
+     "tool": "k8s.describe_pod",
+     "value": "pull"
+    },
+    {
+     "evidence_id": "ev-0005",
+     "field": "pod.phase",
+     "namespace": "ai-ops-demo",
+     "pod": "pull",
+     "tool": "k8s.describe_pod",
+     "value": "Pending"
+    },
+    {
+     "evidence_id": "ev-0006",
+     "field": "containers[].name",
+     "namespace": "ai-ops-demo",
+     "pod": "pull",
+     "tool": "k8s.describe_pod",
+     "value": "app"
+    },
+    {
+     "evidence_id": "ev-0007",
+     "field": "containers[app].ready",
+     "namespace": "ai-ops-demo",
+     "pod": "pull",
+     "tool": "k8s.describe_pod",
+     "value": false
+    },
+    {
+     "evidence_id": "ev-0008",
+     "field": "containers[app].restart_count",
+     "namespace": "ai-ops-demo",
+     "pod": "pull",
+     "tool": "k8s.describe_pod",
+     "value": 0
+    },
+    {
+     "evidence_id": "ev-0009",
+     "field": "containers[app].state",
+     "namespace": "ai-ops-demo",
+     "pod": "pull",
+     "tool": "k8s.describe_pod",
+     "value": "waiting"
+    },
+    {
+     "evidence_id": "ev-0010",
+     "field": "containers[app].reason",
+     "namespace": "ai-ops-demo",
+     "pod": "pull",
+     "tool": "k8s.describe_pod",
+     "value": "ImagePullBackOff"
+    },
+    {
+     "evidence_id": "ev-0011",
+     "field": "conditions[PodScheduled].status",
+     "namespace": "ai-ops-demo",
+     "pod": "pull",
+     "tool": "k8s.describe_pod",
+     "value": "True"
+    },
+    {
+     "evidence_id": "ev-0012",
+     "field": "scheduling.node_selector_declared",
+     "namespace": "ai-ops-demo",
+     "pod": "pull",
+     "tool": "k8s.describe_pod",
+     "value": false
+    },
+    {
+     "evidence_id": "ev-0013",
+     "field": "scheduling.affinity_declared",
+     "namespace": "ai-ops-demo",
+     "pod": "pull",
+     "tool": "k8s.describe_pod",
+     "value": false
+    },
+    {
+     "evidence_id": "ev-0014",
+     "field": "containers[app].liveness_probe.declared",
+     "namespace": "ai-ops-demo",
+     "pod": "pull",
+     "tool": "k8s.describe_pod",
+     "value": false
+    },
+    {
+     "evidence_id": "ev-0015",
+     "field": "containers[app].readiness_probe.declared",
+     "namespace": "ai-ops-demo",
+     "pod": "pull",
+     "tool": "k8s.describe_pod",
+     "value": false
+    },
+    {
+     "evidence_id": "ev-0016",
+     "field": "events[Failed].type",
+     "namespace": "ai-ops-demo",
+     "pod": "pull",
+     "tool": "k8s.get_events",
+     "value": "Warning"
+    },
+    {
+     "evidence_id": "ev-0017",
+     "field": "events[Failed].count",
+     "namespace": "ai-ops-demo",
+     "pod": "pull",
+     "tool": "k8s.get_events",
+     "value": 3
+    },
+    {
+     "evidence_id": "ev-0018",
+     "field": "events[Failed].signal[image_pull_failed]",
+     "namespace": "ai-ops-demo",
+     "pod": "pull",
+     "tool": "k8s.get_events",
+     "value": true
+    }
+   ],
+   "trust": "verified_by_application_from_authorized_read_only_tools"
+  },
+  "log_refs_available": [],
+  "untrusted_logs": [],
+  "verified_configuration_evidence": {
+   "items": [],
+   "trust": "verified_by_application_from_authorized_read_only_tools",
+   "values_are_never_included": true
+  }
+ },
+ "scenario": "image_pull"
+}

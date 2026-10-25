@@ -1,0 +1,26 @@
+# Scenario 1: CrashLoopBackOff
+# ---
+# apiVersion: v1
+# kind: Namespace
+# metadata:
+#   name: scenario-crashloop
+# ---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: crash-app
+  namespace: ai-ops-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: crash-app
+  template:
+    metadata:
+      labels:
+        app: crash-app
+    spec:
+      containers:
+        - name: app
+          image: busybox:1.36
+          command: ["/bin/sh", "-c", "echo 'Application startup failed'; exit 1"]

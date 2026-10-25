@@ -1,0 +1,7 @@
+{
+ "content": "{\n  \"investigation_id\": \"8581c353-17f0-449e-9be8-b017867a7f91\",\n  \"hypotheses\": [\n    {\n      \"reported\": null,\n      \"possible_explanation\": \"The pod may not be schedulable due to insufficient CPU resources on the available nodes, as indicated by the scheduler's reported constraint.\",\n      \"not_yet_verified\": \"The underlying cause of the insufficient CPU resources has not been verified.\",\n      \"evidence\": [\"ev-0005\", \"ev-0007\", \"ev-0008\", \"ev-0009\", \"ev-0015\", \"ev-0016\"],\n      \"resource\": null,\n      \"verification_check\": \"Check the CPU allocatable capacity of the nodes in the ai-ops-demo namespace to confirm if there is a shortage of CPU resources.\"\n    }\n  ]\n}",
+ "model_attempts": 1,
+ "earlier_attempts": [],
+ "latency_s": 1.545,
+ "requested_investigation_id": "8581c353-17f0-449e-9be8-b017867a7f91"
+}

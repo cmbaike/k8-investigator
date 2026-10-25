@@ -1,0 +1,370 @@
+{
+ "investigation_id": "9c460f0b-13b4-4741-b06e-b265e6465c1d",
+ "summary": "Investigation of namespace 'ai-ops-demo': 11 verified finding(s) (1 warning, 10 info) from 57 trusted evidence item(s).\nScope: only namespace 'ai-ops-demo' and the resources observed during this investigation. This is not an assessment of the rest of the cluster or of other namespaces.\nTarget: Deployment 'bad-readiness', verified through Kubernetes owner references. Inspected only its 1 pod(s): 'bad-readiness-6554f5bfb-7wc9l'. The other 7 pod(s) listed in the namespace were not inspected.\nMost significant findings, in priority order:\n1. [warning] Container is running but not ready: Container 'app' is running but not ready: Kubernetes reports its state as 'running' and its readiness as False (corroborated by independent evidence from events and pod state and workload configuration; evidence ev-0009, ev-0007, ev-0008, ev-0005 and 15 more).\n2. [info] Container readiness observed: Kubernetes reported container 'app' readiness as False (single source: pod state; evidence ev-0007).\n3. [info] Pod identified: Kubernetes returned pod 'bad-readiness-6554f5bfb-7wc9l' in a pod description (single source: pod state; evidence ev-0002).\n4. [info] Pod phase observed: Kubernetes reported pod phase 'Running' (single source: pod state; evidence ev-0005).\n7 further finding(s), including informational observations such as pod discovery, are listed in the report.\n5 uncertaint(ies) are recorded. These findings describe observed behavior only: the underlying cause is not established by this report, and any AI-generated hypotheses are listed separately and remain unverified.",
+ "findings": [
+  {
+   "title": "Pod discovered",
+   "description": "Pod 'bad-readiness-6554f5bfb-7wc9l' appeared in a successful Kubernetes pod listing. Resource: namespace 'ai-ops-demo', pod 'bad-readiness-6554f5bfb-7wc9l'. Observed during tool execution '5c04d3f6-012d-4856-b091-b8b928ce58df-step-1'.",
+   "severity": "info",
+   "evidence": [
+    {
+     "evidence_id": "ev-0001"
+    }
+   ],
+   "scheduling_constraints": []
+  },
+  {
+   "title": "Pod identified",
+   "description": "Kubernetes returned pod 'bad-readiness-6554f5bfb-7wc9l' in a pod description. Resource: namespace 'ai-ops-demo', pod 'bad-readiness-6554f5bfb-7wc9l'. Observed during tool execution '5c04d3f6-012d-4856-b091-b8b928ce58df-step-2'.",
+   "severity": "info",
+   "evidence": [
+    {
+     "evidence_id": "ev-0002"
+    }
+   ],
+   "scheduling_constraints": []
+  },
+  {
+   "title": "Pod phase observed",
+   "description": "Kubernetes reported pod phase 'Running'. Resource: namespace 'ai-ops-demo', pod 'bad-readiness-6554f5bfb-7wc9l'. Observed during tool execution '5c04d3f6-012d-4856-b091-b8b928ce58df-step-2'.",
+   "severity": "info",
+   "evidence": [
+    {
+     "evidence_id": "ev-0005"
+    }
+   ],
+   "scheduling_constraints": []
+  },
+  {
+   "title": "Container readiness observed",
+   "description": "Kubernetes reported container 'app' readiness as False. Resource: namespace 'ai-ops-demo', pod 'bad-readiness-6554f5bfb-7wc9l'. Observed during tool execution '5c04d3f6-012d-4856-b091-b8b928ce58df-step-2'.",
+   "severity": "info",
+   "evidence": [
+    {
+     "evidence_id": "ev-0007"
+    }
+   ],
+   "scheduling_constraints": []
+  },
+  {
+   "title": "Container restart count observed",
+   "description": "Kubernetes reported container 'app' restart count as 0. Resource: namespace 'ai-ops-demo', pod 'bad-readiness-6554f5bfb-7wc9l'. Observed during tool execution '5c04d3f6-012d-4856-b091-b8b928ce58df-step-2'.",
+   "severity": "info",
+   "evidence": [
+    {
+     "evidence_id": "ev-0008"
+    }
+   ],
+   "scheduling_constraints": []
+  },
+  {
+   "title": "Container state observed",
+   "description": "Kubernetes reported container 'app' state as 'running'. Resource: namespace 'ai-ops-demo', pod 'bad-readiness-6554f5bfb-7wc9l'. Observed during tool execution '5c04d3f6-012d-4856-b091-b8b928ce58df-step-2'.",
+   "severity": "info",
+   "evidence": [
+    {
+     "evidence_id": "ev-0009"
+    }
+   ],
+   "scheduling_constraints": []
+  },
+  {
+   "title": "Container logs retrieved",
+   "description": "Container logs were retrieved successfully. Log contents have not been established as verified root-cause evidence. Resource: namespace 'ai-ops-demo', pod 'bad-readiness-6554f5bfb-7wc9l'. Observed during tool execution '5c04d3f6-012d-4856-b091-b8b928ce58df-step-4'.",
+   "severity": "info",
+   "evidence": [
+    {
+     "evidence_id": "ev-0043"
+    }
+   ],
+   "scheduling_constraints": []
+  },
+  {
+   "title": "Owning workload identified",
+   "description": "Pod 'bad-readiness-6554f5bfb-7wc9l' is controlled by Deployment 'bad-readiness', verified through Kubernetes owner references and UIDs. Resource: namespace 'ai-ops-demo', pod 'bad-readiness-6554f5bfb-7wc9l'.",
+   "severity": "info",
+   "evidence": [
+    {
+     "evidence_id": "ev-0022"
+    },
+    {
+     "evidence_id": "ev-0023"
+    }
+   ],
+   "scheduling_constraints": []
+  },
+  {
+   "title": "Container configuration observed",
+   "description": "Container 'app': image 'nginx:1.27'; declares no environment variables and no ConfigMap or Secret environment sources; declares a readiness probe (http handler, port 80, path '/health', initial delay 3s, period 5s, timeout 1s, failure threshold 3); no startup command override is declared (the image default applies and was not inspected). Environment values and command text are never collected, and this describes the declared spec only, not the complete runtime environment. Resource: namespace 'ai-ops-demo', pod 'bad-readiness-6554f5bfb-7wc9l'.",
+   "severity": "info",
+   "evidence": [
+    {
+     "evidence_id": "ev-0028"
+    },
+    {
+     "evidence_id": "ev-0029"
+    },
+    {
+     "evidence_id": "ev-0031"
+    },
+    {
+     "evidence_id": "ev-0032"
+    },
+    {
+     "evidence_id": "ev-0033"
+    },
+    {
+     "evidence_id": "ev-0034"
+    },
+    {
+     "evidence_id": "ev-0035"
+    },
+    {
+     "evidence_id": "ev-0036"
+    },
+    {
+     "evidence_id": "ev-0037"
+    },
+    {
+     "evidence_id": "ev-0038"
+    },
+    {
+     "evidence_id": "ev-0041"
+    }
+   ],
+   "scheduling_constraints": []
+  },
+  {
+   "title": "Container is running but not ready",
+   "description": "Container 'app' is running but not ready: Kubernetes reports its state as 'running' and its readiness as False. It has restarted 0 times. The pod phase is 'Running'. Kubernetes marks the pod condition 'Ready' as False (reason 'ContainersNotReady'). Kubernetes marks the pod condition 'ContainersReady' as False (reason 'ContainersNotReady'). Its spec declares a readiness probe (http handler, port 80, path '/health', initial delay 3s, period 5s, timeout 1s, failure threshold 3). Kubernetes also recorded Warning events for this pod: 'Unhealthy' (x63). The Warning event reason 'Unhealthy' (x63) was classified from its message (fixed patterns; the message itself is untrusted and not retained) as readiness-probe failures. Kubernetes does not report why the container is not ready. This finding establishes that it is not ready, not the cause, and it does not by itself show that a readiness probe failed. Resource: namespace 'ai-ops-demo', pod 'bad-readiness-6554f5bfb-7wc9l'.",
+   "severity": "warning",
+   "evidence": [
+    {
+     "evidence_id": "ev-0009"
+    },
+    {
+     "evidence_id": "ev-0007"
+    },
+    {
+     "evidence_id": "ev-0008"
+    },
+    {
+     "evidence_id": "ev-0005"
+    },
+    {
+     "evidence_id": "ev-0012"
+    },
+    {
+     "evidence_id": "ev-0013"
+    },
+    {
+     "evidence_id": "ev-0014"
+    },
+    {
+     "evidence_id": "ev-0015"
+    },
+    {
+     "evidence_id": "ev-0031"
+    },
+    {
+     "evidence_id": "ev-0032"
+    },
+    {
+     "evidence_id": "ev-0033"
+    },
+    {
+     "evidence_id": "ev-0034"
+    },
+    {
+     "evidence_id": "ev-0035"
+    },
+    {
+     "evidence_id": "ev-0036"
+    },
+    {
+     "evidence_id": "ev-0037"
+    },
+    {
+     "evidence_id": "ev-0038"
+    },
+    {
+     "evidence_id": "ev-0045"
+    },
+    {
+     "evidence_id": "ev-0046"
+    },
+    {
+     "evidence_id": "ev-0047"
+    }
+   ],
+   "scheduling_constraints": []
+  },
+  {
+   "title": "Kubernetes events recorded for the pod",
+   "description": "Kubernetes recorded 5 event reasons for pod 'bad-readiness-6554f5bfb-7wc9l': Warning 'Unhealthy' (x63), Normal 'Created' (x1), Normal 'Pulled' (x1), Normal 'Scheduled' (x1), Normal 'Started' (x1). Only each event's reason, type and count are used. The event messages are untrusted text and are not part of this report. These records show that Kubernetes logged the events, not why they occurred. Resource: namespace 'ai-ops-demo', pod 'bad-readiness-6554f5bfb-7wc9l'.",
+   "severity": "info",
+   "evidence": [
+    {
+     "evidence_id": "ev-0045"
+    },
+    {
+     "evidence_id": "ev-0046"
+    },
+    {
+     "evidence_id": "ev-0048"
+    },
+    {
+     "evidence_id": "ev-0049"
+    },
+    {
+     "evidence_id": "ev-0050"
+    },
+    {
+     "evidence_id": "ev-0051"
+    },
+    {
+     "evidence_id": "ev-0052"
+    },
+    {
+     "evidence_id": "ev-0053"
+    },
+    {
+     "evidence_id": "ev-0054"
+    },
+    {
+     "evidence_id": "ev-0055"
+    }
+   ],
+   "scheduling_constraints": []
+  }
+ ],
+ "uncertainties": [
+  "Log retrieval for pod 'bad-readiness-6554f5bfb-7wc9l' in namespace 'ai-ops-demo' during execution '5c04d3f6-012d-4856-b091-b8b928ce58df-step-4' (k8s.get_logs) was bounded. The retrieved excerpt may omit relevant log entries.",
+  "Pod 'bad-readiness-6554f5bfb-7wc9l' in namespace 'ai-ops-demo': environment variable values, ConfigMap contents and Secret contents are never inspected, so whether any variable is set correctly has not been established.",
+  "Pod 'bad-readiness-6554f5bfb-7wc9l' in namespace 'ai-ops-demo', container 'app': startup behavior could not be established by static analysis. This is not evidence that startup is correct.",
+  "Pod 'bad-readiness-6554f5bfb-7wc9l' in namespace 'ai-ops-demo', container 'app': no environment variables are declared in its spec, which does not establish the complete runtime environment (variables may come from the image or other mechanisms).",
+  "Underlying failure causes and log-derived failures have not been established by trusted report evidence."
+ ],
+ "suggested_checks": [
+  "Read the event messages Kubernetes recorded for pod 'bad-readiness-6554f5bfb-7wc9l' (for example with kubectl describe pod): they say which probe failed and why. They are not retained in this report.",
+  "Confirm that the readiness probe declared for container 'app' in pod 'bad-readiness-6554f5bfb-7wc9l' targets the port and path the application actually serves, and that the application is listening on that port (read-only checks).",
+  "Compare what the application logs report for container 'app' in pod 'bad-readiness-6554f5bfb-7wc9l' (untrusted, not retained) with the declared environment variable names, and confirm any claimed missing setting in the Deployment definition before changing anything."
+ ],
+ "ai_hypotheses": [
+  {
+   "explanation": "Possible explanation (unverified): The container may be unable to respond to the readiness probe due to an incorrect path or port configuration, or the application may be initializing and not yet ready to serve requests. Not yet verified: The readiness probe's path and port configuration have not been verified against the application's actual behavior.",
+   "status": "unverified",
+   "reported": null,
+   "possible_explanation": "The container may be unable to respond to the readiness probe due to an incorrect path or port configuration, or the application may be initializing and not yet ready to serve requests.",
+   "not_yet_verified": "The readiness probe's path and port configuration have not been verified against the application's actual behavior.",
+   "evidence_refs": [
+    "ev-0034",
+    "ev-0033",
+    "ev-0031",
+    "ev-0035",
+    "ev-0036"
+   ],
+   "resource": {
+    "namespace": "ai-ops-demo",
+    "pod": "bad-readiness-6554f5bfb-7wc9l",
+    "container": "app"
+   },
+   "verification_check": null,
+   "check_withheld_reason": "remediation_in_check",
+   "independently_established": null,
+   "established_refs": [],
+   "configuration_context": "Container 'app' declares no environment variables and no ConfigMap or Secret environment sources in its spec. This describes the declared workload spec only. Values, variables baked into the image and variables supplied by other mechanisms are not established, so it does not show the complete runtime environment.",
+   "configuration_refs": [
+    "ev-0029",
+    "ev-0030"
+   ]
+  },
+  {
+   "explanation": "Possible explanation (unverified): The container may be encountering issues with its readiness probe timing, such as the initial delay being too short or the period between probes being too long, leading to repeated failures. Not yet verified: The readiness probe's timing parameters have not been verified against the application's actual behavior.",
+   "status": "unverified",
+   "reported": null,
+   "possible_explanation": "The container may be encountering issues with its readiness probe timing, such as the initial delay being too short or the period between probes being too long, leading to repeated failures.",
+   "not_yet_verified": "The readiness probe's timing parameters have not been verified against the application's actual behavior.",
+   "evidence_refs": [
+    "ev-0035",
+    "ev-0036",
+    "ev-0031"
+   ],
+   "resource": {
+    "namespace": "ai-ops-demo",
+    "pod": "bad-readiness-6554f5bfb-7wc9l",
+    "container": "app"
+   },
+   "verification_check": null,
+   "check_withheld_reason": "remediation_in_check",
+   "independently_established": null,
+   "established_refs": [],
+   "configuration_context": "Container 'app' declares no environment variables and no ConfigMap or Secret environment sources in its spec. This describes the declared workload spec only. Values, variables baked into the image and variables supplied by other mechanisms are not established, so it does not show the complete runtime environment.",
+   "configuration_refs": [
+    "ev-0029",
+    "ev-0030"
+   ]
+  },
+  {
+   "explanation": "Possible explanation (unverified): The container may be experiencing issues with its readiness probe's timeout settings, leading to the probe failing to detect the application's readiness before the timeout period expires. Not yet verified: The readiness probe's timeout settings have not been verified against the application's actual behavior.",
+   "status": "unverified",
+   "reported": null,
+   "possible_explanation": "The container may be experiencing issues with its readiness probe's timeout settings, leading to the probe failing to detect the application's readiness before the timeout period expires.",
+   "not_yet_verified": "The readiness probe's timeout settings have not been verified against the application's actual behavior.",
+   "evidence_refs": [
+    "ev-0037",
+    "ev-0031"
+   ],
+   "resource": {
+    "namespace": "ai-ops-demo",
+    "pod": "bad-readiness-6554f5bfb-7wc9l",
+    "container": "app"
+   },
+   "verification_check": null,
+   "check_withheld_reason": "remediation_in_check",
+   "independently_established": null,
+   "established_refs": [],
+   "configuration_context": "Container 'app' declares no environment variables and no ConfigMap or Secret environment sources in its spec. This describes the declared workload spec only. Values, variables baked into the image and variables supplied by other mechanisms are not established, so it does not show the complete runtime environment.",
+   "configuration_refs": [
+    "ev-0029",
+    "ev-0030"
+   ]
+  },
+  {
+   "explanation": "Possible explanation (unverified): The container may be encountering issues with its readiness probe's failure threshold, leading to repeated failures before the container is considered ready. Not yet verified: The readiness probe's failure threshold has not been verified against the application's actual behavior.",
+   "status": "unverified",
+   "reported": null,
+   "possible_explanation": "The container may be encountering issues with its readiness probe's failure threshold, leading to repeated failures before the container is considered ready.",
+   "not_yet_verified": "The readiness probe's failure threshold has not been verified against the application's actual behavior.",
+   "evidence_refs": [
+    "ev-0038",
+    "ev-0031"
+   ],
+   "resource": {
+    "namespace": "ai-ops-demo",
+    "pod": "bad-readiness-6554f5bfb-7wc9l",
+    "container": "app"
+   },
+   "verification_check": null,
+   "check_withheld_reason": "remediation_in_check",
+   "independently_established": null,
+   "established_refs": [],
+   "configuration_context": "Container 'app' declares no environment variables and no ConfigMap or Secret environment sources in its spec. This describes the declared workload spec only. Values, variables baked into the image and variables supplied by other mechanisms are not established, so it does not show the complete runtime environment.",
+   "configuration_refs": [
+    "ev-0029",
+    "ev-0030"
+   ]
+  }
+ ],
+ "ai_analysis": {
+  "state": "generated",
+  "reason": null,
+  "message": "AI-generated hypotheses are unverified interpretations.",
+  "log_excerpts_used": 1,
+  "log_excerpts_omitted": 0,
+  "hypotheses_omitted": 0,
+  "hypotheses_proposed": 4,
+  "omission_reasons": {},
+  "rejection_category": null
+ }
+}

@@ -1,0 +1,5 @@
+{
+ "content": "{\n  \"investigation_id\": \"cc8cbc12-149e-4e3a-93ac-ef6623619539\",\n  \"hypotheses\": [\n    {\n      \"reported\": null,\n      \"possible_explanation\": \"The pod may not be schedulable due to a node selector mismatch, as the scheduler reports this as the reason for unschedulable status.\",\n      \"not_yet_verified\": \"The underlying cause of the node selector mismatch has not been verified.\",\n      \"evidence\": [\"ev-0009\", \"ev-0010\", \"ev-0015\"],\n      \"resource\": null,\n      \"verification_check\": \"Compare the node selector declared by the pod with the node selectors of the available nodes in the namespace.\"\n    }\n  ]\n}",
+ "latency_s": 1.276,
+ "requested_investigation_id": "cc8cbc12-149e-4e3a-93ac-ef6623619539"
+}

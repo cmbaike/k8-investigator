@@ -1,0 +1,50 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: private-ai-investigator
+  namespace: ai-ops-demo
+# The investigator never needs in-cluster API credentials mounted into a pod;
+# the application obtains short-lived tokens through the TokenRequest API.
+automountServiceAccountToken: false
+---
+# Least privilege: exactly the Kubernetes calls made by the registered
+# read-only investigation tools (app/tools/handlers.py). No Secrets, no
+# ConfigMaps, no exec/attach/port-forward, no mutation verbs, no watch, no
+# cluster-wide scope.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: private-ai-investigator
+  namespace: ai-ops-demo
+rules:
+  # k8s.get_pods (list), k8s.describe_pod and k8s.describe_workload_config (get)
+  - apiGroups: [""]
+    resources: ["pods"]
+    verbs: ["get", "list"]
+  # k8s.get_logs
+  - apiGroups: [""]
+    resources: ["pods/log"]
+    verbs: ["get"]
+  # k8s.get_events (core/v1 list)
+  - apiGroups: [""]
+    resources: ["events"]
+    verbs: ["list"]
+  # k8s.get_deployment, and Pod -> ReplicaSet -> Deployment ownership
+  # verification in k8s.describe_workload_config (reads by name only).
+  - apiGroups: ["apps"]
+    resources: ["deployments", "replicasets"]
+    verbs: ["get"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: private-ai-investigator
+  namespace: ai-ops-demo
+subjects:
+  - kind: ServiceAccount
+    name: private-ai-investigator
+    namespace: ai-ops-demo
+roleRef:
+  kind: Role
+  name: private-ai-investigator
+  apiGroup: rbac.authorization.k8s.io

@@ -1,0 +1,7 @@
+{
+ "content": "{\n  \"investigation_id\": \"add9ed20-a8af-4a8e-b2e6-a33774b682da\",\n  \"hypotheses\": [\n    {\n      \"reported\": null,\n      \"possible_explanation\": \"The scheduler may not be able to place the pod on any node because the pod's node selector mismatched with the available nodes' labels, as reported by the scheduler.\",\n      \"not_yet_verified\": \"The exact labels on the nodes and the pod's node selector configuration have not been verified.\",\n      \"evidence\": [\"ev-0009\", \"ev-0010\", \"ev-0016\"],\n      \"resource\": null,\n      \"verification_check\": \"Check the node labels on the cluster and compare them with the pod's node selector configuration to confirm the mismatch.\"\n    }\n  ]\n}",
+ "model_attempts": 1,
+ "earlier_attempts": [],
+ "latency_s": 1.38,
+ "requested_investigation_id": "add9ed20-a8af-4a8e-b2e6-a33774b682da"
+}

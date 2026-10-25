@@ -1,0 +1,7 @@
+{
+ "content": "{\n  \"investigation_id\": \"cadb63ae-0454-4bf2-89a5-d633a916cf72\",\n  \"hypotheses\": [\n    {\n      \"reported\": null,\n      \"possible_explanation\": \"The pod may not be schedulable due to a node taint that the pod does not tolerate, as reported by the scheduler.\",\n      \"not_yet_verified\": \"The underlying cause of the scheduler's inability to place the pod beyond the reported constraints has not been verified.\",\n      \"evidence\": [\"ev-0005\", \"ev-0007\", \"ev-0008\", \"ev-0009\", \"ev-0015\", \"ev-0016\"],\n      \"resource\": null,\n      \"verification_check\": \"Check the taints on the nodes and the tolerations declared by the pod to confirm if there is a mismatch.\"\n    }\n  ]\n}",
+ "model_attempts": 1,
+ "earlier_attempts": [],
+ "latency_s": 1.532,
+ "requested_investigation_id": "cadb63ae-0454-4bf2-89a5-d633a916cf72"
+}

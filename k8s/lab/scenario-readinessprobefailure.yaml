@@ -1,0 +1,34 @@
+# ============================================================
+# Scenario 3: Readiness Probe Failure
+# ============================================================
+# apiVersion: v1
+# kind: Namespace
+# metadata:
+#   name: scenario-readiness
+# ---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bad-readiness
+  namespace: ai-ops-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bad-readiness
+  template:
+    metadata:
+      labels:
+        app: bad-readiness
+    spec:
+      containers:
+        - name: app
+          image: nginx:1.27
+          ports:
+            - containerPort: 80
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 80
+            initialDelaySeconds: 3
+            periodSeconds: 5

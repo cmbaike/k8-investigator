@@ -1,0 +1,312 @@
+{
+ "rubric_version": "2",
+ "rubric_sha256": "fe8c65c841ee137f29929b73972a16cacd76fbc62efb15a4acea8c5eed9152bb",
+ "runs": 26,
+ "technical": {
+  "raw_hypotheses": 91,
+  "raw_with_error": 17,
+  "raw_errors_by_type": {
+   "contradiction": 1,
+   "log_claim_without_logs": 6,
+   "selector_absence_blamed_for_unschedulable": 8,
+   "undeclared_probe_blamed": 2
+  },
+  "check_errors_in_raw": 1,
+  "accepted_hypotheses": 77,
+  "escapes_accepted_with_error": 7,
+  "escape_rate": 0.091,
+  "escapes": [
+   {
+    "scenario": "oom_killed",
+    "repeat": 0,
+    "errors": [
+     "undeclared_probe_blamed"
+    ],
+    "raw": {
+     "possible_explanation": "The container may be encountering issues with its readiness probe, as it has not become ready and no readiness probe is declared, which could prevent the container from being considered ready by Kubernetes.",
+     "not_yet_verified": "It has not been verified whether the container is ready or if the readiness probe is configured correctly.",
+     "verification_check": null
+    }
+   },
+   {
+    "scenario": "crash_loop",
+    "repeat": 0,
+    "errors": [
+     "log_claim_without_logs"
+    ],
+    "raw": {
+     "possible_explanation": "The container may be crashing due to an issue with the application's startup process or an error in the application's code that causes it to fail repeatedly.",
+     "not_yet_verified": "It has not been verified whether the logged claim is accurate.",
+     "verification_check": "Check the application's code and startup process to determine if there are any issues that cause it to fail repeatedly."
+    }
+   },
+   {
+    "scenario": "crash_loop",
+    "repeat": 0,
+    "errors": [
+     "log_claim_without_logs"
+    ],
+    "raw": {
+     "possible_explanation": "The container may be failing due to an issue with the application's dependencies or external services that it relies on to function properly.",
+     "not_yet_verified": "It has not been verified whether the logged claim is accurate.",
+     "verification_check": "Check the application's dependencies and external services to ensure they are available and functioning correctly."
+    }
+   },
+   {
+    "scenario": "crash_loop",
+    "repeat": 0,
+    "errors": [
+     "log_claim_without_logs"
+    ],
+    "raw": {
+     "possible_explanation": "The container may be failing due to an issue with the application's resource requests or limits, which may be causing it to be starved of resources and fail repeatedly.",
+     "not_yet_verified": "It has not been verified whether the logged claim is accurate.",
+     "verification_check": "Review the application's resource requests and limits to ensure they are appropriate for the workload."
+    }
+   },
+   {
+    "scenario": "crash_loop",
+    "repeat": 1,
+    "errors": [
+     "log_claim_without_logs"
+    ],
+    "raw": {
+     "possible_explanation": "The container may be crashing due to an issue with the application's startup process or an error in the application's code that causes it to fail repeatedly.",
+     "not_yet_verified": "It has not been verified whether the logged claim is accurate.",
+     "verification_check": "Check the application's code and startup process to determine if there are any issues that cause it to fail repeatedly."
+    }
+   },
+   {
+    "scenario": "crash_loop",
+    "repeat": 1,
+    "errors": [
+     "log_claim_without_logs"
+    ],
+    "raw": {
+     "possible_explanation": "The container may be failing due to an issue with the application's dependencies or external services that it relies on to function correctly.",
+     "not_yet_verified": "It has not been verified whether the logged claim is accurate.",
+     "verification_check": "Check the application's dependencies and external services to determine if there are any issues that may be causing the container to fail."
+    }
+   },
+   {
+    "scenario": "crash_loop",
+    "repeat": 1,
+    "errors": [
+     "log_claim_without_logs"
+    ],
+    "raw": {
+     "possible_explanation": "The container may be failing due to an issue with the application's resource requests or limits that are not being met by the Kubernetes cluster.",
+     "not_yet_verified": "It has not been verified whether the logged claim is accurate.",
+     "verification_check": "Review the application's resource requests and limits to determine if there are any issues that may be causing the container to fail."
+    }
+   }
+  ]
+ },
+ "relevance": {
+  "raw_relevant_rate": 0.934,
+  "raw_specific_rate": 0.604,
+  "accepted_relevant_rate": 0.922,
+  "accepted_specific_rate": 0.688,
+  "top_accepted_relevant": 1.0,
+  "top_accepted_specific": 1.0,
+  "runs_with_distinct_alternatives": "17/21",
+  "multi_constraint_coverage": {
+   "sched_multiple#0": "2/3",
+   "sched_multiple#1": "3/3"
+  }
+ },
+ "checks": {
+  "raw_checks": 91,
+  "raw_relevant": 0.802,
+  "raw_not_read_only": 5,
+  "raw_out_of_scope": 0,
+  "raw_technically_unclean": 1,
+  "shown_checks": 64,
+  "withheld_checks": 13,
+  "withheld_by_reason": {
+   "inverted_scheduling_terms": 1,
+   "remediation_in_check": 12
+  },
+  "withheld_rubric_confirms_defect": 5,
+  "withheld_but_rubric_clean": 8,
+  "accepted_relevant": 0.812,
+  "accepted_not_read_only": 0,
+  "accepted_out_of_scope": 0,
+  "accepted_technically_unclean": 0
+ },
+ "validation": {
+  "proposed": 91,
+  "accepted": 77,
+  "rejected": 14,
+  "rejected_by_reason": {
+   "contradicts_established_evidence": 2,
+   "incorrect_kubernetes_semantics": 9,
+   "too_many_references": 3
+  },
+  "whole_response_failures": 1,
+  "whole_response_codes": {
+   "cross_investigation": 1
+  },
+  "candidate_false_positive_rejections": 3,
+  "candidate_false_positives": [
+   {
+    "scenario": "sched_cpu",
+    "repeat": 0,
+    "code": "contradicts_established_evidence",
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The pod may have affinity rules that prevent it from being scheduled on any node in the cluster.",
+     "not_yet_verified": "It has not been verified whether the pod declares affinity rules that could prevent scheduling.",
+     "evidence": [
+      "ev-0008",
+      "ev-0009",
+      "ev-0015"
+     ],
+     "resource": null,
+     "verification_check": "Check the affinity rules declared by the pod and compare them with the available nodes in the cluster."
+    }
+   },
+   {
+    "scenario": "sched_multiple",
+    "repeat": 0,
+    "code": "too_many_references",
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The pod may not be schedulable due to insufficient CPU or memory on the available nodes, or because it lacks tolerations for node taints.",
+     "not_yet_verified": "It has not been verified whether the nodes have sufficient CPU/memory or the pod has tolerations for node taints.",
+     "evidence": [
+      "ev-0009",
+      "ev-0010",
+      "ev-0011",
+      "ev-0012",
+      "ev-0017",
+      "ev-0018",
+      "ev-0019",
+      "ev-0020"
+     ],
+     "resource": null,
+     "verification_check": "Check the allocatable CPU and memory on the cluster's nodes and verify the pod's tolerations against the nodes' taints."
+    }
+   },
+   {
+    "scenario": "healthy",
+    "repeat": 1,
+    "code": "too_many_references",
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The pod may be in a healthy state but the container may not have started due to an unknown reason, as the container's readiness is reported as true but no logs are available to confirm its startup behavior.",
+     "not_yet_verified": "It has not been verified whether the container actually started or if the readiness status is accurate without logs.",
+     "evidence": [
+      "ev-0001",
+      "ev-0002",
+      "ev-0005",
+      "ev-0006",
+      "ev-0007",
+      "ev-0008",
+      "ev-0009",
+      "ev-0010",
+      "ev-0011",
+      "ev-0012",
+      "ev-0013"
+     ],
+     "resource": null,
+     "verification_check": "Check the pod's status and container readiness without relying on logs, as the application has not provided any logs to confirm the container's startup behavior."
+    }
+   }
+  ]
+ },
+ "operations": {
+  "completion_rate": 0.962,
+  "analysis_states": {
+   "generated": 23,
+   "unavailable": 1,
+   "all_omitted": 2
+  },
+  "tool_coverage_mean": 0.949,
+  "ai_stage_latency_s_mean": 3.9,
+  "ai_stage_latency_s_max": 4.92
+ },
+ "per_scenario": {
+  "sched_cpu": {
+   "runs": 2,
+   "accepted": 7,
+   "proposed": 8,
+   "whole_response_failures": 0
+  },
+  "sched_memory": {
+   "runs": 2,
+   "accepted": 4,
+   "proposed": 8,
+   "whole_response_failures": 0
+  },
+  "sched_taint": {
+   "runs": 2,
+   "accepted": 6,
+   "proposed": 8,
+   "whole_response_failures": 0
+  },
+  "sched_selector": {
+   "runs": 2,
+   "accepted": 5,
+   "proposed": 5,
+   "whole_response_failures": 0
+  },
+  "sched_multiple": {
+   "runs": 2,
+   "accepted": 5,
+   "proposed": 8,
+   "whole_response_failures": 0
+  },
+  "sched_missing_pvc": {
+   "runs": 2,
+   "accepted": 7,
+   "proposed": 8,
+   "whole_response_failures": 0
+  },
+  "image_pull": {
+   "runs": 2,
+   "accepted": 8,
+   "proposed": 8,
+   "whole_response_failures": 0
+  },
+  "oom_killed": {
+   "runs": 2,
+   "accepted": 3,
+   "proposed": 4,
+   "whole_response_failures": 1
+  },
+  "running_not_ready": {
+   "runs": 2,
+   "accepted": 8,
+   "proposed": 8,
+   "whole_response_failures": 0
+  },
+  "liveness_failure": {
+   "runs": 2,
+   "accepted": 8,
+   "proposed": 8,
+   "whole_response_failures": 0
+  },
+  "mount_failure": {
+   "runs": 2,
+   "accepted": 8,
+   "proposed": 8,
+   "whole_response_failures": 0
+  },
+  "crash_loop": {
+   "runs": 2,
+   "accepted": 8,
+   "proposed": 8,
+   "whole_response_failures": 0
+  },
+  "healthy": {
+   "runs": 2,
+   "accepted": 0,
+   "proposed": 2,
+   "whole_response_failures": 0
+  }
+ },
+ "system_prompt_sha256": "eb524502dcfd00b3f5ff1ffaa06a4fa24c2df6d7b4d6c79ddf2021c190f028f4",
+ "label": "baseline-same-outputs-final-validators",
+ "replay_of": "eval/results/diagnostic-quality/baseline"
+}

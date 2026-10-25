@@ -1,0 +1,191 @@
+{
+  "_comment": "Targeted relevance cases (same shape as adversarial_cases.json). 'reject:*' cases are demonstrable contradictions of an established lifecycle stage or a verified-absent declaration. 'accept' cases are qualified, historical, rule-out or unfamiliar-but-supported statements that must NOT be rejected: they pin the absence of false-positive rejections. A generic explanation that contradicts nothing is accepted by design; see NOTES.md for the remaining relevance limitations.",
+  "cases": [
+    {
+      "id": "rel_scheduled_pod_cannot_be_scheduled",
+      "scenario": "image_pull",
+      "possible": "The pod may not be schedulable because no node currently has enough capacity for it.",
+      "expect": "reject:contradicts_established_evidence"
+    },
+    {
+      "id": "rel_scheduled_pod_unschedulable_taint",
+      "scenario": "image_pull",
+      "possible": "The pod may be unschedulable because a node taint is not tolerated.",
+      "expect": "reject:contradicts_established_evidence"
+    },
+    {
+      "id": "rel_scheduled_pod_scheduler_failed_to_place",
+      "scenario": "mount_failure",
+      "possible": "The scheduler may have failed to place the pod on any node, which could explain why it is not running.",
+      "expect": "reject:contradicts_established_evidence"
+    },
+    {
+      "id": "rel_scheduled_pod_ruled_out_is_accepted",
+      "scenario": "image_pull",
+      "possible": "A node scheduling constraint may not explain this, since the pod was scheduled. The image tag may not exist in the registry, which could explain why the pull fails.",
+      "expect": "accept"
+    },
+    {
+      "id": "rel_scheduled_pod_denied_unschedulable_is_accepted",
+      "scenario": "image_pull",
+      "possible": "Scheduling may not explain this, because the pod was placed on a node. The registry may have rejected the credentials used for the pull, which could explain the failure.",
+      "expect": "accept"
+    },
+    {
+      "id": "rel_scheduled_pod_earlier_scheduling_delay_is_accepted",
+      "scenario": "image_pull",
+      "possible": "The pod may have been briefly unschedulable earlier, but it is now placed on a node and the image pull is what currently fails.",
+      "expect": "accept"
+    },
+    {
+      "id": "rel_image_pull_registry_cause_is_accepted",
+      "scenario": "image_pull",
+      "possible": "The image tag may not exist in the registry, which could explain why the pull fails.",
+      "expect": "accept"
+    },
+    {
+      "id": "rel_image_pull_unfamiliar_cause_is_accepted",
+      "scenario": "image_pull",
+      "possible": "A registry rate limit or an expired pull credential may be causing the image pull to fail.",
+      "expect": "accept"
+    },
+    {
+      "id": "rel_pending_pod_unschedulable_is_accepted",
+      "scenario": "sched_memory",
+      "possible": "The pod may be unschedulable because no node has enough allocatable memory for its request.",
+      "expect": "accept"
+    },
+    {
+      "id": "rel_sole_oom_blamed_on_entrypoint",
+      "scenario": "oom_recovered",
+      "possible": "The container may have restarted because its entrypoint command is incorrect.",
+      "expect": "reject:contradicts_established_evidence"
+    },
+    {
+      "id": "rel_sole_oom_blamed_on_image_suitability",
+      "scenario": "oom_recovered",
+      "possible": "The container image may be unsuitable for this workload, which could explain the earlier restart.",
+      "expect": "reject:contradicts_established_evidence"
+    },
+    {
+      "id": "rel_sole_oom_blamed_on_probe",
+      "scenario": "oom_recovered",
+      "possible": "A failing health probe may have caused Kubernetes to restart the container.",
+      "expect": "reject"
+    },
+    {
+      "id": "rel_sole_oom_blamed_on_application_crash",
+      "scenario": "oom_recovered",
+      "possible": "An unhandled exception in the application may have crashed the container.",
+      "expect": "reject:contradicts_established_evidence"
+    },
+    {
+      "id": "rel_sole_oom_memory_limit_is_accepted",
+      "scenario": "oom_recovered",
+      "possible": "The container may have exceeded its 128Mi memory limit and been OOMKilled.",
+      "expect": "accept"
+    },
+    {
+      "id": "rel_sole_oom_memory_leak_is_accepted",
+      "scenario": "oom_recovered",
+      "possible": "A memory leak in the application may have grown the process until it reached the memory limit, which could explain the earlier termination.",
+      "expect": "accept"
+    },
+    {
+      "id": "rel_sole_oom_unfamiliar_memory_cause_is_accepted",
+      "scenario": "oom_recovered",
+      "possible": "A burst of large requests may have raised the container's memory use past its limit before it recovered.",
+      "expect": "accept"
+    },
+    {
+      "id": "rel_sole_oom_entrypoint_ruled_out_is_accepted",
+      "scenario": "oom_recovered",
+      "possible": "The entrypoint may not be the cause. The container may have been OOMKilled, which is a memory event.",
+      "expect": "accept"
+    },
+    {
+      "id": "rel_repeated_oom_other_mechanism_is_not_rejected",
+      "scenario": "oom_killed",
+      "possible": "Earlier restarts may have come from an incorrect startup command, in addition to the recorded out-of-memory kill.",
+      "expect": "accept"
+    },
+    {
+      "id": "rel_standalone_pod_no_readiness_probe_blamed",
+      "scenario": "crash_loop",
+      "possible": "The readiness probe may be failing, which could explain why the container is not ready.",
+      "expect": "reject:contradicts_established_evidence"
+    },
+    {
+      "id": "rel_standalone_pod_no_liveness_probe_blamed",
+      "scenario": "crash_loop",
+      "possible": "The liveness probe may be killing the container, which could explain the restarts.",
+      "expect": "reject:contradicts_established_evidence"
+    },
+    {
+      "id": "rel_standalone_pod_declared_readiness_probe_is_accepted",
+      "scenario": "running_not_ready",
+      "possible": "The readiness probe may be failing, which could explain why the container is not ready.",
+      "expect": "accept"
+    },
+    {
+      "id": "rel_healthy_pod_not_responding_to_readiness_probes",
+      "scenario": "healthy",
+      "possible": "The container may have started but is not responding to readiness probes, which could mean the application is not ready to serve traffic.",
+      "expect": "reject:contradicts_established_evidence"
+    },
+    {
+      "id": "rel_scheduling_failure_node_selector_cause_undeclared",
+      "scenario": "sched_taint",
+      "possible": "The pod may not be schedulable due to a node selector or affinity constraint.",
+      "expect": "reject:contradicts_established_evidence"
+    },
+    {
+      "id": "rel_scheduling_failure_selector_ruled_out_is_accepted",
+      "scenario": "sched_taint",
+      "possible": "A node selector may not be the reason the pod is Pending; an untolerated node taint may explain it.",
+      "expect": "accept"
+    },
+    {
+      "id": "rel_oom_request_insufficient_despite_limit",
+      "scenario": "oom_killed",
+      "possible": "The container may be configured with an insufficient memory request, leading to frequent OOMKilled events despite the limit being set to 128Mi.",
+      "expect": "reject:incorrect_kubernetes_semantics"
+    },
+    {
+      "id": "rel_oom_request_mismatch_without_saying_oom",
+      "scenario": "oom_recovered",
+      "possible": "The container may have been restarted due to a resource request mismatch, such as a misconfigured memory limit.",
+      "expect": "reject:incorrect_kubernetes_semantics"
+    },
+    {
+      "id": "rel_oom_historical_request_blame",
+      "scenario": "oom_recovered",
+      "possible": "The earlier OOMKilled termination may have been caused by an insufficient memory request, while the limit is 128Mi.",
+      "expect": "reject:incorrect_kubernetes_semantics"
+    },
+    {
+      "id": "rel_oom_request_and_limit_coordinated_is_accepted",
+      "scenario": "oom_recovered",
+      "possible": "The memory request and limit may both be too low for the workload, which could explain the earlier OOMKilled termination.",
+      "expect": "accept"
+    },
+    {
+      "id": "rel_oom_values_for_both_roles_is_accepted",
+      "scenario": "oom_killed",
+      "possible": "The container's memory request is 64Mi and its limit is 128Mi, which may not be sufficient for the workload, leading to OOMKilled terminations.",
+      "expect": "accept"
+    },
+    {
+      "id": "rel_oom_request_denied_is_accepted",
+      "scenario": "oom_recovered",
+      "possible": "The earlier OOMKilled termination may not be caused by the memory request; the container may have exceeded its 128Mi limit.",
+      "expect": "accept"
+    },
+    {
+      "id": "rel_oom_request_in_eviction_story_is_accepted",
+      "scenario": "oom_killed",
+      "possible": "A low memory request may make this pod an earlier eviction victim under node memory pressure, separately from the OOMKilled termination.",
+      "expect": "accept"
+    }
+  ]
+}

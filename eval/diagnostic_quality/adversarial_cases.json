@@ -1,0 +1,294 @@
+{
+  "_note": "Each case is one model hypothesis put through the real validator on a controlled scenario. expect is accept, reject:<code> (hypothesis omitted) or withhold:<code> (hypothesis kept, its check withheld). 'correct_*' ids are true statements using negation, quotation or legitimate alternative wording: they exist to catch false-positive rejections.",
+  "defaults": {
+    "not_yet_verified": "It has not been verified whether this is the cause.",
+    "check": "Review the pod's events and status (read-only)."
+  },
+  "cases": [
+    {
+      "id": "adv_pod_contains_taint",
+      "scenario": "sched_multiple",
+      "possible": "The pod may be unschedulable because the pod contains a taint that no node tolerates.",
+      "expect": "reject:inverted_scheduling_terms"
+    },
+    {
+      "id": "adv_node_tolerates_taint",
+      "scenario": "sched_multiple",
+      "possible": "The node may tolerate the pod's taint, which could explain why scheduling failed.",
+      "expect": "reject:inverted_scheduling_terms"
+    },
+    {
+      "id": "adv_check_inspect_pod_taints",
+      "scenario": "sched_multiple",
+      "possible": "The pod may be unschedulable because node taints are not tolerated by the pod.",
+      "check": "Inspect the taints on the pod.",
+      "expect": "withhold:inverted_scheduling_terms"
+    },
+    {
+      "id": "adv_check_remediation",
+      "scenario": "sched_memory",
+      "possible": "The pod may be unschedulable because no node has enough allocatable memory for its request.",
+      "check": "Increase the memory request of the pod.",
+      "expect": "withhold:remediation_in_check"
+    },
+    {
+      "id": "adv_check_other_namespace",
+      "scenario": "sched_memory",
+      "possible": "The pod may be unschedulable because no node has enough allocatable memory for its request.",
+      "check": "Describe the pods in namespace kube-system.",
+      "expect": "withhold:check_out_of_scope"
+    },
+    {
+      "id": "adv_limit_as_scheduling_request",
+      "scenario": "sched_memory",
+      "possible": "The pod may be unschedulable because its memory limit is larger than any node's allocatable memory.",
+      "expect": "reject:incorrect_kubernetes_semantics"
+    },
+    {
+      "id": "adv_image_does_not_exist",
+      "scenario": "image_pull",
+      "possible": "The pod may be failing to start, and the image does not exist in the registry.",
+      "expect": "reject:unsupported_causal_certainty"
+    },
+    {
+      "id": "adv_application_logged_oomkilled",
+      "scenario": "oom_killed",
+      "possible": "The application may have logged that the process was OOMKilled, which could explain the restarts.",
+      "expect": "reject:misattributed_source"
+    },
+    {
+      "id": "adv_container_never_started",
+      "scenario": "running_not_ready",
+      "possible": "The container may have never started, which could explain why it is not ready.",
+      "expect": "reject:contradicts_container_state"
+    },
+    {
+      "id": "adv_readiness_restarted_container",
+      "scenario": "running_not_ready",
+      "possible": "The readiness probe may have restarted the container, which could explain the restart count.",
+      "expect": "reject:incorrect_kubernetes_semantics"
+    },
+    {
+      "id": "adv_readiness_restarts_without_liveness_evidence",
+      "scenario": "crash_loop",
+      "possible": "A failing readiness probe may be restarting the container.",
+      "expect": "reject:incorrect_kubernetes_semantics"
+    },
+    {
+      "id": "correct_taint_not_on_pod",
+      "scenario": "sched_multiple",
+      "possible": "The pod may be unschedulable; the pod does not contain a taint, but the nodes carry taints that the pod does not tolerate.",
+      "expect": "accept"
+    },
+    {
+      "id": "correct_quoted_event_wording",
+      "scenario": "sched_multiple",
+      "possible": "The scheduler event may say \"node(s) had untolerated taint\", which could mean the pod declares no matching toleration.",
+      "expect": "accept",
+      "cite": [
+        "scheduling_status",
+        "scheduler_events"
+      ]
+    },
+    {
+      "id": "correct_node_never_tolerates",
+      "scenario": "sched_multiple",
+      "possible": "A node never tolerates anything, so the pod may be unschedulable because it lacks a toleration for a node taint.",
+      "expect": "accept"
+    },
+    {
+      "id": "correct_memory_request_vs_allocatable",
+      "scenario": "sched_memory",
+      "possible": "The pod may be unschedulable because its memory request is larger than the allocatable memory of any node.",
+      "check": "Compare the pod's memory request with the allocatable memory of the nodes (read-only).",
+      "expect": "accept"
+    },
+    {
+      "id": "correct_check_node_taints_vs_tolerations",
+      "scenario": "sched_multiple",
+      "possible": "The pod may be unschedulable because node taints are not tolerated by the pod.",
+      "check": "Inspect node taints and compare them with the pod's tolerations (read-only).",
+      "expect": "accept"
+    },
+    {
+      "id": "correct_image_may_be_missing_among_causes",
+      "scenario": "image_pull",
+      "possible": "The pull may be failing because the registry is unreachable, or the tag may not exist in the registry.",
+      "expect": "accept"
+    },
+    {
+      "id": "correct_image_pull_does_not_prove_missing",
+      "scenario": "image_pull",
+      "possible": "The image pull may be failing for a registry or tag reason; the status alone does not show that the image does not exist.",
+      "expect": "accept"
+    },
+    {
+      "id": "correct_kubernetes_reports_oomkilled",
+      "scenario": "oom_killed",
+      "possible": "Kubernetes reports the container was OOMKilled, so it may have exceeded its memory limit.",
+      "expect": "accept"
+    },
+    {
+      "id": "correct_readiness_does_not_restart",
+      "scenario": "running_not_ready",
+      "possible": "A readiness failure may remove the pod from service endpoints, and it would not restart the container.",
+      "expect": "accept"
+    },
+    {
+      "id": "correct_liveness_may_restart",
+      "scenario": "liveness_failure",
+      "possible": "Repeated liveness probe failures may have caused Kubernetes to restart the container.",
+      "expect": "accept"
+    },
+    {
+      "id": "adv_running_container_never_initialized",
+      "scenario": "liveness_failure",
+      "possible": "The container may have failed to initialize and never started, which could explain the restarts.",
+      "expect": "reject:contradicts_container_state"
+    },
+    {
+      "id": "adv_restarted_container_never_began",
+      "scenario": "restart_history",
+      "possible": "The container may never have started properly, which could explain the restart count.",
+      "expect": "reject:contradicts_container_state"
+    },
+    {
+      "id": "adv_request_too_small_causes_oom",
+      "scenario": "oom_killed",
+      "possible": "The container may have been OOMKilled because its memory request is too small.",
+      "expect": "reject:incorrect_kubernetes_semantics"
+    },
+    {
+      "id": "adv_exceeded_request_and_killed",
+      "scenario": "oom_killed",
+      "possible": "The container may have exceeded its memory request and been killed, which could explain the restarts.",
+      "expect": "reject:incorrect_kubernetes_semantics"
+    },
+    {
+      "id": "adv_request_as_ceiling",
+      "scenario": "oom_killed",
+      "possible": "The memory request may cap how much memory the container can use, which could explain the OOMKilled termination.",
+      "expect": "reject:incorrect_kubernetes_semantics"
+    },
+    {
+      "id": "adv_limit_as_reservation",
+      "scenario": "oom_recovered",
+      "possible": "The memory limit may be what the node reserves for the container, which could explain the earlier OOMKilled termination.",
+      "expect": "reject:incorrect_kubernetes_semantics"
+    },
+    {
+      "id": "adv_restart_count_proves_liveness",
+      "scenario": "liveness_failure",
+      "possible": "The liveness probe may have failed, and the restart count demonstrates that it did.",
+      "expect": "reject:unsupported_causal_certainty"
+    },
+    {
+      "id": "adv_restarts_assert_cause_outside_hedge",
+      "scenario": "liveness_failure",
+      "possible": "The container may be unhealthy, and the restart count shows the liveness probe failed.",
+      "expect": "reject:unsupported_causal_certainty"
+    },
+    {
+      "id": "adv_restarts_show_current_failure",
+      "scenario": "restart_history",
+      "possible": "The container may be unhealthy, and the restart count shows the container is still crash-looping.",
+      "expect": "reject:contradicts_established_evidence"
+    },
+    {
+      "id": "correct_limit_exceeded_oom",
+      "scenario": "oom_killed",
+      "possible": "The container may have exceeded its memory limit of 128Mi and been OOMKilled, which could explain the restarts.",
+      "expect": "accept"
+    },
+    {
+      "id": "correct_request_matters_under_node_pressure",
+      "scenario": "oom_killed",
+      "possible": "A low memory request may make this pod an earlier eviction candidate under node memory pressure, which could contribute to the terminations.",
+      "expect": "accept"
+    },
+    {
+      "id": "correct_oom_not_caused_by_request",
+      "scenario": "oom_killed",
+      "possible": "The OOMKilled termination may not be caused by the memory request; the memory limit may have been exceeded.",
+      "expect": "accept"
+    },
+    {
+      "id": "correct_restart_count_is_not_proof",
+      "scenario": "liveness_failure",
+      "possible": "The restart count may reflect earlier restarts; it does not prove why they happened.",
+      "expect": "accept"
+    },
+    {
+      "id": "correct_historical_restarts_are_history",
+      "scenario": "restart_history",
+      "possible": "The container restarted twice before and is ready now, so the earlier restarts may have had a cause that no longer applies.",
+      "expect": "accept"
+    },
+    {
+      "id": "correct_started_then_restarted",
+      "scenario": "liveness_failure",
+      "possible": "The container started, ran, and may later have been restarted after liveness probe failures.",
+      "expect": "accept"
+    },
+    {
+      "id": "correct_oom_history_recovered",
+      "scenario": "oom_recovered",
+      "possible": "The container may have exceeded its memory limit once and been restarted, and it is ready now.",
+      "expect": "accept"
+    },
+    {
+      "id": "adv_healthy_container_not_ready",
+      "scenario": "restart_history",
+      "possible": "The container may be healthy but not ready due to a missing readiness probe, which could prevent traffic from being routed to it.",
+      "expect": "reject:contradicts_established_evidence"
+    },
+    {
+      "id": "correct_not_ready_was_earlier",
+      "scenario": "liveness_failure",
+      "possible": "The container may have been not ready earlier, around the restarts, and it is ready now.",
+      "expect": "accept"
+    },
+    {
+      "id": "adv_request_value_quoted_as_limit",
+      "scenario": "oom_recovered",
+      "possible": "The container may have used more memory than the requested 64Mi limit, which could explain the earlier OOMKilled termination.",
+      "expect": "reject:incorrect_kubernetes_semantics"
+    },
+    {
+      "id": "adv_limit_value_quoted_as_request",
+      "scenario": "oom_killed",
+      "possible": "The container may need more than its 128Mi memory request, which could explain the OOMKilled terminations.",
+      "expect": "reject:incorrect_kubernetes_semantics"
+    },
+    {
+      "id": "adv_running_but_not_ready",
+      "scenario": "restart_history",
+      "possible": "The container may be running but not ready due to a problem in its startup process.",
+      "expect": "reject:contradicts_established_evidence"
+    },
+    {
+      "id": "correct_request_and_limit_values",
+      "scenario": "oom_killed",
+      "possible": "The container may have exceeded its 128Mi memory limit, although it requested only 64Mi, which could explain the OOMKilled terminations.",
+      "expect": "accept"
+    },
+    {
+      "id": "correct_limit_value_not_the_request",
+      "scenario": "oom_recovered",
+      "possible": "The container may have used more than its 128Mi memory limit, which is separate from the 64Mi memory request.",
+      "expect": "accept"
+    },
+    {
+      "id": "correct_restarting_after_liveness_restarts",
+      "scenario": "liveness_failure",
+      "possible": "The container may be restarting due to liveness probe failures, which could lead to repeated restarts.",
+      "expect": "accept"
+    },
+    {
+      "id": "adv_ready_container_crash_looping_now",
+      "scenario": "liveness_failure",
+      "possible": "The container may be crash-looping right now, which could explain the restarts.",
+      "expect": "reject:contradicts_established_evidence"
+    }
+  ]
+}

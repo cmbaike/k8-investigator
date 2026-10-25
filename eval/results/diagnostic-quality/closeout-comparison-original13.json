@@ -1,0 +1,173 @@
+{
+ "baseline": {
+  "runs": 26,
+  "proposed": 91,
+  "accepted": 88,
+  "accepted_with_technical_inaccuracy": 17,
+  "accepted_technical_inaccuracies_by_type": {
+   "contradiction:\\b(?:liveness|readiness|": 1,
+   "log_claim_without_logs": 6,
+   "selector_absence_blamed_for_unschedulable": 8,
+   "undeclared_probe_blamed": 2
+  },
+  "false_positive_rejections_candidate": 2,
+  "evidence_attribution_errors_in_accepted": 6,
+  "evidence_attribution_errors_in_raw": 6,
+  "attribution_omissions_by_application": 0,
+  "useful_accepted": 61,
+  "top_accepted_relevant_rate": 1.0,
+  "ai_stage_latency_s_mean": 3.9,
+  "ai_stage_latency_s_max": 4.92,
+  "raw_with_v2_error": 17,
+  "raw_with_lifecycle_error": 1,
+  "raw_lifecycle_errors_by_type": {
+   "never_started_but_ran": 1
+  },
+  "whole_response_failures": 1,
+  "rejected_by_reason": {
+   "too_many_references": 3
+  }
+ },
+ "closeout-replay-baseline": {
+  "runs": 26,
+  "proposed": 91,
+  "accepted": 77,
+  "accepted_with_technical_inaccuracy": 7,
+  "accepted_technical_inaccuracies_by_type": {
+   "log_claim_without_logs": 6,
+   "undeclared_probe_blamed": 1
+  },
+  "false_positive_rejections_candidate": 3,
+  "evidence_attribution_errors_in_accepted": 6,
+  "evidence_attribution_errors_in_raw": 6,
+  "attribution_omissions_by_application": 0,
+  "useful_accepted": 65,
+  "top_accepted_relevant_rate": 1.0,
+  "ai_stage_latency_s_mean": 3.9,
+  "ai_stage_latency_s_max": 4.92,
+  "raw_with_v2_error": 17,
+  "raw_with_lifecycle_error": 1,
+  "raw_lifecycle_errors_by_type": {
+   "never_started_but_ran": 1
+  },
+  "whole_response_failures": 1,
+  "rejected_by_reason": {
+   "contradicts_established_evidence": 2,
+   "incorrect_kubernetes_semantics": 9,
+   "too_many_references": 3
+  }
+ },
+ "arm-b": {
+  "runs": 26,
+  "proposed": 91,
+  "accepted": 60,
+  "accepted_with_technical_inaccuracy": 2,
+  "accepted_technical_inaccuracies_by_type": {
+   "contradiction:\\b(?:is|are|was|remains?": 1,
+   "undeclared_probe_blamed": 1
+  },
+  "false_positive_rejections_candidate": 8,
+  "evidence_attribution_errors_in_accepted": 0,
+  "evidence_attribution_errors_in_raw": 0,
+  "attribution_omissions_by_application": 0,
+  "useful_accepted": 51,
+  "top_accepted_relevant_rate": 0.909,
+  "ai_stage_latency_s_mean": 3.65,
+  "ai_stage_latency_s_max": 5.73,
+  "raw_with_v2_error": 20,
+  "raw_with_lifecycle_error": 0,
+  "raw_lifecycle_errors_by_type": {},
+  "whole_response_failures": 1,
+  "rejected_by_reason": {
+   "contradicts_established_evidence": 3,
+   "incorrect_kubernetes_semantics": 17,
+   "too_many_references": 8
+  }
+ },
+ "closeout-replay-arm-b": {
+  "runs": 26,
+  "proposed": 91,
+  "accepted": 59,
+  "accepted_with_technical_inaccuracy": 1,
+  "accepted_technical_inaccuracies_by_type": {
+   "contradiction:\\b(?:is|are|was|remains?": 1
+  },
+  "false_positive_rejections_candidate": 8,
+  "evidence_attribution_errors_in_accepted": 0,
+  "evidence_attribution_errors_in_raw": 0,
+  "attribution_omissions_by_application": 0,
+  "useful_accepted": 51,
+  "top_accepted_relevant_rate": 0.909,
+  "ai_stage_latency_s_mean": 3.65,
+  "ai_stage_latency_s_max": 5.73,
+  "raw_with_v2_error": 20,
+  "raw_with_lifecycle_error": 0,
+  "raw_lifecycle_errors_by_type": {},
+  "whole_response_failures": 1,
+  "rejected_by_reason": {
+   "contradicts_established_evidence": 4,
+   "incorrect_kubernetes_semantics": 17,
+   "too_many_references": 8
+  }
+ },
+ "closeout": {
+  "runs": 39,
+  "proposed": 153,
+  "accepted": 105,
+  "accepted_with_technical_inaccuracy": 5,
+  "accepted_technical_inaccuracies_by_type": {
+   "contradiction:\\b(?:is|are|was|remains?": 2,
+   "undeclared_probe_blamed": 3
+  },
+  "false_positive_rejections_candidate": 1,
+  "evidence_attribution_errors_in_accepted": 0,
+  "evidence_attribution_errors_in_raw": 0,
+  "attribution_omissions_by_application": 0,
+  "useful_accepted": 85,
+  "top_accepted_relevant_rate": 0.917,
+  "ai_stage_latency_s_mean": 3.93,
+  "ai_stage_latency_s_max": 9.53,
+  "raw_with_v2_error": 39,
+  "raw_with_lifecycle_error": 12,
+  "raw_lifecycle_errors_by_type": {
+   "not_ready_but_ready": 12
+  },
+  "whole_response_failures": 0,
+  "rejected_by_reason": {
+   "contradicts_container_state": 1,
+   "contradicts_established_evidence": 17,
+   "incorrect_kubernetes_semantics": 29,
+   "too_many_references": 1
+  }
+ },
+ "closeout-revalidated": {
+  "runs": 39,
+  "proposed": 153,
+  "accepted": 106,
+  "accepted_with_technical_inaccuracy": 5,
+  "accepted_technical_inaccuracies_by_type": {
+   "contradiction:\\b(?:is|are|was|remains?": 2,
+   "undeclared_probe_blamed": 3
+  },
+  "false_positive_rejections_candidate": 0,
+  "evidence_attribution_errors_in_accepted": 0,
+  "evidence_attribution_errors_in_raw": 0,
+  "attribution_omissions_by_application": 0,
+  "useful_accepted": 86,
+  "top_accepted_relevant_rate": 0.917,
+  "ai_stage_latency_s_mean": 3.93,
+  "ai_stage_latency_s_max": 9.53,
+  "raw_with_v2_error": 39,
+  "raw_with_lifecycle_error": 12,
+  "raw_lifecycle_errors_by_type": {
+   "not_ready_but_ready": 12
+  },
+  "whole_response_failures": 0,
+  "rejected_by_reason": {
+   "contradicts_container_state": 1,
+   "contradicts_established_evidence": 16,
+   "incorrect_kubernetes_semantics": 29,
+   "too_many_references": 1
+  }
+ }
+}

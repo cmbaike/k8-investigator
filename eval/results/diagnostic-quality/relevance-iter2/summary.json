@@ -1,0 +1,400 @@
+{
+ "headline": {
+  "proposed": 158,
+  "accepted": 139,
+  "accepted_with_technical_inaccuracy": 0,
+  "accepted_technical_inaccuracies_by_type": {},
+  "false_positive_rejections_candidate": 11,
+  "evidence_attribution_errors_in_accepted": 0,
+  "evidence_attribution_errors_in_raw": 0,
+  "attribution_omissions_by_application": 1,
+  "useful_accepted": 135,
+  "top_accepted_relevant_rate": 1.0,
+  "ai_stage_latency_s_mean": 4.0,
+  "ai_stage_latency_s_max": 10.03
+ },
+ "lifecycle": {
+  "raw_with_error": 1,
+  "raw_errors_by_type": {
+   "never_started_but_ran": 1
+  },
+  "accepted_with_error": 0
+ },
+ "rubric_version": "2",
+ "rubric_sha256": "fe8c65c841ee137f29929b73972a16cacd76fbc62efb15a4acea8c5eed9152bb",
+ "runs": 45,
+ "technical": {
+  "raw_hypotheses": 158,
+  "raw_with_error": 8,
+  "raw_errors_by_type": {
+   "contradiction": 4,
+   "readiness_semantics": 1,
+   "selector_absence_blamed_for_unschedulable": 3,
+   "undeclared_probe_blamed": 1
+  },
+  "check_errors_in_raw": 5,
+  "accepted_hypotheses": 139,
+  "escapes_accepted_with_error": 0,
+  "escape_rate": 0.0,
+  "escapes": []
+ },
+ "relevance": {
+  "raw_relevant_rate": 0.968,
+  "raw_specific_rate": 0.861,
+  "accepted_relevant_rate": 0.971,
+  "accepted_specific_rate": 0.906,
+  "top_accepted_relevant": 1.0,
+  "top_accepted_specific": 1.0,
+  "runs_with_distinct_alternatives": "16/37",
+  "multi_constraint_coverage": {
+   "sched_multiple#0": "3/3",
+   "sched_multiple#1": "3/3",
+   "sched_multiple#2": "3/3"
+  }
+ },
+ "checks": {
+  "raw_checks": 158,
+  "raw_relevant": 0.911,
+  "raw_not_read_only": 7,
+  "raw_out_of_scope": 0,
+  "raw_technically_unclean": 5,
+  "shown_checks": 116,
+  "withheld_checks": 23,
+  "withheld_by_reason": {
+   "remediation_in_check": 23
+  },
+  "withheld_rubric_confirms_defect": 9,
+  "withheld_but_rubric_clean": 14,
+  "accepted_relevant": 0.94,
+  "accepted_not_read_only": 0,
+  "accepted_out_of_scope": 0,
+  "accepted_technically_unclean": 0
+ },
+ "validation": {
+  "proposed": 158,
+  "accepted": 139,
+  "rejected": 19,
+  "rejected_by_reason": {
+   "contradicts_container_state": 2,
+   "contradicts_established_evidence": 2,
+   "duplicate_hypothesis": 3,
+   "incorrect_kubernetes_semantics": 6,
+   "insufficiently_cautious": 2,
+   "too_long": 1,
+   "too_many_references": 2,
+   "unsupported_specific_claim": 1
+  },
+  "whole_response_failures": 0,
+  "whole_response_codes": {},
+  "candidate_false_positive_rejections": 11,
+  "candidate_false_positives": [
+   {
+    "scenario": "sched_taint",
+    "repeat": 0,
+    "code": "contradicts_established_evidence",
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The scheduler may have failed to place the pod on any node due to a misconfiguration in the pod's scheduling constraints, such as a node selector or affinity that does not match any available nodes.",
+     "not_yet_verified": "The specific scheduling constraints in the pod's specification have not been verified against the available nodes.",
+     "evidence": [
+      "ev-0010",
+      "ev-0011"
+     ],
+     "resource": null,
+     "verification_check": "Review the node selector and affinity settings in the pod's specification and compare them with the available nodes in the cluster."
+    }
+   },
+   {
+    "scenario": "sched_selector",
+    "repeat": 2,
+    "code": "duplicate_hypothesis",
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The scheduler may not be able to place the pod on any node because the node selector is declared but no nodes in the cluster have the required labels, leading to a mismatch.",
+     "not_yet_verified": "The specific labels required by the node selector have not been verified.",
+     "evidence": [
+      "ev-0009",
+      "ev-0010",
+      "ev-0016"
+     ],
+     "resource": null,
+     "verification_check": "Verify the node labels in the cluster to ensure they match the pod's node selector."
+    }
+   },
+   {
+    "scenario": "sched_selector",
+    "repeat": 2,
+    "code": "duplicate_hypothesis",
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The scheduler may not be able to place the pod on any node because the node selector is declared but no nodes in the cluster have the required labels, leading to a mismatch.",
+     "not_yet_verified": "The specific labels required by the node selector have not been verified.",
+     "evidence": [
+      "ev-0009",
+      "ev-0010",
+      "ev-0016"
+     ],
+     "resource": null,
+     "verification_check": "Verify the node labels in the cluster to ensure they match the pod's node selector."
+    }
+   },
+   {
+    "scenario": "running_not_ready",
+    "repeat": 0,
+    "code": "too_many_references",
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The readiness probe may be failing to reach the expected endpoint, possibly due to incorrect path or port configuration, or the application may not be responding as expected on /ready:8080.",
+     "not_yet_verified": "The actual response from the application's /ready endpoint is not available for verification.",
+     "evidence": [
+      "ev-0014",
+      "ev-0015",
+      "ev-0016",
+      "ev-0017",
+      "ev-0018",
+      "ev-0019",
+      "ev-0024"
+     ],
+     "resource": null,
+     "verification_check": "Check if the application is correctly responding to requests on port 8080 at the /ready path. Verify that the endpoint is accessible and that the application is properly initialized before the probe checks."
+    }
+   },
+   {
+    "scenario": "running_not_ready",
+    "repeat": 1,
+    "code": "too_many_references",
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The readiness probe may be failing to reach the expected endpoint, possibly due to incorrect path or port configuration, or the application may not be responding as expected on the specified port.",
+     "not_yet_verified": "The actual endpoint behavior or the correctness of the readiness probe configuration has not been verified.",
+     "evidence": [
+      "ev-0014",
+      "ev-0015",
+      "ev-0016",
+      "ev-0017",
+      "ev-0018",
+      "ev-0019",
+      "ev-0024"
+     ],
+     "resource": null,
+     "verification_check": "Check if the application is responding on port 8080 with a GET request to /ready. Verify that the readiness probe configuration matches the actual endpoint behavior."
+    }
+   },
+   {
+    "scenario": "liveness_failure",
+    "repeat": 0,
+    "code": "insufficiently_cautious",
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The container may have encountered an internal error that caused it to exit with a non-zero code, leading to a restart. The exact cause of the error is not known.",
+     "not_yet_verified": "The internal error that caused the container to exit with code 137 is not verified.",
+     "evidence": [
+      "ev-0011",
+      "ev-0010",
+      "ev-0008"
+     ],
+     "resource": null,
+     "verification_check": "Inspect the container logs to determine the cause of the exit with code 137."
+    }
+   },
+   {
+    "scenario": "liveness_failure",
+    "repeat": 0,
+    "code": "insufficiently_cautious",
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The liveness probe may have failed repeatedly, leading to the container being restarted. The probe is configured to check the /healthz endpoint every 2 seconds with a timeout of 1 second.",
+     "not_yet_verified": "The exact reason for the liveness probe failure is not known.",
+     "evidence": [
+      "ev-0025",
+      "ev-0026",
+      "ev-0028",
+      "ev-0029",
+      "ev-0015",
+      "ev-0016"
+     ],
+     "resource": null,
+     "verification_check": "Verify the liveness probe configuration and check the /healthz endpoint for any issues."
+    }
+   },
+   {
+    "scenario": "liveness_failure",
+    "repeat": 0,
+    "code": "unsupported_specific_claim",
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The container may have been restarted due to a failure in the liveness probe, which is configured to check the /healthz endpoint on port 8080. The probe may be timing out or receiving an incorrect response.",
+     "not_yet_verified": "The exact reason for the liveness probe failure is not known.",
+     "evidence": [
+      "ev-0025",
+      "ev-0026",
+      "ev-0028",
+      "ev-0029",
+      "ev-0015",
+      "ev-0016"
+     ],
+     "resource": null,
+     "verification_check": "Check the liveness probe configuration and verify the /healthz endpoint's response."
+    }
+   },
+   {
+    "scenario": "crash_loop",
+    "repeat": 2,
+    "code": "contradicts_container_state",
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The container may have failed to start due to an issue with the image, such as an incorrect tag or a missing dependency, leading to a non-zero exit code and subsequent restarts.",
+     "not_yet_verified": "The specific issue with the image that caused the container to fail has not been verified.",
+     "evidence": [
+      "ev-0010",
+      "ev-0009",
+      "ev-0008"
+     ],
+     "resource": null,
+     "verification_check": "Verify the image's tag and dependencies to ensure they are correct and that the image is properly configured."
+    }
+   },
+   {
+    "scenario": "restart_history",
+    "repeat": 1,
+    "code": "duplicate_hypothesis",
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The container may have been restarted due to a scheduled event or a system-level process that caused it to exit, even though it completed successfully. The restart policy may have been configured to automatically restart containers that exit with a zero exit code.",
+     "not_yet_verified": "The specific reason for the restart policy triggering a restart is not verified.",
+     "evidence": [
+      "ev-0011",
+      "ev-0010",
+      "ev-0008"
+     ],
+     "resource": null,
+     "verification_check": "Review the pod's restart policy configuration to understand why the container was restarted after completing normally."
+    }
+   },
+   {
+    "scenario": "restart_history",
+    "repeat": 2,
+    "code": "too_long",
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The container may have exited due to a normal process termination, and Kubernetes restarted it according to the pod's restart policy. The exit code 0 indicates the process finished successfully, but the restart policy may have been configured to automatically restart containers that exit with a zero exit code.",
+     "not_yet_verified": "The specific reason for the restart policy triggering a restart is not verified.",
+     "evidence": [
+      "ev-0011",
+      "ev-0010",
+      "ev-0008"
+     ],
+     "resource": null,
+     "verification_check": "Review the pod's restart policy configuration to understand why the container was restarted after completing normally."
+    }
+   }
+  ]
+ },
+ "operations": {
+  "runs_needing_a_second_model_attempt": 3,
+  "completion_rate": 1.0,
+  "analysis_states": {
+   "generated": 43,
+   "none_proposed": 1,
+   "all_omitted": 1
+  },
+  "tool_coverage_mean": 0.956,
+  "ai_stage_latency_s_mean": 4.0,
+  "ai_stage_latency_s_max": 10.03
+ },
+ "per_scenario": {
+  "sched_cpu": {
+   "runs": 3,
+   "accepted": 12,
+   "proposed": 12,
+   "whole_response_failures": 0
+  },
+  "sched_memory": {
+   "runs": 3,
+   "accepted": 12,
+   "proposed": 12,
+   "whole_response_failures": 0
+  },
+  "sched_taint": {
+   "runs": 3,
+   "accepted": 11,
+   "proposed": 12,
+   "whole_response_failures": 0
+  },
+  "sched_selector": {
+   "runs": 3,
+   "accepted": 7,
+   "proposed": 9,
+   "whole_response_failures": 0
+  },
+  "sched_multiple": {
+   "runs": 3,
+   "accepted": 6,
+   "proposed": 12,
+   "whole_response_failures": 0
+  },
+  "sched_missing_pvc": {
+   "runs": 3,
+   "accepted": 3,
+   "proposed": 3,
+   "whole_response_failures": 0
+  },
+  "image_pull": {
+   "runs": 3,
+   "accepted": 12,
+   "proposed": 12,
+   "whole_response_failures": 0
+  },
+  "oom_killed": {
+   "runs": 3,
+   "accepted": 12,
+   "proposed": 12,
+   "whole_response_failures": 0
+  },
+  "running_not_ready": {
+   "runs": 3,
+   "accepted": 10,
+   "proposed": 12,
+   "whole_response_failures": 0
+  },
+  "liveness_failure": {
+   "runs": 3,
+   "accepted": 9,
+   "proposed": 12,
+   "whole_response_failures": 0
+  },
+  "mount_failure": {
+   "runs": 3,
+   "accepted": 12,
+   "proposed": 12,
+   "whole_response_failures": 0
+  },
+  "crash_loop": {
+   "runs": 3,
+   "accepted": 10,
+   "proposed": 12,
+   "whole_response_failures": 0
+  },
+  "healthy": {
+   "runs": 3,
+   "accepted": 1,
+   "proposed": 2,
+   "whole_response_failures": 0
+  },
+  "restart_history": {
+   "runs": 3,
+   "accepted": 10,
+   "proposed": 12,
+   "whole_response_failures": 0
+  },
+  "oom_recovered": {
+   "runs": 3,
+   "accepted": 12,
+   "proposed": 12,
+   "whole_response_failures": 0
+  }
+ },
+ "system_prompt_sha256": "8b0fb74d9464d1305ee92429fb66b0538b1b120913f3d4128e749ea96094097d",
+ "label": "relevance-iter2",
+ "replay_of": null
+}

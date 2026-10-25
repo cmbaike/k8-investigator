@@ -1,0 +1,197 @@
+{
+ "investigation_id": "ce592fc1-2538-446b-93d4-0347f176c198",
+ "summary": "Investigation of namespace 'ai-ops-demo': 7 verified finding(s) (1 critical, 6 info) from 26 trusted evidence item(s).\nScope: only namespace 'ai-ops-demo' and the resources observed during this investigation. This is not an assessment of the rest of the cluster or of other namespaces.\nTarget: Pod 'impossible-pod', verified through Kubernetes owner references. Inspected only its 1 pod(s): 'impossible-pod'. The other 14 pod(s) listed in the namespace were not inspected.\nMost significant findings, in priority order:\n1. [critical] Pod could not be scheduled: Pod 'impossible-pod' is 'Pending' and Kubernetes marks its PodScheduled condition False with reason 'Unschedulable': Kubernetes reports that the scheduler could not place the pod on any node, so no container has been created (corroborated by independent evidence from events and pod state; evidence ev-0005, ev-0008, ev-0009, ev-0022 and 9 more).\n2. [info] Pod identified: Kubernetes returned pod 'impossible-pod' in a pod description (single source: pod state; evidence ev-0002).\n3. [info] Pod phase observed: Kubernetes reported pod phase 'Pending' (single source: pod state; evidence ev-0005).\n4. [info] Container memory request declared: The pod spec declares a memory request of 256Gi for container 'app' (single source: pod state; evidence ev-0007).\n3 further finding(s), including informational observations such as pod discovery, are listed in the report.\n3 uncertaint(ies) are recorded. These findings describe observed behavior only: the underlying cause is not established by this report, and any AI-generated hypotheses are listed separately and remain unverified.",
+ "findings": [
+  {
+   "title": "Pod discovered",
+   "description": "Pod 'impossible-pod' appeared in a successful Kubernetes pod listing. Resource: namespace 'ai-ops-demo', pod 'impossible-pod'. Observed during tool execution '543ceb44-61b5-41eb-b91d-a5af0e23acb0-step-1'.",
+   "severity": "info",
+   "evidence": [
+    {
+     "evidence_id": "ev-0001"
+    }
+   ],
+   "scheduling_constraints": []
+  },
+  {
+   "title": "Pod identified",
+   "description": "Kubernetes returned pod 'impossible-pod' in a pod description. Resource: namespace 'ai-ops-demo', pod 'impossible-pod'. Observed during tool execution '543ceb44-61b5-41eb-b91d-a5af0e23acb0-step-2'.",
+   "severity": "info",
+   "evidence": [
+    {
+     "evidence_id": "ev-0002"
+    }
+   ],
+   "scheduling_constraints": []
+  },
+  {
+   "title": "Pod phase observed",
+   "description": "Kubernetes reported pod phase 'Pending'. Resource: namespace 'ai-ops-demo', pod 'impossible-pod'. Observed during tool execution '543ceb44-61b5-41eb-b91d-a5af0e23acb0-step-2'.",
+   "severity": "info",
+   "evidence": [
+    {
+     "evidence_id": "ev-0005"
+    }
+   ],
+   "scheduling_constraints": []
+  },
+  {
+   "title": "Container memory request declared",
+   "description": "The pod spec declares a memory request of 256Gi for container 'app'. This is a configured value, not observed memory usage. Resource: namespace 'ai-ops-demo', pod 'impossible-pod'. Observed during tool execution '543ceb44-61b5-41eb-b91d-a5af0e23acb0-step-2'.",
+   "severity": "info",
+   "evidence": [
+    {
+     "evidence_id": "ev-0007"
+    }
+   ],
+   "scheduling_constraints": []
+  },
+  {
+   "title": "Container logs retrieved",
+   "description": "Container logs were retrieved successfully. Log contents have not been established as verified root-cause evidence. Resource: namespace 'ai-ops-demo', pod 'impossible-pod'. Observed during tool execution '543ceb44-61b5-41eb-b91d-a5af0e23acb0-step-5'.",
+   "severity": "info",
+   "evidence": [
+    {
+     "evidence_id": "ev-0018"
+    }
+   ],
+   "scheduling_constraints": []
+  },
+  {
+   "title": "Kubernetes events recorded for the pod",
+   "description": "Kubernetes recorded 1 event reason for pod 'impossible-pod': Warning 'FailedScheduling' (x1). Only each event's reason, type and count are used. The event messages are untrusted text and are not part of this report. These records show that Kubernetes logged the events, not why they occurred. Resource: namespace 'ai-ops-demo', pod 'impossible-pod'.",
+   "severity": "info",
+   "evidence": [
+    {
+     "evidence_id": "ev-0020"
+    },
+    {
+     "evidence_id": "ev-0021"
+    }
+   ],
+   "scheduling_constraints": []
+  },
+  {
+   "title": "Pod could not be scheduled",
+   "description": "Pod 'impossible-pod' is 'Pending' and Kubernetes marks its PodScheduled condition False with reason 'Unschedulable': Kubernetes reports that the scheduler could not place the pod on any node, so no container has been created. The scheduler's status message reports (classified by fixed patterns; the message itself is untrusted and not retained): insufficient CPU; insufficient memory; node taints the pod does not tolerate. Kubernetes recorded Warning event 'FailedScheduling' (x1) for this pod. These events were tied to this pod by namespace, name and Kubernetes UID. The pod spec declares container 'app' a memory request of 256Gi (configured values, not usage). This establishes that Kubernetes could not place the pod and, where classified, which constraint the scheduler reported. It does not establish why the cluster cannot meet that constraint, and no container has run, so there are no logs, restarts or probe results. Resource: namespace 'ai-ops-demo', pod 'impossible-pod'.",
+   "severity": "critical",
+   "evidence": [
+    {
+     "evidence_id": "ev-0005"
+    },
+    {
+     "evidence_id": "ev-0008"
+    },
+    {
+     "evidence_id": "ev-0009"
+    },
+    {
+     "evidence_id": "ev-0022"
+    },
+    {
+     "evidence_id": "ev-0023"
+    },
+    {
+     "evidence_id": "ev-0024"
+    },
+    {
+     "evidence_id": "ev-0010"
+    },
+    {
+     "evidence_id": "ev-0011"
+    },
+    {
+     "evidence_id": "ev-0012"
+    },
+    {
+     "evidence_id": "ev-0020"
+    },
+    {
+     "evidence_id": "ev-0021"
+    },
+    {
+     "evidence_id": "ev-0025"
+    },
+    {
+     "evidence_id": "ev-0007"
+    }
+   ],
+   "scheduling_constraints": [
+    {
+     "signal": "insufficient_cpu",
+     "label": "Insufficient CPU",
+     "evidence_ids": [
+      "ev-0010",
+      "ev-0022"
+     ]
+    },
+    {
+     "signal": "insufficient_memory",
+     "label": "Insufficient memory",
+     "evidence_ids": [
+      "ev-0011",
+      "ev-0023"
+     ]
+    },
+    {
+     "signal": "untolerated_taint",
+     "label": "Untolerated node taints",
+     "evidence_ids": [
+      "ev-0012",
+      "ev-0024"
+     ]
+    }
+   ]
+  }
+ ],
+ "uncertainties": [
+  "Pod 'impossible-pod' in namespace 'ai-ops-demo': no container exists yet because the pod was never scheduled, so container readiness, restart counts and logs do not exist.",
+  "Log retrieval for pod 'impossible-pod' in namespace 'ai-ops-demo' during execution '543ceb44-61b5-41eb-b91d-a5af0e23acb0-step-5' (k8s.get_logs) was bounded. The retrieved excerpt may omit relevant log entries.",
+  "Underlying failure causes and log-derived failures have not been established by trusted report evidence."
+ ],
+ "suggested_checks": [
+  "Compare the CPU the pod requests with the allocatable CPU of the cluster's nodes (read-only node inspection).",
+  "Compare the memory the pod requests with the allocatable memory of the cluster's nodes (read-only node inspection).",
+  "Review the taints on the nodes and the tolerations the pod declares (read-only).",
+  "Compare the resource requests, node selector and tolerations declared for pod 'impossible-pod' with what the cluster's nodes can offer (read-only, for example kubectl describe pod and kubectl describe nodes)."
+ ],
+ "ai_hypotheses": [
+  {
+   "explanation": "Possible explanation (unverified): The pod may not have been scheduled due to insufficient CPU or memory resources on the available nodes, as indicated by the scheduler's reported constraints. Not yet verified: The actual resource availability on the nodes has not been verified.",
+   "status": "unverified",
+   "reported": null,
+   "possible_explanation": "The pod may not have been scheduled due to insufficient CPU or memory resources on the available nodes, as indicated by the scheduler's reported constraints.",
+   "not_yet_verified": "The actual resource availability on the nodes has not been verified.",
+   "evidence_refs": [
+    "ev-0010",
+    "ev-0011",
+    "ev-0012"
+   ],
+   "resource": {
+    "namespace": "ai-ops-demo",
+    "pod": "impossible-pod",
+    "container": null
+   },
+   "verification_check": "Check the resource usage on the nodes to confirm if CPU or memory is insufficient.",
+   "check_withheld_reason": null,
+   "independently_established": null,
+   "established_refs": [],
+   "configuration_context": null,
+   "configuration_refs": []
+  }
+ ],
+ "ai_analysis": {
+  "state": "generated",
+  "reason": null,
+  "message": "AI-generated hypotheses are unverified interpretations. 3 other proposed hypothesis(es) omitted by validation.",
+  "log_excerpts_used": 1,
+  "log_excerpts_omitted": 0,
+  "hypotheses_omitted": 3,
+  "hypotheses_proposed": 4,
+  "omission_reasons": {
+   "inverted_scheduling_terms": 1,
+   "incorrect_kubernetes_semantics": 2
+  },
+  "rejection_category": null
+ }
+}

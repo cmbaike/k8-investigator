@@ -1,0 +1,7 @@
+{
+ "content": "{\n  \"investigation_id\": \"328d485e-e82d-46e4-9f54-12214856bdc7\",\n  \"hypotheses\": [\n    {\n      \"reported\": null,\n      \"possible_explanation\": \"The scheduler may not be able to place the pod on any node because the volume claim for 'data' is unbound, which could indicate that the PersistentVolumeClaim is not properly configured or is not available in the namespace.\",\n      \"not_yet_verified\": \"The underlying cause of the unbound volume claim has not been verified.\",\n      \"evidence\": [\"ev-0009\", \"ev-0010\", \"ev-0017\"],\n      \"resource\": null,\n      \"verification_check\": \"Check the status of the PersistentVolumeClaim 'data' in the 'ai-ops-demo' namespace to ensure it is properly configured and available.\"\n    }\n  ]\n}",
+ "model_attempts": 1,
+ "earlier_attempts": [],
+ "latency_s": 1.504,
+ "requested_investigation_id": "328d485e-e82d-46e4-9f54-12214856bdc7"
+}

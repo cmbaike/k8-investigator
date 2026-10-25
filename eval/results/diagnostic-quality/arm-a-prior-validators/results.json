@@ -1,0 +1,5254 @@
+[
+ {
+  "scenario": "sched_cpu",
+  "repeat": 0,
+  "latency_s": 3.945,
+  "investigation_id": "2ad388ca-f619-4cb7-a1cb-79bac71dceac",
+  "analysis_state": "generated",
+  "analysis_reason": null,
+  "whole_response_code": null,
+  "omission_reasons": {
+   "incorrect_kubernetes_semantics": 1
+  },
+  "tools_called": [
+   "k8s.describe_pod",
+   "k8s.get_events",
+   "k8s.get_pods"
+  ],
+  "tool_coverage": 1.0,
+  "raw": [
+   {
+    "index": 0,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The pod may not be schedulable due to insufficient CPU resources on the available nodes.",
+     "not_yet_verified": "The actual CPU capacity of the nodes and the requested CPU resources in the pod specification have not been verified.",
+     "evidence": [
+      "ev-0008",
+      "ev-0009",
+      "ev-0015"
+     ],
+     "resource": null,
+     "verification_check": "Check the CPU allocatable capacity of the nodes and compare it with the CPU requests in the pod specification."
+    },
+    "outcome": "accepted",
+    "code": null,
+    "check_withheld": null,
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0
+     ],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   },
+   {
+    "index": 1,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The pod may not have been scheduled due to a lack of node selectors or affinity rules that match the pod's requirements.",
+     "not_yet_verified": "The presence and correctness of node selectors or affinity rules in the pod specification have not been verified.",
+     "evidence": [
+      "ev-0010",
+      "ev-0011",
+      "ev-0014"
+     ],
+     "resource": null,
+     "verification_check": "Review the node selectors and affinity rules declared in the pod specification to ensure they match the available nodes."
+    },
+    "outcome": "rejected",
+    "code": "incorrect_kubernetes_semantics",
+    "grade": {
+     "technical_errors": [
+      "selector_absence_blamed_for_unschedulable"
+     ],
+     "relevant": true,
+     "specific": false,
+     "specific_families": [],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   },
+   {
+    "index": 2,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The pod may not be schedulable due to a lack of appropriate tolerations that match the node taints.",
+     "not_yet_verified": "The presence and correctness of tolerations in the pod specification have not been verified.",
+     "evidence": [
+      "ev-0008",
+      "ev-0009",
+      "ev-0014"
+     ],
+     "resource": null,
+     "verification_check": "Check the node taints and compare them with the tolerations declared in the pod specification."
+    },
+    "outcome": "accepted",
+    "code": null,
+    "check_withheld": null,
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": false,
+     "specific_families": [],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   },
+   {
+    "index": 3,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The pod may not be schedulable due to a lack of appropriate resource requests that match the node allocatable capacity.",
+     "not_yet_verified": "The actual CPU capacity of the nodes and the requested CPU resources in the pod specification have not been verified.",
+     "evidence": [
+      "ev-0008",
+      "ev-0009",
+      "ev-0015"
+     ],
+     "resource": null,
+     "verification_check": "Check the CPU allocatable capacity of the nodes and compare it with the CPU requests in the pod specification."
+    },
+    "outcome": "accepted",
+    "code": null,
+    "check_withheld": null,
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": false,
+     "specific_families": [],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   }
+  ],
+  "accepted": [
+   {
+    "raw": {
+     "possible_explanation": "The pod may not be schedulable due to insufficient CPU resources on the available nodes.",
+     "not_yet_verified": "The actual CPU capacity of the nodes and the requested CPU resources in the pod specification have not been verified.",
+     "verification_check": "Check the CPU allocatable capacity of the nodes and compare it with the CPU requests in the pod specification."
+    },
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0
+     ],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    },
+    "check_shown": true,
+    "check_withheld": null
+   },
+   {
+    "raw": {
+     "possible_explanation": "The pod may not be schedulable due to a lack of appropriate resource requests that match the node allocatable capacity.",
+     "not_yet_verified": "The actual CPU capacity of the nodes and the requested CPU resources in the pod specification have not been verified.",
+     "verification_check": "Check the CPU allocatable capacity of the nodes and compare it with the CPU requests in the pod specification."
+    },
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": false,
+     "specific_families": [],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    },
+    "check_shown": true,
+    "check_withheld": null
+   },
+   {
+    "raw": {
+     "possible_explanation": "The pod may not be schedulable due to a lack of appropriate tolerations that match the node taints.",
+     "not_yet_verified": "The presence and correctness of tolerations in the pod specification have not been verified.",
+     "verification_check": "Check the node taints and compare them with the tolerations declared in the pod specification."
+    },
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": false,
+     "specific_families": [],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    },
+    "check_shown": true,
+    "check_withheld": null
+   }
+  ]
+ },
+ {
+  "scenario": "sched_cpu",
+  "repeat": 1,
+  "latency_s": 3.919,
+  "investigation_id": "767f1319-5b78-4a2a-b1f8-7ea94fbf67cb",
+  "analysis_state": "generated",
+  "analysis_reason": null,
+  "whole_response_code": null,
+  "omission_reasons": {
+   "incorrect_kubernetes_semantics": 1
+  },
+  "tools_called": [
+   "k8s.describe_pod",
+   "k8s.get_events",
+   "k8s.get_pods"
+  ],
+  "tool_coverage": 1.0,
+  "raw": [
+   {
+    "index": 0,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The pod may not be schedulable due to insufficient CPU resources on the available nodes.",
+     "not_yet_verified": "The actual CPU capacity of the nodes and the requested CPU resources in the pod specification have not been verified.",
+     "evidence": [
+      "ev-0008",
+      "ev-0009",
+      "ev-0015"
+     ],
+     "resource": null,
+     "verification_check": "Check the CPU allocatable capacity of the nodes and compare it with the CPU requests declared in the pod specification."
+    },
+    "outcome": "accepted",
+    "code": null,
+    "check_withheld": null,
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0
+     ],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   },
+   {
+    "index": 1,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The pod may not have been scheduled due to a lack of node selectors or affinity rules that match the pod's requirements.",
+     "not_yet_verified": "The presence and correctness of node selectors or affinity rules in the pod specification have not been verified.",
+     "evidence": [
+      "ev-0010",
+      "ev-0011",
+      "ev-0014"
+     ],
+     "resource": null,
+     "verification_check": "Review the node selectors and affinity rules declared in the pod specification to ensure they match the available nodes."
+    },
+    "outcome": "rejected",
+    "code": "incorrect_kubernetes_semantics",
+    "grade": {
+     "technical_errors": [
+      "selector_absence_blamed_for_unschedulable"
+     ],
+     "relevant": true,
+     "specific": false,
+     "specific_families": [],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   },
+   {
+    "index": 2,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The pod may not be schedulable due to a lack of tolerations that match the node taints on the available nodes.",
+     "not_yet_verified": "The presence and correctness of tolerations in the pod specification have not been verified.",
+     "evidence": [
+      "ev-0008",
+      "ev-0009",
+      "ev-0014"
+     ],
+     "resource": null,
+     "verification_check": "Check the node taints on the available nodes and compare them with the tolerations declared in the pod specification."
+    },
+    "outcome": "accepted",
+    "code": null,
+    "check_withheld": null,
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": false,
+     "specific_families": [],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   },
+   {
+    "index": 3,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The pod may not be schedulable due to a lack of resource requests that match the available node capacity.",
+     "not_yet_verified": "The actual CPU capacity of the nodes and the requested CPU resources in the pod specification have not been verified.",
+     "evidence": [
+      "ev-0008",
+      "ev-0009",
+      "ev-0015"
+     ],
+     "resource": null,
+     "verification_check": "Check the CPU allocatable capacity of the nodes and compare it with the CPU requests declared in the pod specification."
+    },
+    "outcome": "accepted",
+    "code": null,
+    "check_withheld": null,
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": false,
+     "specific_families": [],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   }
+  ],
+  "accepted": [
+   {
+    "raw": {
+     "possible_explanation": "The pod may not be schedulable due to insufficient CPU resources on the available nodes.",
+     "not_yet_verified": "The actual CPU capacity of the nodes and the requested CPU resources in the pod specification have not been verified.",
+     "verification_check": "Check the CPU allocatable capacity of the nodes and compare it with the CPU requests declared in the pod specification."
+    },
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0
+     ],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    },
+    "check_shown": true,
+    "check_withheld": null
+   },
+   {
+    "raw": {
+     "possible_explanation": "The pod may not be schedulable due to a lack of resource requests that match the available node capacity.",
+     "not_yet_verified": "The actual CPU capacity of the nodes and the requested CPU resources in the pod specification have not been verified.",
+     "verification_check": "Check the CPU allocatable capacity of the nodes and compare it with the CPU requests declared in the pod specification."
+    },
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": false,
+     "specific_families": [],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    },
+    "check_shown": true,
+    "check_withheld": null
+   },
+   {
+    "raw": {
+     "possible_explanation": "The pod may not be schedulable due to a lack of tolerations that match the node taints on the available nodes.",
+     "not_yet_verified": "The presence and correctness of tolerations in the pod specification have not been verified.",
+     "verification_check": "Check the node taints on the available nodes and compare them with the tolerations declared in the pod specification."
+    },
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": false,
+     "specific_families": [],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    },
+    "check_shown": true,
+    "check_withheld": null
+   }
+  ]
+ },
+ {
+  "scenario": "sched_memory",
+  "repeat": 0,
+  "latency_s": 3.898,
+  "investigation_id": "4a63a214-9f6e-46c8-a265-21a20a8d788f",
+  "analysis_state": "generated",
+  "analysis_reason": null,
+  "whole_response_code": null,
+  "omission_reasons": {
+   "incorrect_kubernetes_semantics": 1,
+   "contradicts_container_state": 1
+  },
+  "tools_called": [
+   "k8s.describe_pod",
+   "k8s.get_events",
+   "k8s.get_pods"
+  ],
+  "tool_coverage": 1.0,
+  "raw": [
+   {
+    "index": 0,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The pod may be unschedulable due to insufficient memory on the available nodes, as indicated by the scheduler's 'Unschedulable' reason and the 'insufficient_memory' signal.",
+     "not_yet_verified": "The actual memory availability on the nodes has not been verified.",
+     "evidence": [
+      "ev-0009",
+      "ev-0010",
+      "ev-0016"
+     ],
+     "resource": null,
+     "verification_check": "Check the memory allocatable on the nodes and confirm if the pod's memory request of 900Gi is met by the available resources."
+    },
+    "outcome": "accepted",
+    "code": null,
+    "check_withheld": null,
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0
+     ],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   },
+   {
+    "index": 1,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The pod may be unschedulable due to a lack of node selectors or affinity rules, as no node selector or affinity is declared in the pod specification.",
+     "not_yet_verified": "The absence of node selectors or affinity rules has not been verified against the cluster's node configuration.",
+     "evidence": [
+      "ev-0011",
+      "ev-0012"
+     ],
+     "resource": null,
+     "verification_check": "Review the node configuration and ensure that the pod's placement requirements align with the available nodes."
+    },
+    "outcome": "rejected",
+    "code": "incorrect_kubernetes_semantics",
+    "grade": {
+     "technical_errors": [
+      "selector_absence_blamed_for_unschedulable"
+     ],
+     "relevant": true,
+     "specific": false,
+     "specific_families": [],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   },
+   {
+    "index": 2,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The pod may be unschedulable due to a lack of liveness probe configuration, which could lead to the scheduler not considering the pod as ready for scheduling.",
+     "not_yet_verified": "The absence of a liveness probe has not been verified against the pod's intended behavior or requirements.",
+     "evidence": [
+      "ev-0013"
+     ],
+     "resource": null,
+     "verification_check": "Check the pod's intended behavior and confirm if a liveness probe is required for scheduling purposes."
+    },
+    "outcome": "rejected",
+    "code": "contradicts_container_state",
+    "grade": {
+     "technical_errors": [
+      "contradiction:\\b(?:liveness|readiness|"
+     ],
+     "relevant": true,
+     "specific": false,
+     "specific_families": [],
+     "check": {
+      "relevant": false,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": false
+     },
+     "check_errors": [
+      "contradiction:\\b(?:liveness|readiness|"
+     ]
+    }
+   },
+   {
+    "index": 3,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The pod may be unschedulable due to a lack of resource requests, which could lead to the scheduler not considering the pod as ready for scheduling.",
+     "not_yet_verified": "The absence of resource requests has not been verified against the pod's intended behavior or requirements.",
+     "evidence": [
+      "ev-0007"
+     ],
+     "resource": null,
+     "verification_check": "Review the pod's intended behavior and confirm if resource requests are required for scheduling purposes."
+    },
+    "outcome": "accepted",
+    "code": null,
+    "check_withheld": null,
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": false,
+     "specific_families": [],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   }
+  ],
+  "accepted": [
+   {
+    "raw": {
+     "possible_explanation": "The pod may be unschedulable due to insufficient memory on the available nodes, as indicated by the scheduler's 'Unschedulable' reason and the 'insufficient_memory' signal.",
+     "not_yet_verified": "The actual memory availability on the nodes has not been verified.",
+     "verification_check": "Check the memory allocatable on the nodes and confirm if the pod's memory request of 900Gi is met by the available resources."
+    },
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0
+     ],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    },
+    "check_shown": true,
+    "check_withheld": null
+   },
+   {
+    "raw": {
+     "possible_explanation": "The pod may be unschedulable due to a lack of resource requests, which could lead to the scheduler not considering the pod as ready for scheduling.",
+     "not_yet_verified": "The absence of resource requests has not been verified against the pod's intended behavior or requirements.",
+     "verification_check": "Review the pod's intended behavior and confirm if resource requests are required for scheduling purposes."
+    },
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": false,
+     "specific_families": [],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    },
+    "check_shown": true,
+    "check_withheld": null
+   }
+  ]
+ },
+ {
+  "scenario": "sched_memory",
+  "repeat": 1,
+  "latency_s": 3.807,
+  "investigation_id": "cd5a691e-ef59-4c74-9d3e-96047545430c",
+  "analysis_state": "generated",
+  "analysis_reason": null,
+  "whole_response_code": null,
+  "omission_reasons": {
+   "incorrect_kubernetes_semantics": 1,
+   "contradicts_container_state": 1
+  },
+  "tools_called": [
+   "k8s.describe_pod",
+   "k8s.get_events",
+   "k8s.get_pods"
+  ],
+  "tool_coverage": 1.0,
+  "raw": [
+   {
+    "index": 0,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The pod may be unschedulable due to insufficient memory on the available nodes, as indicated by the scheduler's 'Unschedulable' reason and the 'insufficient_memory' signal.",
+     "not_yet_verified": "The actual memory availability on the nodes has not been verified.",
+     "evidence": [
+      "ev-0009",
+      "ev-0010",
+      "ev-0016"
+     ],
+     "resource": null,
+     "verification_check": "Check the memory allocatable on the nodes and confirm if the pod's memory request of 900Gi is met by the available resources."
+    },
+    "outcome": "accepted",
+    "code": null,
+    "check_withheld": null,
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0
+     ],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   },
+   {
+    "index": 1,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The pod may not have any placement requirements declared, which could lead to scheduling issues if the nodes do not meet the default scheduling criteria.",
+     "not_yet_verified": "The default scheduling criteria on the nodes have not been verified.",
+     "evidence": [
+      "ev-0011",
+      "ev-0012"
+     ],
+     "resource": null,
+     "verification_check": "Review the default scheduling settings on the nodes to ensure they align with the pod's requirements."
+    },
+    "outcome": "accepted",
+    "code": null,
+    "check_withheld": null,
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": false,
+     "specific_families": [],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   },
+   {
+    "index": 2,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The pod may be unschedulable due to a lack of node selectors or affinity rules, which could prevent it from being placed on nodes that meet its needs.",
+     "not_yet_verified": "The presence and configuration of node selectors or affinity rules have not been verified.",
+     "evidence": [
+      "ev-0011",
+      "ev-0012"
+     ],
+     "resource": null,
+     "verification_check": "Check the node selectors and affinity rules declared for the pod to ensure they are correctly configured."
+    },
+    "outcome": "rejected",
+    "code": "incorrect_kubernetes_semantics",
+    "grade": {
+     "technical_errors": [
+      "selector_absence_blamed_for_unschedulable"
+     ],
+     "relevant": true,
+     "specific": false,
+     "specific_families": [],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   },
+   {
+    "index": 3,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The pod may be unschedulable due to a lack of liveness probes, which could lead to the scheduler not considering the pod as ready for scheduling.",
+     "not_yet_verified": "The presence and configuration of liveness probes have not been verified.",
+     "evidence": [
+      "ev-0013"
+     ],
+     "resource": null,
+     "verification_check": "Review the liveness probe configuration for the pod to ensure it is correctly set up and functioning."
+    },
+    "outcome": "rejected",
+    "code": "contradicts_container_state",
+    "grade": {
+     "technical_errors": [
+      "contradiction:\\b(?:liveness|readiness|"
+     ],
+     "relevant": true,
+     "specific": false,
+     "specific_families": [],
+     "check": {
+      "relevant": false,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": false
+     },
+     "check_errors": [
+      "contradiction:\\b(?:liveness|readiness|"
+     ]
+    }
+   }
+  ],
+  "accepted": [
+   {
+    "raw": {
+     "possible_explanation": "The pod may be unschedulable due to insufficient memory on the available nodes, as indicated by the scheduler's 'Unschedulable' reason and the 'insufficient_memory' signal.",
+     "not_yet_verified": "The actual memory availability on the nodes has not been verified.",
+     "verification_check": "Check the memory allocatable on the nodes and confirm if the pod's memory request of 900Gi is met by the available resources."
+    },
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0
+     ],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    },
+    "check_shown": true,
+    "check_withheld": null
+   },
+   {
+    "raw": {
+     "possible_explanation": "The pod may not have any placement requirements declared, which could lead to scheduling issues if the nodes do not meet the default scheduling criteria.",
+     "not_yet_verified": "The default scheduling criteria on the nodes have not been verified.",
+     "verification_check": "Review the default scheduling settings on the nodes to ensure they align with the pod's requirements."
+    },
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": false,
+     "specific_families": [],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    },
+    "check_shown": true,
+    "check_withheld": null
+   }
+  ]
+ },
+ {
+  "scenario": "sched_taint",
+  "repeat": 0,
+  "latency_s": 3.674,
+  "investigation_id": "f49c0a62-5053-4ebd-ac63-28029f91feea",
+  "analysis_state": "generated",
+  "analysis_reason": null,
+  "whole_response_code": null,
+  "omission_reasons": {
+   "incorrect_kubernetes_semantics": 2
+  },
+  "tools_called": [
+   "k8s.describe_pod",
+   "k8s.get_events",
+   "k8s.get_pods"
+  ],
+  "tool_coverage": 1.0,
+  "raw": [
+   {
+    "index": 0,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The pod may not be schedulable due to a node taint that the pod does not tolerate, as indicated by the scheduler event.",
+     "not_yet_verified": "The specific node taint and the pod's tolerations have not been verified.",
+     "evidence": [
+      "ev-0009",
+      "ev-0015"
+     ],
+     "resource": null,
+     "verification_check": "Check the node taints and the pod's tolerations to confirm the mismatch."
+    },
+    "outcome": "accepted",
+    "code": null,
+    "check_withheld": null,
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0
+     ],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   },
+   {
+    "index": 1,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The pod may be unschedulable due to a lack of node selector or affinity configuration, as no such settings are declared.",
+     "not_yet_verified": "The absence of node selector or affinity configuration has not been verified against the actual scheduling requirements.",
+     "evidence": [
+      "ev-0010",
+      "ev-0011"
+     ],
+     "resource": null,
+     "verification_check": "Review the node selector and affinity settings declared in the pod's configuration to confirm if they align with the scheduling needs."
+    },
+    "outcome": "rejected",
+    "code": "incorrect_kubernetes_semantics",
+    "grade": {
+     "technical_errors": [
+      "selector_absence_blamed_for_unschedulable"
+     ],
+     "relevant": true,
+     "specific": false,
+     "specific_families": [],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   },
+   {
+    "index": 2,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The pod may be unschedulable due to insufficient resources on the available nodes, as the scheduler is unable to find a suitable node.",
+     "not_yet_verified": "The resource requirements of the pod and the available node capacities have not been verified.",
+     "evidence": [
+      "ev-0007",
+      "ev-0008"
+     ],
+     "resource": null,
+     "verification_check": "Check the resource requests and limits of the pod against the allocatable resources of the available nodes."
+    },
+    "outcome": "accepted",
+    "code": null,
+    "check_withheld": null,
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": false,
+     "specific_families": [],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   },
+   {
+    "index": 3,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The pod may be unschedulable due to a lack of proper scheduling constraints, as no node selector or affinity is declared.",
+     "not_yet_verified": "The absence of scheduling constraints has not been verified against the actual scheduling requirements.",
+     "evidence": [
+      "ev-0010",
+      "ev-0011"
+     ],
+     "resource": null,
+     "verification_check": "Review the scheduling constraints declared in the pod's configuration to confirm if they align with the scheduling needs."
+    },
+    "outcome": "rejected",
+    "code": "incorrect_kubernetes_semantics",
+    "grade": {
+     "technical_errors": [
+      "selector_absence_blamed_for_unschedulable"
+     ],
+     "relevant": true,
+     "specific": false,
+     "specific_families": [],
+     "check": {
+      "relevant": false,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   }
+  ],
+  "accepted": [
+   {
+    "raw": {
+     "possible_explanation": "The pod may not be schedulable due to a node taint that the pod does not tolerate, as indicated by the scheduler event.",
+     "not_yet_verified": "The specific node taint and the pod's tolerations have not been verified.",
+     "verification_check": "Check the node taints and the pod's tolerations to confirm the mismatch."
+    },
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0
+     ],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    },
+    "check_shown": true,
+    "check_withheld": null
+   },
+   {
+    "raw": {
+     "possible_explanation": "The pod may be unschedulable due to insufficient resources on the available nodes, as the scheduler is unable to find a suitable node.",
+     "not_yet_verified": "The resource requirements of the pod and the available node capacities have not been verified.",
+     "verification_check": "Check the resource requests and limits of the pod against the allocatable resources of the available nodes."
+    },
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": false,
+     "specific_families": [],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    },
+    "check_shown": true,
+    "check_withheld": null
+   }
+  ]
+ },
+ {
+  "scenario": "sched_taint",
+  "repeat": 1,
+  "latency_s": 3.671,
+  "investigation_id": "7434302b-8a5b-409c-a24d-3b5462a070e7",
+  "analysis_state": "generated",
+  "analysis_reason": null,
+  "whole_response_code": null,
+  "omission_reasons": {
+   "incorrect_kubernetes_semantics": 2
+  },
+  "tools_called": [
+   "k8s.describe_pod",
+   "k8s.get_events",
+   "k8s.get_pods"
+  ],
+  "tool_coverage": 1.0,
+  "raw": [
+   {
+    "index": 0,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The pod may not be schedulable due to a node taint that the pod does not tolerate, as indicated by the scheduler event.",
+     "not_yet_verified": "The specific node taint and the pod's tolerations have not been verified.",
+     "evidence": [
+      "ev-0009",
+      "ev-0015"
+     ],
+     "resource": null,
+     "verification_check": "Check the node taints and the pod's tolerations to confirm the mismatch."
+    },
+    "outcome": "accepted",
+    "code": null,
+    "check_withheld": null,
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0
+     ],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   },
+   {
+    "index": 1,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The pod may be unschedulable due to a lack of node selector or affinity configuration, as no such configuration is declared.",
+     "not_yet_verified": "The absence of node selector or affinity configuration has not been verified against the actual scheduling requirements.",
+     "evidence": [
+      "ev-0010",
+      "ev-0011"
+     ],
+     "resource": null,
+     "verification_check": "Review the node selector and affinity settings declared in the pod's configuration to confirm they match the scheduling needs."
+    },
+    "outcome": "rejected",
+    "code": "incorrect_kubernetes_semantics",
+    "grade": {
+     "technical_errors": [
+      "selector_absence_blamed_for_unschedulable"
+     ],
+     "relevant": true,
+     "specific": false,
+     "specific_families": [],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   },
+   {
+    "index": 2,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The pod may be unschedulable due to insufficient resources on the available nodes, as the scheduler is unable to find a suitable node.",
+     "not_yet_verified": "The resource requirements of the pod and the available node capacities have not been verified.",
+     "evidence": [
+      "ev-0007",
+      "ev-0008"
+     ],
+     "resource": null,
+     "verification_check": "Check the resource requests and limits of the pod against the allocatable resources of the available nodes."
+    },
+    "outcome": "accepted",
+    "code": null,
+    "check_withheld": null,
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": false,
+     "specific_families": [],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   },
+   {
+    "index": 3,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The pod may be unschedulable due to a lack of proper scheduling constraints, as no node selector or affinity is declared.",
+     "not_yet_verified": "The absence of scheduling constraints has not been verified against the actual scheduling requirements.",
+     "evidence": [
+      "ev-0010",
+      "ev-0011"
+     ],
+     "resource": null,
+     "verification_check": "Review the scheduling constraints declared in the pod's configuration to confirm they match the scheduling needs."
+    },
+    "outcome": "rejected",
+    "code": "incorrect_kubernetes_semantics",
+    "grade": {
+     "technical_errors": [
+      "selector_absence_blamed_for_unschedulable"
+     ],
+     "relevant": true,
+     "specific": false,
+     "specific_families": [],
+     "check": {
+      "relevant": false,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   }
+  ],
+  "accepted": [
+   {
+    "raw": {
+     "possible_explanation": "The pod may not be schedulable due to a node taint that the pod does not tolerate, as indicated by the scheduler event.",
+     "not_yet_verified": "The specific node taint and the pod's tolerations have not been verified.",
+     "verification_check": "Check the node taints and the pod's tolerations to confirm the mismatch."
+    },
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0
+     ],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    },
+    "check_shown": true,
+    "check_withheld": null
+   },
+   {
+    "raw": {
+     "possible_explanation": "The pod may be unschedulable due to insufficient resources on the available nodes, as the scheduler is unable to find a suitable node.",
+     "not_yet_verified": "The resource requirements of the pod and the available node capacities have not been verified.",
+     "verification_check": "Check the resource requests and limits of the pod against the allocatable resources of the available nodes."
+    },
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": false,
+     "specific_families": [],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    },
+    "check_shown": true,
+    "check_withheld": null
+   }
+  ]
+ },
+ {
+  "scenario": "sched_selector",
+  "repeat": 0,
+  "latency_s": 1.319,
+  "investigation_id": "af332e70-203c-4e15-a42c-1f76531a7917",
+  "analysis_state": "generated",
+  "analysis_reason": null,
+  "whole_response_code": null,
+  "omission_reasons": {},
+  "tools_called": [
+   "k8s.describe_pod",
+   "k8s.get_events",
+   "k8s.get_pods"
+  ],
+  "tool_coverage": 1.0,
+  "raw": [
+   {
+    "index": 0,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The pod may not be schedulable due to a node selector mismatch, as the scheduler reports this as the reason for unschedulable status.",
+     "not_yet_verified": "The exact cause of the node selector mismatch has not been verified.",
+     "evidence": [
+      "ev-0009",
+      "ev-0010",
+      "ev-0015"
+     ],
+     "resource": null,
+     "verification_check": "Compare the node selector declared by the pod with the node labels on the available nodes to verify if there is a mismatch."
+    },
+    "outcome": "accepted",
+    "code": null,
+    "check_withheld": null,
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0
+     ],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   }
+  ],
+  "accepted": [
+   {
+    "raw": {
+     "possible_explanation": "The pod may not be schedulable due to a node selector mismatch, as the scheduler reports this as the reason for unschedulable status.",
+     "not_yet_verified": "The exact cause of the node selector mismatch has not been verified.",
+     "verification_check": "Compare the node selector declared by the pod with the node labels on the available nodes to verify if there is a mismatch."
+    },
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0
+     ],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    },
+    "check_shown": true,
+    "check_withheld": null
+   }
+  ]
+ },
+ {
+  "scenario": "sched_selector",
+  "repeat": 1,
+  "latency_s": 1.276,
+  "investigation_id": "cc8cbc12-149e-4e3a-93ac-ef6623619539",
+  "analysis_state": "generated",
+  "analysis_reason": null,
+  "whole_response_code": null,
+  "omission_reasons": {},
+  "tools_called": [
+   "k8s.describe_pod",
+   "k8s.get_events",
+   "k8s.get_pods"
+  ],
+  "tool_coverage": 1.0,
+  "raw": [
+   {
+    "index": 0,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The pod may not be schedulable due to a node selector mismatch, as the scheduler reports this as the reason for unschedulable status.",
+     "not_yet_verified": "The underlying cause of the node selector mismatch has not been verified.",
+     "evidence": [
+      "ev-0009",
+      "ev-0010",
+      "ev-0015"
+     ],
+     "resource": null,
+     "verification_check": "Compare the node selector declared by the pod with the node selectors of the available nodes in the namespace."
+    },
+    "outcome": "accepted",
+    "code": null,
+    "check_withheld": "incorrect_kubernetes_semantics",
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0
+     ],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": false,
+      "technically_clean": false
+     },
+     "check_errors": [
+      "cluster_object_in_namespace"
+     ]
+    }
+   }
+  ],
+  "accepted": [
+   {
+    "raw": {
+     "possible_explanation": "The pod may not be schedulable due to a node selector mismatch, as the scheduler reports this as the reason for unschedulable status.",
+     "not_yet_verified": "The underlying cause of the node selector mismatch has not been verified.",
+     "verification_check": null
+    },
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0
+     ],
+     "check": {
+      "relevant": false,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    },
+    "check_shown": false,
+    "check_withheld": "incorrect_kubernetes_semantics"
+   }
+  ]
+ },
+ {
+  "scenario": "sched_multiple",
+  "repeat": 0,
+  "latency_s": 3.969,
+  "investigation_id": "511c43ef-8ce4-47f1-8dc6-4c9b1dc2186e",
+  "analysis_state": "generated",
+  "analysis_reason": null,
+  "whole_response_code": null,
+  "omission_reasons": {
+   "incorrect_kubernetes_semantics": 1
+  },
+  "tools_called": [
+   "k8s.describe_pod",
+   "k8s.get_events",
+   "k8s.get_pods"
+  ],
+  "tool_coverage": 1.0,
+  "raw": [
+   {
+    "index": 0,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The pod may not be schedulable due to insufficient CPU or memory resources on the available nodes.",
+     "not_yet_verified": "The actual resource availability on the nodes has not been verified.",
+     "evidence": [
+      "ev-0009",
+      "ev-0010",
+      "ev-0011",
+      "ev-0012"
+     ],
+     "resource": null,
+     "verification_check": "Check the allocatable CPU and memory on the nodes to confirm if the pod's resource requests are met."
+    },
+    "outcome": "accepted",
+    "code": null,
+    "check_withheld": null,
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0,
+      1
+     ],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   },
+   {
+    "index": 1,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The pod may not be schedulable due to a node taint that the pod does not tolerate.",
+     "not_yet_verified": "The specific node taints and the pod's tolerations have not been verified.",
+     "evidence": [
+      "ev-0009",
+      "ev-0010",
+      "ev-0011",
+      "ev-0012"
+     ],
+     "resource": null,
+     "verification_check": "Compare the taints on the nodes with the tolerations the pod declares."
+    },
+    "outcome": "accepted",
+    "code": null,
+    "check_withheld": null,
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      2
+     ],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   },
+   {
+    "index": 2,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The pod may not be schedulable due to a lack of declared node selector or affinity rules that would allow it to be scheduled on the correct nodes.",
+     "not_yet_verified": "The absence of declared node selector or affinity rules has not been verified against the pod's intended placement.",
+     "evidence": [
+      "ev-0007",
+      "ev-0013",
+      "ev-0014"
+     ],
+     "resource": null,
+     "verification_check": "Review the pod's node selector and affinity declarations to confirm if they are intended to guide scheduling."
+    },
+    "outcome": "rejected",
+    "code": "incorrect_kubernetes_semantics",
+    "grade": {
+     "technical_errors": [
+      "selector_absence_blamed_for_unschedulable"
+     ],
+     "relevant": true,
+     "specific": false,
+     "specific_families": [],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   },
+   {
+    "index": 3,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The pod may not be schedulable due to repeated failed scheduling events indicating persistent issues with resource constraints or node taints.",
+     "not_yet_verified": "The root cause of the repeated scheduling failures has not been verified.",
+     "evidence": [
+      "ev-0017",
+      "ev-0018",
+      "ev-0019",
+      "ev-0020"
+     ],
+     "resource": null,
+     "verification_check": "Investigate the scheduling events to determine the exact reason for the repeated failures."
+    },
+    "outcome": "accepted",
+    "code": null,
+    "check_withheld": null,
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      2
+     ],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   }
+  ],
+  "accepted": [
+   {
+    "raw": {
+     "possible_explanation": "The pod may not be schedulable due to insufficient CPU or memory resources on the available nodes.",
+     "not_yet_verified": "The actual resource availability on the nodes has not been verified.",
+     "verification_check": "Check the allocatable CPU and memory on the nodes to confirm if the pod's resource requests are met."
+    },
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0,
+      1
+     ],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    },
+    "check_shown": true,
+    "check_withheld": null
+   },
+   {
+    "raw": {
+     "possible_explanation": "The pod may not be schedulable due to a node taint that the pod does not tolerate.",
+     "not_yet_verified": "The specific node taints and the pod's tolerations have not been verified.",
+     "verification_check": "Compare the taints on the nodes with the tolerations the pod declares."
+    },
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      2
+     ],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    },
+    "check_shown": true,
+    "check_withheld": null
+   },
+   {
+    "raw": {
+     "possible_explanation": "The pod may not be schedulable due to repeated failed scheduling events indicating persistent issues with resource constraints or node taints.",
+     "not_yet_verified": "The root cause of the repeated scheduling failures has not been verified.",
+     "verification_check": "Investigate the scheduling events to determine the exact reason for the repeated failures."
+    },
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      2
+     ],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    },
+    "check_shown": true,
+    "check_withheld": null
+   }
+  ]
+ },
+ {
+  "scenario": "sched_multiple",
+  "repeat": 1,
+  "latency_s": 4.27,
+  "investigation_id": "f19f7dd0-b035-48f8-8017-0febcab43561",
+  "analysis_state": "generated",
+  "analysis_reason": null,
+  "whole_response_code": null,
+  "omission_reasons": {
+   "incorrect_kubernetes_semantics": 1
+  },
+  "tools_called": [
+   "k8s.describe_pod",
+   "k8s.get_events",
+   "k8s.get_pods"
+  ],
+  "tool_coverage": 1.0,
+  "raw": [
+   {
+    "index": 0,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The pod may not be schedulable due to insufficient CPU or memory resources on the available nodes.",
+     "not_yet_verified": "The actual resource availability on the nodes has not been verified.",
+     "evidence": [
+      "ev-0009",
+      "ev-0010",
+      "ev-0011",
+      "ev-0012"
+     ],
+     "resource": null,
+     "verification_check": "Check the CPU and memory allocatable capacity of the nodes to confirm if the pod's resource requests are met."
+    },
+    "outcome": "accepted",
+    "code": null,
+    "check_withheld": null,
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0,
+      1
+     ],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   },
+   {
+    "index": 1,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The pod may not be schedulable due to a node taint that the pod does not tolerate.",
+     "not_yet_verified": "The specific node taints and the pod's tolerations have not been verified.",
+     "evidence": [
+      "ev-0009",
+      "ev-0010",
+      "ev-0011",
+      "ev-0012"
+     ],
+     "resource": null,
+     "verification_check": "Compare the taints on the nodes with the tolerations the pod declares."
+    },
+    "outcome": "accepted",
+    "code": null,
+    "check_withheld": null,
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      2
+     ],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   },
+   {
+    "index": 2,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The pod may not be schedulable due to a lack of declared node selector or affinity rules that would allow it to be scheduled on the correct nodes.",
+     "not_yet_verified": "The absence of declared node selector or affinity rules has not been verified against the pod's intended placement.",
+     "evidence": [
+      "ev-0007",
+      "ev-0013",
+      "ev-0014"
+     ],
+     "resource": null,
+     "verification_check": "Review the pod's node selector and affinity declarations to confirm if they align with the intended scheduling requirements."
+    },
+    "outcome": "rejected",
+    "code": "incorrect_kubernetes_semantics",
+    "grade": {
+     "technical_errors": [
+      "selector_absence_blamed_for_unschedulable"
+     ],
+     "relevant": true,
+     "specific": false,
+     "specific_families": [],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   },
+   {
+    "index": 3,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The pod may not be schedulable due to a combination of insufficient CPU, memory, and node taint constraints that prevent it from being placed on any node.",
+     "not_yet_verified": "The combined effect of CPU, memory, and taint constraints on the pod's schedulability has not been verified.",
+     "evidence": [
+      "ev-0009",
+      "ev-0010",
+      "ev-0011",
+      "ev-0012",
+      "ev-0013",
+      "ev-0014"
+     ],
+     "resource": null,
+     "verification_check": "Investigate the combined impact of CPU, memory, and taint constraints on the pod's ability to be scheduled."
+    },
+    "outcome": "accepted",
+    "code": null,
+    "check_withheld": null,
+    "grade": {
+     "technical_errors": [
+      "inverted_taint_toleration"
+     ],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0,
+      1,
+      2
+     ],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": false
+     },
+     "check_errors": [
+      "inverted_taint_toleration"
+     ]
+    }
+   }
+  ],
+  "accepted": [
+   {
+    "raw": {
+     "possible_explanation": "The pod may not be schedulable due to insufficient CPU or memory resources on the available nodes.",
+     "not_yet_verified": "The actual resource availability on the nodes has not been verified.",
+     "verification_check": "Check the CPU and memory allocatable capacity of the nodes to confirm if the pod's resource requests are met."
+    },
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0,
+      1
+     ],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    },
+    "check_shown": true,
+    "check_withheld": null
+   },
+   {
+    "raw": {
+     "possible_explanation": "The pod may not be schedulable due to a node taint that the pod does not tolerate.",
+     "not_yet_verified": "The specific node taints and the pod's tolerations have not been verified.",
+     "verification_check": "Compare the taints on the nodes with the tolerations the pod declares."
+    },
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      2
+     ],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    },
+    "check_shown": true,
+    "check_withheld": null
+   },
+   {
+    "raw": {
+     "possible_explanation": "The pod may not be schedulable due to a combination of insufficient CPU, memory, and node taint constraints that prevent it from being placed on any node.",
+     "not_yet_verified": "The combined effect of CPU, memory, and taint constraints on the pod's schedulability has not been verified.",
+     "verification_check": "Investigate the combined impact of CPU, memory, and taint constraints on the pod's ability to be scheduled."
+    },
+    "grade": {
+     "technical_errors": [
+      "inverted_taint_toleration"
+     ],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0,
+      1,
+      2
+     ],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": false
+     },
+     "check_errors": [
+      "inverted_taint_toleration"
+     ]
+    },
+    "check_shown": true,
+    "check_withheld": null
+   }
+  ]
+ },
+ {
+  "scenario": "sched_missing_pvc",
+  "repeat": 0,
+  "latency_s": 4.077,
+  "investigation_id": "b3b97ead-39fe-46ae-b7c3-b49d2a7712c1",
+  "analysis_state": "generated",
+  "analysis_reason": null,
+  "whole_response_code": null,
+  "omission_reasons": {
+   "incorrect_kubernetes_semantics": 1
+  },
+  "tools_called": [
+   "k8s.describe_pod",
+   "k8s.get_events",
+   "k8s.get_pods"
+  ],
+  "tool_coverage": 1.0,
+  "raw": [
+   {
+    "index": 0,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The pod may not be schedulable due to an unbound volume claim, which could be caused by a missing or incorrectly named PersistentVolumeClaim in the namespace.",
+     "not_yet_verified": "The underlying cause of the unbound volume claim has not been verified.",
+     "evidence": [
+      "ev-0009",
+      "ev-0010",
+      "ev-0016"
+     ],
+     "resource": null,
+     "verification_check": "Check if the PersistentVolumeClaim referenced by the pod's volume is correctly named and exists in the same namespace."
+    },
+    "outcome": "accepted",
+    "code": null,
+    "check_withheld": null,
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0
+     ],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   },
+   {
+    "index": 1,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The pod may be unschedulable due to a lack of node selectors or affinity rules, which could prevent it from being scheduled on the appropriate nodes.",
+     "not_yet_verified": "The absence of node selectors or affinity rules in the pod's configuration has not been verified.",
+     "evidence": [
+      "ev-0011",
+      "ev-0012",
+      "ev-0008"
+     ],
+     "resource": null,
+     "verification_check": "Review the pod's configuration to confirm if node selectors or affinity rules are declared and ensure they are correctly specified."
+    },
+    "outcome": "rejected",
+    "code": "incorrect_kubernetes_semantics",
+    "grade": {
+     "technical_errors": [
+      "selector_absence_blamed_for_unschedulable"
+     ],
+     "relevant": true,
+     "specific": false,
+     "specific_families": [],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   },
+   {
+    "index": 2,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The pod may be unschedulable due to insufficient resources on the available nodes, which could be due to CPU or memory constraints.",
+     "not_yet_verified": "The resource requirements of the pod have not been verified against the available node capacity.",
+     "evidence": [
+      "ev-0005",
+      "ev-0007",
+      "ev-0008"
+     ],
+     "resource": null,
+     "verification_check": "Check the resource requests and limits in the pod's specification and compare them with the allocatable resources on the available nodes."
+    },
+    "outcome": "accepted",
+    "code": null,
+    "check_withheld": null,
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": false,
+     "specific_families": [],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   },
+   {
+    "index": 3,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The pod may be unschedulable due to node taints that the pod does not tolerate, which could prevent it from being scheduled on the appropriate nodes.",
+     "not_yet_verified": "The presence of node taints and the pod's tolerations have not been verified.",
+     "evidence": [
+      "ev-0005",
+      "ev-0007",
+      "ev-0008"
+     ],
+     "resource": null,
+     "verification_check": "Inspect the node taints and the pod's tolerations to ensure they are compatible and correctly specified."
+    },
+    "outcome": "accepted",
+    "code": null,
+    "check_withheld": null,
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": false,
+     "specific_families": [],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   }
+  ],
+  "accepted": [
+   {
+    "raw": {
+     "possible_explanation": "The pod may not be schedulable due to an unbound volume claim, which could be caused by a missing or incorrectly named PersistentVolumeClaim in the namespace.",
+     "not_yet_verified": "The underlying cause of the unbound volume claim has not been verified.",
+     "verification_check": "Check if the PersistentVolumeClaim referenced by the pod's volume is correctly named and exists in the same namespace."
+    },
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0
+     ],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    },
+    "check_shown": true,
+    "check_withheld": null
+   },
+   {
+    "raw": {
+     "possible_explanation": "The pod may be unschedulable due to insufficient resources on the available nodes, which could be due to CPU or memory constraints.",
+     "not_yet_verified": "The resource requirements of the pod have not been verified against the available node capacity.",
+     "verification_check": "Check the resource requests and limits in the pod's specification and compare them with the allocatable resources on the available nodes."
+    },
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": false,
+     "specific_families": [],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    },
+    "check_shown": true,
+    "check_withheld": null
+   },
+   {
+    "raw": {
+     "possible_explanation": "The pod may be unschedulable due to node taints that the pod does not tolerate, which could prevent it from being scheduled on the appropriate nodes.",
+     "not_yet_verified": "The presence of node taints and the pod's tolerations have not been verified.",
+     "verification_check": "Inspect the node taints and the pod's tolerations to ensure they are compatible and correctly specified."
+    },
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": false,
+     "specific_families": [],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    },
+    "check_shown": true,
+    "check_withheld": null
+   }
+  ]
+ },
+ {
+  "scenario": "sched_missing_pvc",
+  "repeat": 1,
+  "latency_s": 1.32,
+  "investigation_id": "d5898e55-014a-4c39-be99-a2282021fbb7",
+  "analysis_state": "generated",
+  "analysis_reason": null,
+  "whole_response_code": null,
+  "omission_reasons": {},
+  "tools_called": [
+   "k8s.describe_pod",
+   "k8s.get_events",
+   "k8s.get_pods"
+  ],
+  "tool_coverage": 1.0,
+  "raw": [
+   {
+    "index": 0,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The pod may not be schedulable due to a volume claim issue, as the scheduler reported an unbound volume claim signal.",
+     "not_yet_verified": "The underlying cause of the unbound volume claim has not been verified.",
+     "evidence": [
+      "ev-0008",
+      "ev-0009",
+      "ev-0016"
+     ],
+     "resource": null,
+     "verification_check": "Check if the PersistentVolumeClaim 'data' exists in the 'ai-ops-demo' namespace and is properly bound to a PersistentVolume."
+    },
+    "outcome": "accepted",
+    "code": null,
+    "check_withheld": null,
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0
+     ],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   }
+  ],
+  "accepted": [
+   {
+    "raw": {
+     "possible_explanation": "The pod may not be schedulable due to a volume claim issue, as the scheduler reported an unbound volume claim signal.",
+     "not_yet_verified": "The underlying cause of the unbound volume claim has not been verified.",
+     "verification_check": "Check if the PersistentVolumeClaim 'data' exists in the 'ai-ops-demo' namespace and is properly bound to a PersistentVolume."
+    },
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0
+     ],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    },
+    "check_shown": true,
+    "check_withheld": null
+   }
+  ]
+ },
+ {
+  "scenario": "image_pull",
+  "repeat": 0,
+  "latency_s": 3.217,
+  "investigation_id": "2f0150cc-f313-4cdc-9ea6-55a875d4ac1e",
+  "analysis_state": "generated",
+  "analysis_reason": null,
+  "whole_response_code": null,
+  "omission_reasons": {},
+  "tools_called": [
+   "k8s.describe_pod",
+   "k8s.describe_workload_config",
+   "k8s.get_events",
+   "k8s.get_pods"
+  ],
+  "tool_coverage": 1.0,
+  "raw": [
+   {
+    "index": 0,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The container may not be able to pull the required image due to an unreachable registry or an incorrect image reference.",
+     "not_yet_verified": "The underlying cause has not been verified.",
+     "evidence": [
+      "ev-0010",
+      "ev-0017"
+     ],
+     "resource": null,
+     "verification_check": "Check if the image reference is correct and if the registry is reachable from the cluster."
+    },
+    "outcome": "accepted",
+    "code": null,
+    "check_withheld": null,
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0
+     ],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   },
+   {
+    "index": 1,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The container may be unable to start due to missing or incorrect configuration, such as a missing ConfigMap or Secret.",
+     "not_yet_verified": "The underlying cause has not been verified.",
+     "evidence": [
+      "ev-0010",
+      "ev-0017"
+     ],
+     "resource": null,
+     "verification_check": "Verify that all required configurations are correctly declared and available in the namespace."
+    },
+    "outcome": "accepted",
+    "code": null,
+    "check_withheld": null,
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": false,
+     "specific_families": [],
+     "check": {
+      "relevant": false,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   },
+   {
+    "index": 2,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The container may be unable to start due to insufficient resources on the node, such as CPU or memory limits.",
+     "not_yet_verified": "The underlying cause has not been verified.",
+     "evidence": [
+      "ev-0010",
+      "ev-0017"
+     ],
+     "resource": null,
+     "verification_check": "Check the node's allocatable resources and ensure they meet the pod's resource requests."
+    },
+    "outcome": "accepted",
+    "code": null,
+    "check_withheld": null,
+    "grade": {
+     "technical_errors": [],
+     "relevant": false,
+     "specific": false,
+     "specific_families": [],
+     "check": {
+      "relevant": false,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   },
+   {
+    "index": 3,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The container may be unable to start due to a node taint that the pod does not tolerate.",
+     "not_yet_verified": "The underlying cause has not been verified.",
+     "evidence": [
+      "ev-0010",
+      "ev-0017"
+     ],
+     "resource": null,
+     "verification_check": "Check the node's taints and ensure the pod has the necessary tolerations."
+    },
+    "outcome": "accepted",
+    "code": null,
+    "check_withheld": null,
+    "grade": {
+     "technical_errors": [],
+     "relevant": false,
+     "specific": false,
+     "specific_families": [],
+     "check": {
+      "relevant": false,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   }
+  ],
+  "accepted": [
+   {
+    "raw": {
+     "possible_explanation": "The container may not be able to pull the required image due to an unreachable registry or an incorrect image reference.",
+     "not_yet_verified": "The underlying cause has not been verified.",
+     "verification_check": "Check if the image reference is correct and if the registry is reachable from the cluster."
+    },
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0
+     ],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    },
+    "check_shown": true,
+    "check_withheld": null
+   },
+   {
+    "raw": {
+     "possible_explanation": "The container may be unable to start due to missing or incorrect configuration, such as a missing ConfigMap or Secret.",
+     "not_yet_verified": "The underlying cause has not been verified.",
+     "verification_check": "Verify that all required configurations are correctly declared and available in the namespace."
+    },
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": false,
+     "specific_families": [],
+     "check": {
+      "relevant": false,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    },
+    "check_shown": true,
+    "check_withheld": null
+   },
+   {
+    "raw": {
+     "possible_explanation": "The container may be unable to start due to insufficient resources on the node, such as CPU or memory limits.",
+     "not_yet_verified": "The underlying cause has not been verified.",
+     "verification_check": "Check the node's allocatable resources and ensure they meet the pod's resource requests."
+    },
+    "grade": {
+     "technical_errors": [],
+     "relevant": false,
+     "specific": false,
+     "specific_families": [],
+     "check": {
+      "relevant": false,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    },
+    "check_shown": true,
+    "check_withheld": null
+   },
+   {
+    "raw": {
+     "possible_explanation": "The container may be unable to start due to a node taint that the pod does not tolerate.",
+     "not_yet_verified": "The underlying cause has not been verified.",
+     "verification_check": "Check the node's taints and ensure the pod has the necessary tolerations."
+    },
+    "grade": {
+     "technical_errors": [],
+     "relevant": false,
+     "specific": false,
+     "specific_families": [],
+     "check": {
+      "relevant": false,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    },
+    "check_shown": true,
+    "check_withheld": null
+   }
+  ]
+ },
+ {
+  "scenario": "image_pull",
+  "repeat": 1,
+  "latency_s": 3.366,
+  "investigation_id": "7b24d58c-5894-4c16-9126-1c56b600ff97",
+  "analysis_state": "generated",
+  "analysis_reason": null,
+  "whole_response_code": null,
+  "omission_reasons": {},
+  "tools_called": [
+   "k8s.describe_pod",
+   "k8s.describe_workload_config",
+   "k8s.get_events",
+   "k8s.get_pods"
+  ],
+  "tool_coverage": 1.0,
+  "raw": [
+   {
+    "index": 0,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The container may not be able to pull the required image due to an unreachable registry or an incorrect image reference.",
+     "not_yet_verified": "The underlying cause has not been verified.",
+     "evidence": [
+      "ev-0010",
+      "ev-0017"
+     ],
+     "resource": null,
+     "verification_check": "Check if the image reference is correct and if the registry is reachable from the cluster."
+    },
+    "outcome": "accepted",
+    "code": null,
+    "check_withheld": null,
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0
+     ],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   },
+   {
+    "index": 1,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The container may be unable to start due to missing or incorrect configuration, such as a missing ConfigMap or Secret.",
+     "not_yet_verified": "The underlying cause has not been verified.",
+     "evidence": [
+      "ev-0010",
+      "ev-0017"
+     ],
+     "resource": null,
+     "verification_check": "Verify that all required configurations are correctly declared and available in the namespace."
+    },
+    "outcome": "accepted",
+    "code": null,
+    "check_withheld": null,
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": false,
+     "specific_families": [],
+     "check": {
+      "relevant": false,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   },
+   {
+    "index": 2,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The container may be unable to start due to node scheduling constraints, such as insufficient resources or node taints that the pod does not tolerate.",
+     "not_yet_verified": "The underlying cause has not been verified.",
+     "evidence": [
+      "ev-0012",
+      "ev-0013"
+     ],
+     "resource": null,
+     "verification_check": "Check the node taints and resource availability to ensure they do not prevent pod scheduling."
+    },
+    "outcome": "accepted",
+    "code": null,
+    "check_withheld": null,
+    "grade": {
+     "technical_errors": [],
+     "relevant": false,
+     "specific": false,
+     "specific_families": [],
+     "check": {
+      "relevant": false,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   },
+   {
+    "index": 3,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The container may be unable to start due to a misconfigured node selector or affinity that prevents the pod from being scheduled on any node.",
+     "not_yet_verified": "The underlying cause has not been verified.",
+     "evidence": [
+      "ev-0012",
+      "ev-0013"
+     ],
+     "resource": null,
+     "verification_check": "Review the node selector and affinity configurations to ensure they are correctly set and do not prevent scheduling."
+    },
+    "outcome": "accepted",
+    "code": null,
+    "check_withheld": null,
+    "grade": {
+     "technical_errors": [],
+     "relevant": false,
+     "specific": false,
+     "specific_families": [],
+     "check": {
+      "relevant": false,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   }
+  ],
+  "accepted": [
+   {
+    "raw": {
+     "possible_explanation": "The container may be unable to start due to node scheduling constraints, such as insufficient resources or node taints that the pod does not tolerate.",
+     "not_yet_verified": "The underlying cause has not been verified.",
+     "verification_check": "Check the node taints and resource availability to ensure they do not prevent pod scheduling."
+    },
+    "grade": {
+     "technical_errors": [],
+     "relevant": false,
+     "specific": false,
+     "specific_families": [],
+     "check": {
+      "relevant": false,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    },
+    "check_shown": true,
+    "check_withheld": null
+   },
+   {
+    "raw": {
+     "possible_explanation": "The container may be unable to start due to a misconfigured node selector or affinity that prevents the pod from being scheduled on any node.",
+     "not_yet_verified": "The underlying cause has not been verified.",
+     "verification_check": "Review the node selector and affinity configurations to ensure they are correctly set and do not prevent scheduling."
+    },
+    "grade": {
+     "technical_errors": [],
+     "relevant": false,
+     "specific": false,
+     "specific_families": [],
+     "check": {
+      "relevant": false,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    },
+    "check_shown": true,
+    "check_withheld": null
+   },
+   {
+    "raw": {
+     "possible_explanation": "The container may not be able to pull the required image due to an unreachable registry or an incorrect image reference.",
+     "not_yet_verified": "The underlying cause has not been verified.",
+     "verification_check": "Check if the image reference is correct and if the registry is reachable from the cluster."
+    },
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0
+     ],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    },
+    "check_shown": true,
+    "check_withheld": null
+   },
+   {
+    "raw": {
+     "possible_explanation": "The container may be unable to start due to missing or incorrect configuration, such as a missing ConfigMap or Secret.",
+     "not_yet_verified": "The underlying cause has not been verified.",
+     "verification_check": "Verify that all required configurations are correctly declared and available in the namespace."
+    },
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": false,
+     "specific_families": [],
+     "check": {
+      "relevant": false,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    },
+    "check_shown": true,
+    "check_withheld": null
+   }
+  ]
+ },
+ {
+  "scenario": "oom_killed",
+  "repeat": 0,
+  "latency_s": 4.259,
+  "investigation_id": "6117f98d-08e8-4455-a35a-808e8e03378d",
+  "analysis_state": "generated",
+  "analysis_reason": null,
+  "whole_response_code": null,
+  "omission_reasons": {},
+  "tools_called": [
+   "k8s.describe_pod",
+   "k8s.describe_workload_config",
+   "k8s.get_logs",
+   "k8s.get_pods"
+  ],
+  "tool_coverage": 0.6666666666666666,
+  "raw": [
+   {
+    "index": 0,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The container may be crashing due to an out-of-memory (OOM) condition, which is a common cause for OOMKilled termination reasons in Kubernetes.",
+     "not_yet_verified": "The underlying cause of the memory usage has not been verified.",
+     "evidence": [
+      "ev-0010",
+      "ev-0012",
+      "ev-0011",
+      "ev-0014"
+     ],
+     "resource": null,
+     "verification_check": "Check the memory usage of the container and ensure the memory request and limit are appropriately set for the workload."
+    },
+    "outcome": "accepted",
+    "code": null,
+    "check_withheld": null,
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0
+     ],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   },
+   {
+    "index": 1,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The container may be encountering memory issues that lead to repeated restarts, possibly due to insufficient memory allocation or high memory consumption by the application.",
+     "not_yet_verified": "The exact memory consumption pattern and resource requirements of the application have not been verified.",
+     "evidence": [
+      "ev-0013",
+      "ev-0014",
+      "ev-0008",
+      "ev-0012"
+     ],
+     "resource": null,
+     "verification_check": "Review the memory usage metrics of the container and adjust the memory request and limit if necessary."
+    },
+    "outcome": "accepted",
+    "code": null,
+    "check_withheld": "remediation_in_check",
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0
+     ],
+     "check": {
+      "relevant": true,
+      "read_only": false,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   },
+   {
+    "index": 2,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The container may be experiencing memory pressure that leads to crashes and restarts, which could be due to a memory leak or inefficient memory usage in the application.",
+     "not_yet_verified": "The memory leak or inefficient memory usage in the application has not been verified.",
+     "evidence": [
+      "ev-0010",
+      "ev-0012",
+      "ev-0011",
+      "ev-0014"
+     ],
+     "resource": null,
+     "verification_check": "Analyze the memory usage of the application and check for potential memory leaks or inefficiencies."
+    },
+    "outcome": "accepted",
+    "code": null,
+    "check_withheld": null,
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0
+     ],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   },
+   {
+    "index": 3,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The container may be crashing due to an OOM condition, which is a common cause for OOMKilled termination reasons in Kubernetes, and this could be due to insufficient memory allocation or high memory consumption by the application.",
+     "not_yet_verified": "The exact memory consumption pattern and resource requirements of the application have not been verified.",
+     "evidence": [
+      "ev-0010",
+      "ev-0012",
+      "ev-0011",
+      "ev-0014"
+     ],
+     "resource": null,
+     "verification_check": "Review the memory usage metrics of the container and adjust the memory request and limit if necessary."
+    },
+    "outcome": "accepted",
+    "code": null,
+    "check_withheld": "remediation_in_check",
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0
+     ],
+     "check": {
+      "relevant": true,
+      "read_only": false,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   }
+  ],
+  "accepted": [
+   {
+    "raw": {
+     "possible_explanation": "The container may be crashing due to an out-of-memory (OOM) condition, which is a common cause for OOMKilled termination reasons in Kubernetes.",
+     "not_yet_verified": "The underlying cause of the memory usage has not been verified.",
+     "verification_check": "Check the memory usage of the container and ensure the memory request and limit are appropriately set for the workload."
+    },
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0
+     ],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    },
+    "check_shown": true,
+    "check_withheld": null
+   },
+   {
+    "raw": {
+     "possible_explanation": "The container may be encountering memory issues that lead to repeated restarts, possibly due to insufficient memory allocation or high memory consumption by the application.",
+     "not_yet_verified": "The exact memory consumption pattern and resource requirements of the application have not been verified.",
+     "verification_check": null
+    },
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0
+     ],
+     "check": {
+      "relevant": false,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    },
+    "check_shown": false,
+    "check_withheld": "remediation_in_check"
+   },
+   {
+    "raw": {
+     "possible_explanation": "The container may be experiencing memory pressure that leads to crashes and restarts, which could be due to a memory leak or inefficient memory usage in the application.",
+     "not_yet_verified": "The memory leak or inefficient memory usage in the application has not been verified.",
+     "verification_check": "Analyze the memory usage of the application and check for potential memory leaks or inefficiencies."
+    },
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0
+     ],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    },
+    "check_shown": true,
+    "check_withheld": null
+   },
+   {
+    "raw": {
+     "possible_explanation": "The container may be crashing due to an OOM condition, which is a common cause for OOMKilled termination reasons in Kubernetes, and this could be due to insufficient memory allocation or high memory consumption by the application.",
+     "not_yet_verified": "The exact memory consumption pattern and resource requirements of the application have not been verified.",
+     "verification_check": null
+    },
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0
+     ],
+     "check": {
+      "relevant": false,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    },
+    "check_shown": false,
+    "check_withheld": "remediation_in_check"
+   }
+  ]
+ },
+ {
+  "scenario": "oom_killed",
+  "repeat": 1,
+  "latency_s": 4.136,
+  "investigation_id": "abfbf7de-ea00-4f14-ba54-2a6a3dee3971",
+  "analysis_state": "generated",
+  "analysis_reason": null,
+  "whole_response_code": null,
+  "omission_reasons": {},
+  "tools_called": [
+   "k8s.describe_pod",
+   "k8s.describe_workload_config",
+   "k8s.get_logs",
+   "k8s.get_pods"
+  ],
+  "tool_coverage": 0.6666666666666666,
+  "raw": [
+   {
+    "index": 0,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The container may be crashing due to an out-of-memory (OOM) condition, which caused it to be killed by the kubelet.",
+     "not_yet_verified": "The underlying cause of the memory usage has not been verified.",
+     "evidence": [
+      "ev-0010",
+      "ev-0012",
+      "ev-0011",
+      "ev-0014"
+     ],
+     "resource": null,
+     "verification_check": "Check the memory usage of the container and ensure the memory request and limit are appropriately set for the workload."
+    },
+    "outcome": "accepted",
+    "code": null,
+    "check_withheld": null,
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0
+     ],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   },
+   {
+    "index": 1,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The container may be encountering an OOM condition due to insufficient memory resources, which could be due to a misconfigured memory request or limit.",
+     "not_yet_verified": "The actual memory usage and resource allocation for the container have not been verified.",
+     "evidence": [
+      "ev-0013",
+      "ev-0014",
+      "ev-0012",
+      "ev-0011"
+     ],
+     "resource": null,
+     "verification_check": "Review the memory request and limit settings for the container and ensure they are appropriate for the workload's needs."
+    },
+    "outcome": "accepted",
+    "code": null,
+    "check_withheld": null,
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0
+     ],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   },
+   {
+    "index": 2,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The container may be experiencing repeated OOM kills due to a memory leak or excessive memory usage that cannot be managed within the allocated limits.",
+     "not_yet_verified": "The root cause of the memory leak or excessive usage has not been verified.",
+     "evidence": [
+      "ev-0010",
+      "ev-0012",
+      "ev-0011",
+      "ev-0014"
+     ],
+     "resource": null,
+     "verification_check": "Analyze the container's memory usage patterns and check for potential memory leaks or excessive resource consumption."
+    },
+    "outcome": "accepted",
+    "code": null,
+    "check_withheld": null,
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0
+     ],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   },
+   {
+    "index": 3,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The container may be crashing due to an OOM condition, which could be caused by a misconfigured memory request or limit that does not match the workload's actual memory requirements.",
+     "not_yet_verified": "The actual memory requirements of the workload have not been verified.",
+     "evidence": [
+      "ev-0013",
+      "ev-0014",
+      "ev-0012",
+      "ev-0011"
+     ],
+     "resource": null,
+     "verification_check": "Review the memory request and limit settings for the container and adjust them if necessary to match the workload's actual memory needs."
+    },
+    "outcome": "accepted",
+    "code": null,
+    "check_withheld": null,
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0
+     ],
+     "check": {
+      "relevant": true,
+      "read_only": false,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   }
+  ],
+  "accepted": [
+   {
+    "raw": {
+     "possible_explanation": "The container may be crashing due to an out-of-memory (OOM) condition, which caused it to be killed by the kubelet.",
+     "not_yet_verified": "The underlying cause of the memory usage has not been verified.",
+     "verification_check": "Check the memory usage of the container and ensure the memory request and limit are appropriately set for the workload."
+    },
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0
+     ],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    },
+    "check_shown": true,
+    "check_withheld": null
+   },
+   {
+    "raw": {
+     "possible_explanation": "The container may be encountering an OOM condition due to insufficient memory resources, which could be due to a misconfigured memory request or limit.",
+     "not_yet_verified": "The actual memory usage and resource allocation for the container have not been verified.",
+     "verification_check": "Review the memory request and limit settings for the container and ensure they are appropriate for the workload's needs."
+    },
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0
+     ],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    },
+    "check_shown": true,
+    "check_withheld": null
+   },
+   {
+    "raw": {
+     "possible_explanation": "The container may be experiencing repeated OOM kills due to a memory leak or excessive memory usage that cannot be managed within the allocated limits.",
+     "not_yet_verified": "The root cause of the memory leak or excessive usage has not been verified.",
+     "verification_check": "Analyze the container's memory usage patterns and check for potential memory leaks or excessive resource consumption."
+    },
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0
+     ],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    },
+    "check_shown": true,
+    "check_withheld": null
+   },
+   {
+    "raw": {
+     "possible_explanation": "The container may be crashing due to an OOM condition, which could be caused by a misconfigured memory request or limit that does not match the workload's actual memory requirements.",
+     "not_yet_verified": "The actual memory requirements of the workload have not been verified.",
+     "verification_check": "Review the memory request and limit settings for the container and adjust them if necessary to match the workload's actual memory needs."
+    },
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0
+     ],
+     "check": {
+      "relevant": true,
+      "read_only": false,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    },
+    "check_shown": true,
+    "check_withheld": null
+   }
+  ]
+ },
+ {
+  "scenario": "running_not_ready",
+  "repeat": 0,
+  "latency_s": 4.044,
+  "investigation_id": "a8ef6264-8b2b-4db4-a501-db575911c34a",
+  "analysis_state": "generated",
+  "analysis_reason": null,
+  "whole_response_code": null,
+  "omission_reasons": {},
+  "tools_called": [
+   "k8s.describe_pod",
+   "k8s.describe_workload_config",
+   "k8s.get_events",
+   "k8s.get_logs",
+   "k8s.get_pods"
+  ],
+  "tool_coverage": 1.0,
+  "raw": [
+   {
+    "index": 0,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The container may be unable to meet the readiness probe requirements, which could be due to incorrect probe configuration or the application not being ready to serve requests.",
+     "not_yet_verified": "The readiness probe configuration and the application's readiness to serve requests have not been verified.",
+     "evidence": [
+      "ev-0015",
+      "ev-0016",
+      "ev-0007",
+      "ev-0009"
+     ],
+     "resource": null,
+     "verification_check": "Check the readiness probe configuration and verify if the application is ready to serve requests."
+    },
+    "outcome": "accepted",
+    "code": null,
+    "check_withheld": null,
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0
+     ],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": false
+     },
+     "check_errors": [
+      "contradiction:\\b(?:is|are|was|remains?"
+     ]
+    }
+   },
+   {
+    "index": 1,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The container may be experiencing issues that prevent it from being ready, such as resource constraints or misconfigured environment variables, though the exact cause is not yet determined.",
+     "not_yet_verified": "The exact cause of the readiness issue has not been verified.",
+     "evidence": [
+      "ev-0015",
+      "ev-0016",
+      "ev-0007",
+      "ev-0009"
+     ],
+     "resource": null,
+     "verification_check": "Review the container's resource requests and verify the environment variables it is using."
+    },
+    "outcome": "accepted",
+    "code": null,
+    "check_withheld": null,
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0
+     ],
+     "check": {
+      "relevant": false,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   },
+   {
+    "index": 2,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The container may be encountering issues related to the application's startup process, such as delays in initializing dependencies or incorrect configuration, which could prevent it from being ready.",
+     "not_yet_verified": "The startup process and configuration of the application have not been verified.",
+     "evidence": [
+      "ev-0015",
+      "ev-0016",
+      "ev-0007",
+      "ev-0009"
+     ],
+     "resource": null,
+     "verification_check": "Inspect the application's startup process and verify its configuration."
+    },
+    "outcome": "accepted",
+    "code": null,
+    "check_withheld": null,
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0
+     ],
+     "check": {
+      "relevant": false,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   },
+   {
+    "index": 3,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The container may be experiencing issues with the application's readiness probe, such as incorrect port or path settings, which could prevent it from being marked as ready.",
+     "not_yet_verified": "The readiness probe configuration and its alignment with the application's endpoint have not been verified.",
+     "evidence": [
+      "ev-0015",
+      "ev-0016",
+      "ev-0007",
+      "ev-0009"
+     ],
+     "resource": null,
+     "verification_check": "Verify the readiness probe configuration and ensure it aligns with the application's endpoint."
+    },
+    "outcome": "accepted",
+    "code": null,
+    "check_withheld": null,
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0
+     ],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   }
+  ],
+  "accepted": [
+   {
+    "raw": {
+     "possible_explanation": "The container may be unable to meet the readiness probe requirements, which could be due to incorrect probe configuration or the application not being ready to serve requests.",
+     "not_yet_verified": "The readiness probe configuration and the application's readiness to serve requests have not been verified.",
+     "verification_check": "Check the readiness probe configuration and verify if the application is ready to serve requests."
+    },
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0
+     ],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": false
+     },
+     "check_errors": [
+      "contradiction:\\b(?:is|are|was|remains?"
+     ]
+    },
+    "check_shown": true,
+    "check_withheld": null
+   },
+   {
+    "raw": {
+     "possible_explanation": "The container may be encountering issues related to the application's startup process, such as delays in initializing dependencies or incorrect configuration, which could prevent it from being ready.",
+     "not_yet_verified": "The startup process and configuration of the application have not been verified.",
+     "verification_check": "Inspect the application's startup process and verify its configuration."
+    },
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0
+     ],
+     "check": {
+      "relevant": false,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    },
+    "check_shown": true,
+    "check_withheld": null
+   },
+   {
+    "raw": {
+     "possible_explanation": "The container may be experiencing issues with the application's readiness probe, such as incorrect port or path settings, which could prevent it from being marked as ready.",
+     "not_yet_verified": "The readiness probe configuration and its alignment with the application's endpoint have not been verified.",
+     "verification_check": "Verify the readiness probe configuration and ensure it aligns with the application's endpoint."
+    },
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0
+     ],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    },
+    "check_shown": true,
+    "check_withheld": null
+   },
+   {
+    "raw": {
+     "possible_explanation": "The container may be experiencing issues that prevent it from being ready, such as resource constraints or misconfigured environment variables, though the exact cause is not yet determined.",
+     "not_yet_verified": "The exact cause of the readiness issue has not been verified.",
+     "verification_check": "Review the container's resource requests and verify the environment variables it is using."
+    },
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0
+     ],
+     "check": {
+      "relevant": false,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    },
+    "check_shown": true,
+    "check_withheld": null
+   }
+  ]
+ },
+ {
+  "scenario": "running_not_ready",
+  "repeat": 1,
+  "latency_s": 4.149,
+  "investigation_id": "6a4c50af-0626-41b7-8673-b2943bffbd8f",
+  "analysis_state": "generated",
+  "analysis_reason": null,
+  "whole_response_code": null,
+  "omission_reasons": {},
+  "tools_called": [
+   "k8s.describe_pod",
+   "k8s.describe_workload_config",
+   "k8s.get_events",
+   "k8s.get_logs",
+   "k8s.get_pods"
+  ],
+  "tool_coverage": 1.0,
+  "raw": [
+   {
+    "index": 0,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The container may be unable to meet the readiness probe requirements, which could be due to incorrect probe configuration or the application not being ready to serve requests.",
+     "not_yet_verified": "The readiness probe configuration and the application's readiness to serve requests have not been verified.",
+     "evidence": [
+      "ev-0015",
+      "ev-0016",
+      "ev-0007",
+      "ev-0009"
+     ],
+     "resource": null,
+     "verification_check": "Check the readiness probe configuration and ensure the application is correctly set up to serve requests."
+    },
+    "outcome": "accepted",
+    "code": null,
+    "check_withheld": null,
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0
+     ],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   },
+   {
+    "index": 1,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The container may be experiencing issues that prevent it from being ready, such as resource constraints or misconfigured environment variables, though the exact cause is not yet determined.",
+     "not_yet_verified": "The specific resource constraints or environment variable configurations that may be causing the issue have not been verified.",
+     "evidence": [
+      "ev-0015",
+      "ev-0016",
+      "ev-0007",
+      "ev-0009"
+     ],
+     "resource": null,
+     "verification_check": "Review the resource requests and environment variable configurations for the container."
+    },
+    "outcome": "accepted",
+    "code": null,
+    "check_withheld": null,
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0
+     ],
+     "check": {
+      "relevant": false,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   },
+   {
+    "index": 2,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The container may be encountering issues related to the application's startup process, such as delays in initializing dependencies or incorrect startup scripts, though the exact cause is not yet determined.",
+     "not_yet_verified": "The startup process and any dependencies required by the application have not been verified.",
+     "evidence": [
+      "ev-0015",
+      "ev-0016",
+      "ev-0007",
+      "ev-0009"
+     ],
+     "resource": null,
+     "verification_check": "Investigate the application's startup process and any dependencies it may require."
+    },
+    "outcome": "accepted",
+    "code": null,
+    "check_withheld": null,
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": false,
+     "specific_families": [],
+     "check": {
+      "relevant": false,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   },
+   {
+    "index": 3,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The container may be experiencing issues related to the application's readiness checks, such as incorrect endpoint paths or ports, though the exact cause is not yet determined.",
+     "not_yet_verified": "The specific readiness check configurations and their alignment with the application's endpoints have not been verified.",
+     "evidence": [
+      "ev-0015",
+      "ev-0016",
+      "ev-0007",
+      "ev-0009"
+     ],
+     "resource": null,
+     "verification_check": "Verify the readiness probe configuration and ensure it aligns with the application's endpoint paths and ports."
+    },
+    "outcome": "accepted",
+    "code": null,
+    "check_withheld": null,
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0
+     ],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   }
+  ],
+  "accepted": [
+   {
+    "raw": {
+     "possible_explanation": "The container may be unable to meet the readiness probe requirements, which could be due to incorrect probe configuration or the application not being ready to serve requests.",
+     "not_yet_verified": "The readiness probe configuration and the application's readiness to serve requests have not been verified.",
+     "verification_check": "Check the readiness probe configuration and ensure the application is correctly set up to serve requests."
+    },
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0
+     ],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    },
+    "check_shown": true,
+    "check_withheld": null
+   },
+   {
+    "raw": {
+     "possible_explanation": "The container may be encountering issues related to the application's startup process, such as delays in initializing dependencies or incorrect startup scripts, though the exact cause is not yet determined.",
+     "not_yet_verified": "The startup process and any dependencies required by the application have not been verified.",
+     "verification_check": "Investigate the application's startup process and any dependencies it may require."
+    },
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": false,
+     "specific_families": [],
+     "check": {
+      "relevant": false,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    },
+    "check_shown": true,
+    "check_withheld": null
+   },
+   {
+    "raw": {
+     "possible_explanation": "The container may be experiencing issues related to the application's readiness checks, such as incorrect endpoint paths or ports, though the exact cause is not yet determined.",
+     "not_yet_verified": "The specific readiness check configurations and their alignment with the application's endpoints have not been verified.",
+     "verification_check": "Verify the readiness probe configuration and ensure it aligns with the application's endpoint paths and ports."
+    },
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0
+     ],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    },
+    "check_shown": true,
+    "check_withheld": null
+   },
+   {
+    "raw": {
+     "possible_explanation": "The container may be experiencing issues that prevent it from being ready, such as resource constraints or misconfigured environment variables, though the exact cause is not yet determined.",
+     "not_yet_verified": "The specific resource constraints or environment variable configurations that may be causing the issue have not been verified.",
+     "verification_check": "Review the resource requests and environment variable configurations for the container."
+    },
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0
+     ],
+     "check": {
+      "relevant": false,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    },
+    "check_shown": true,
+    "check_withheld": null
+   }
+  ]
+ },
+ {
+  "scenario": "liveness_failure",
+  "repeat": 0,
+  "latency_s": 4.861,
+  "investigation_id": "215a6ca7-d3a1-49e5-88f7-94dda9507ba3",
+  "analysis_state": "generated",
+  "analysis_reason": null,
+  "whole_response_code": null,
+  "omission_reasons": {
+   "duplicate_hypothesis": 1
+  },
+  "tools_called": [
+   "k8s.describe_pod",
+   "k8s.get_events",
+   "k8s.get_pods"
+  ],
+  "tool_coverage": 1.0,
+  "raw": [
+   {
+    "index": 0,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The container may have failed due to liveness probe failures, which could be caused by the application not responding to the health check endpoint or the probe configuration being too strict.",
+     "not_yet_verified": "The underlying cause of the liveness probe failure has not been verified.",
+     "evidence": [
+      "ev-0025",
+      "ev-0028",
+      "ev-0015",
+      "ev-0016",
+      "ev-0017",
+      "ev-0018"
+     ],
+     "resource": null,
+     "verification_check": "Check if the application is correctly responding to the /healthz endpoint on port 8080 and review the liveness probe configuration for potential misalignment with the application's behavior."
+    },
+    "outcome": "accepted",
+    "code": null,
+    "check_withheld": null,
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0
+     ],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   },
+   {
+    "index": 1,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The container may have been restarted due to an unexpected termination, which could be caused by an out-of-memory condition or a crash that the application did not log.",
+     "not_yet_verified": "The exact reason for the container's termination has not been verified.",
+     "evidence": [
+      "ev-0011",
+      "ev-0010",
+      "ev-0024",
+      "ev-0025"
+     ],
+     "resource": null,
+     "verification_check": "Review the container's resource requests and limits to determine if memory constraints may have caused the termination."
+    },
+    "outcome": "accepted",
+    "code": null,
+    "check_withheld": null,
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": false,
+     "specific_families": [],
+     "check": {
+      "relevant": false,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   },
+   {
+    "index": 2,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The container may have been restarted due to a failure in the liveness probe, which could be caused by the application not being ready to handle traffic or a delay in initialization.",
+     "not_yet_verified": "The initialization process or readiness of the application has not been verified.",
+     "evidence": [
+      "ev-0024",
+      "ev-0025",
+      "ev-0027",
+      "ev-0028",
+      "ev-0015",
+      "ev-0016"
+     ],
+     "resource": null,
+     "verification_check": "Verify the application's startup behavior and ensure the liveness probe is configured to account for any initialization delays."
+    },
+    "outcome": "accepted",
+    "code": null,
+    "check_withheld": null,
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0
+     ],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   },
+   {
+    "index": 3,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The container may have been restarted due to a failure in the liveness probe, which could be caused by the application not being ready to handle traffic or a delay in initialization.",
+     "not_yet_verified": "The initialization process or readiness of the application has not been verified.",
+     "evidence": [
+      "ev-0024",
+      "ev-0025",
+      "ev-0027",
+      "ev-0028",
+      "ev-0015",
+      "ev-0016"
+     ],
+     "resource": null,
+     "verification_check": "Verify the application's startup behavior and ensure the liveness probe is configured to account for any initialization delays."
+    },
+    "outcome": "rejected",
+    "code": "duplicate_hypothesis",
+    "check_withheld": null,
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0
+     ],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   }
+  ],
+  "accepted": [
+   {
+    "raw": {
+     "possible_explanation": "The container may have failed due to liveness probe failures, which could be caused by the application not responding to the health check endpoint or the probe configuration being too strict.",
+     "not_yet_verified": "The underlying cause of the liveness probe failure has not been verified.",
+     "verification_check": "Check if the application is correctly responding to the /healthz endpoint on port 8080 and review the liveness probe configuration for potential misalignment with the application's behavior."
+    },
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0
+     ],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    },
+    "check_shown": true,
+    "check_withheld": null
+   },
+   {
+    "raw": {
+     "possible_explanation": "The container may have been restarted due to an unexpected termination, which could be caused by an out-of-memory condition or a crash that the application did not log.",
+     "not_yet_verified": "The exact reason for the container's termination has not been verified.",
+     "verification_check": "Review the container's resource requests and limits to determine if memory constraints may have caused the termination."
+    },
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": false,
+     "specific_families": [],
+     "check": {
+      "relevant": false,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    },
+    "check_shown": true,
+    "check_withheld": null
+   },
+   {
+    "raw": {
+     "possible_explanation": "The container may have been restarted due to a failure in the liveness probe, which could be caused by the application not being ready to handle traffic or a delay in initialization.",
+     "not_yet_verified": "The initialization process or readiness of the application has not been verified.",
+     "verification_check": "Verify the application's startup behavior and ensure the liveness probe is configured to account for any initialization delays."
+    },
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0
+     ],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    },
+    "check_shown": true,
+    "check_withheld": null
+   }
+  ]
+ },
+ {
+  "scenario": "liveness_failure",
+  "repeat": 1,
+  "latency_s": 5.047,
+  "investigation_id": "53ab4813-c5dd-4973-98ae-cc41105a915c",
+  "analysis_state": "generated",
+  "analysis_reason": null,
+  "whole_response_code": null,
+  "omission_reasons": {
+   "too_many_references": 1,
+   "duplicate_hypothesis": 1
+  },
+  "tools_called": [
+   "k8s.describe_pod",
+   "k8s.get_events",
+   "k8s.get_pods"
+  ],
+  "tool_coverage": 1.0,
+  "raw": [
+   {
+    "index": 0,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The container may have failed due to liveness probe failures, which could be caused by the application not responding to the health check endpoint or the probe timing being too strict.",
+     "not_yet_verified": "The underlying cause of the liveness probe failure has not been verified.",
+     "evidence": [
+      "ev-0025",
+      "ev-0028",
+      "ev-0015",
+      "ev-0016",
+      "ev-0017",
+      "ev-0018"
+     ],
+     "resource": null,
+     "verification_check": "Check if the application is correctly responding to the /healthz endpoint on port 8080 and adjust the liveness probe configuration if necessary."
+    },
+    "outcome": "accepted",
+    "code": null,
+    "check_withheld": "remediation_in_check",
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0
+     ],
+     "check": {
+      "relevant": true,
+      "read_only": false,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   },
+   {
+    "index": 1,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The container may have been terminated due to an error, which could be caused by an unhandled exception or a crash in the application logic.",
+     "not_yet_verified": "The specific error that caused the container to terminate has not been verified.",
+     "evidence": [
+      "ev-0011",
+      "ev-0010",
+      "ev-0008",
+      "ev-0024",
+      "ev-0025",
+      "ev-0027"
+     ],
+     "resource": null,
+     "verification_check": "Review the application's code or logs (if available) to determine the cause of the error that led to the container termination."
+    },
+    "outcome": "accepted",
+    "code": null,
+    "check_withheld": null,
+    "grade": {
+     "technical_errors": [],
+     "relevant": false,
+     "specific": false,
+     "specific_families": [],
+     "check": {
+      "relevant": false,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   },
+   {
+    "index": 2,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The container may have been restarted due to liveness probe failures, which could be caused by the application not being ready to handle traffic or a dependency not being resolved.",
+     "not_yet_verified": "The reason the application is not ready to handle traffic has not been verified.",
+     "evidence": [
+      "ev-0025",
+      "ev-0028",
+      "ev-0015",
+      "ev-0016",
+      "ev-0017",
+      "ev-0018",
+      "ev-0024",
+      "ev-0027"
+     ],
+     "resource": null,
+     "verification_check": "Verify if the application is properly initialized and if any dependencies are being resolved before the liveness probe is triggered."
+    },
+    "outcome": "rejected",
+    "code": "too_many_references",
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0
+     ],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   },
+   {
+    "index": 3,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The container may have been terminated due to an error, which could be caused by an unhandled exception or a crash in the application logic.",
+     "not_yet_verified": "The specific error that caused the container to terminate has not been verified.",
+     "evidence": [
+      "ev-0011",
+      "ev-0010",
+      "ev-0008",
+      "ev-0024",
+      "ev-0025",
+      "ev-0027"
+     ],
+     "resource": null,
+     "verification_check": "Review the application's code or logs (if available) to determine the cause of the error that led to the container termination."
+    },
+    "outcome": "rejected",
+    "code": "duplicate_hypothesis",
+    "check_withheld": null,
+    "grade": {
+     "technical_errors": [],
+     "relevant": false,
+     "specific": false,
+     "specific_families": [],
+     "check": {
+      "relevant": false,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   }
+  ],
+  "accepted": [
+   {
+    "raw": {
+     "possible_explanation": "The container may have failed due to liveness probe failures, which could be caused by the application not responding to the health check endpoint or the probe timing being too strict.",
+     "not_yet_verified": "The underlying cause of the liveness probe failure has not been verified.",
+     "verification_check": null
+    },
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0
+     ],
+     "check": {
+      "relevant": false,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    },
+    "check_shown": false,
+    "check_withheld": "remediation_in_check"
+   },
+   {
+    "raw": {
+     "possible_explanation": "The container may have been terminated due to an error, which could be caused by an unhandled exception or a crash in the application logic.",
+     "not_yet_verified": "The specific error that caused the container to terminate has not been verified.",
+     "verification_check": "Review the application's code or logs (if available) to determine the cause of the error that led to the container termination."
+    },
+    "grade": {
+     "technical_errors": [],
+     "relevant": false,
+     "specific": false,
+     "specific_families": [],
+     "check": {
+      "relevant": false,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    },
+    "check_shown": true,
+    "check_withheld": null
+   }
+  ]
+ },
+ {
+  "scenario": "mount_failure",
+  "repeat": 0,
+  "latency_s": 4.134,
+  "investigation_id": "0a6d1e4f-1ec0-4914-9ff7-1d6896e290c7",
+  "analysis_state": "generated",
+  "analysis_reason": null,
+  "whole_response_code": null,
+  "omission_reasons": {},
+  "tools_called": [
+   "k8s.describe_pod",
+   "k8s.get_events",
+   "k8s.get_pods"
+  ],
+  "tool_coverage": 1.0,
+  "raw": [
+   {
+    "index": 0,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The pod may be unable to mount the config_map volume due to a missing or misconfigured ConfigMap in the namespace.",
+     "not_yet_verified": "The existence and correct configuration of the ConfigMap referenced by the pod have not been verified.",
+     "evidence": [
+      "ev-0012",
+      "ev-0018",
+      "ev-0019",
+      "ev-0020"
+     ],
+     "resource": null,
+     "verification_check": "Check if the ConfigMap referenced by the pod exists in the ai-ops-demo namespace and is correctly configured."
+    },
+    "outcome": "accepted",
+    "code": null,
+    "check_withheld": null,
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0
+     ],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   },
+   {
+    "index": 1,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The pod may be unable to mount the volume due to a failure in setting up the mount point, which could be due to incorrect permissions or a misconfigured volume source.",
+     "not_yet_verified": "The specific cause of the mount setup failure has not been verified.",
+     "evidence": [
+      "ev-0016",
+      "ev-0018",
+      "ev-0019",
+      "ev-0020"
+     ],
+     "resource": null,
+     "verification_check": "Verify the volume source configuration and ensure the mount point is correctly set up in the pod specification."
+    },
+    "outcome": "accepted",
+    "code": null,
+    "check_withheld": null,
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0
+     ],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   },
+   {
+    "index": 2,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The pod may be unable to proceed with container creation due to a failure in the volume mount process, which could be due to a misconfigured volume or a missing resource.",
+     "not_yet_verified": "The exact cause of the volume mount failure has not been verified.",
+     "evidence": [
+      "ev-0005",
+      "ev-0009",
+      "ev-0010",
+      "ev-0016"
+     ],
+     "resource": null,
+     "verification_check": "Check the pod's volume configuration and ensure all required resources are available and correctly referenced."
+    },
+    "outcome": "accepted",
+    "code": null,
+    "check_withheld": null,
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0
+     ],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   },
+   {
+    "index": 3,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The pod may be unable to schedule due to a misconfigured node selector or affinity, which could prevent the pod from being placed on a suitable node.",
+     "not_yet_verified": "The presence and correctness of node selectors or affinities in the pod specification have not been verified.",
+     "evidence": [
+      "ev-0013",
+      "ev-0014"
+     ],
+     "resource": null,
+     "verification_check": "Verify the node selector and affinity configurations in the pod specification to ensure they are correctly set up."
+    },
+    "outcome": "accepted",
+    "code": null,
+    "check_withheld": null,
+    "grade": {
+     "technical_errors": [],
+     "relevant": false,
+     "specific": false,
+     "specific_families": [],
+     "check": {
+      "relevant": false,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   }
+  ],
+  "accepted": [
+   {
+    "raw": {
+     "possible_explanation": "The pod may be unable to mount the config_map volume due to a missing or misconfigured ConfigMap in the namespace.",
+     "not_yet_verified": "The existence and correct configuration of the ConfigMap referenced by the pod have not been verified.",
+     "verification_check": "Check if the ConfigMap referenced by the pod exists in the ai-ops-demo namespace and is correctly configured."
+    },
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0
+     ],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    },
+    "check_shown": true,
+    "check_withheld": null
+   },
+   {
+    "raw": {
+     "possible_explanation": "The pod may be unable to mount the volume due to a failure in setting up the mount point, which could be due to incorrect permissions or a misconfigured volume source.",
+     "not_yet_verified": "The specific cause of the mount setup failure has not been verified.",
+     "verification_check": "Verify the volume source configuration and ensure the mount point is correctly set up in the pod specification."
+    },
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0
+     ],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    },
+    "check_shown": true,
+    "check_withheld": null
+   },
+   {
+    "raw": {
+     "possible_explanation": "The pod may be unable to proceed with container creation due to a failure in the volume mount process, which could be due to a misconfigured volume or a missing resource.",
+     "not_yet_verified": "The exact cause of the volume mount failure has not been verified.",
+     "verification_check": "Check the pod's volume configuration and ensure all required resources are available and correctly referenced."
+    },
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0
+     ],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    },
+    "check_shown": true,
+    "check_withheld": null
+   },
+   {
+    "raw": {
+     "possible_explanation": "The pod may be unable to schedule due to a misconfigured node selector or affinity, which could prevent the pod from being placed on a suitable node.",
+     "not_yet_verified": "The presence and correctness of node selectors or affinities in the pod specification have not been verified.",
+     "verification_check": "Verify the node selector and affinity configurations in the pod specification to ensure they are correctly set up."
+    },
+    "grade": {
+     "technical_errors": [],
+     "relevant": false,
+     "specific": false,
+     "specific_families": [],
+     "check": {
+      "relevant": false,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    },
+    "check_shown": true,
+    "check_withheld": null
+   }
+  ]
+ },
+ {
+  "scenario": "mount_failure",
+  "repeat": 1,
+  "latency_s": 3.856,
+  "investigation_id": "6498d85e-26e0-4988-82fb-a302f440eb9e",
+  "analysis_state": "generated",
+  "analysis_reason": null,
+  "whole_response_code": null,
+  "omission_reasons": {
+   "contradicts_established_evidence": 1
+  },
+  "tools_called": [
+   "k8s.describe_pod",
+   "k8s.get_events",
+   "k8s.get_pods"
+  ],
+  "tool_coverage": 1.0,
+  "raw": [
+   {
+    "index": 0,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The pod may be unable to mount the config_map volume due to a missing or misconfigured ConfigMap in the namespace.",
+     "not_yet_verified": "The existence and correct configuration of the ConfigMap referenced by the pod have not been verified.",
+     "evidence": [
+      "ev-0018",
+      "ev-0019",
+      "ev-0020",
+      "ev-0012"
+     ],
+     "resource": null,
+     "verification_check": "Check if the ConfigMap referenced by the pod exists in the ai-ops-demo namespace and is correctly configured."
+    },
+    "outcome": "accepted",
+    "code": null,
+    "check_withheld": null,
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0
+     ],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   },
+   {
+    "index": 1,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The pod may be unable to schedule due to scheduling constraints such as node taints, resource requests, or node selector mismatches.",
+     "not_yet_verified": "The scheduling constraints that may be preventing the pod from being scheduled have not been verified.",
+     "evidence": [
+      "ev-0013",
+      "ev-0014"
+     ],
+     "resource": null,
+     "verification_check": "Review the node taints and resource availability to ensure they align with the pod's scheduling requirements."
+    },
+    "outcome": "rejected",
+    "code": "contradicts_established_evidence",
+    "grade": {
+     "technical_errors": [],
+     "relevant": false,
+     "specific": false,
+     "specific_families": [],
+     "check": {
+      "relevant": false,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   },
+   {
+    "index": 2,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The pod may be unable to create the container due to an issue with the container's configuration or image pull.",
+     "not_yet_verified": "The specific cause of the container creation failure has not been verified.",
+     "evidence": [
+      "ev-0009",
+      "ev-0010"
+     ],
+     "resource": null,
+     "verification_check": "Verify the container's configuration and ensure the image is correctly specified and accessible."
+    },
+    "outcome": "accepted",
+    "code": null,
+    "check_withheld": null,
+    "grade": {
+     "technical_errors": [],
+     "relevant": false,
+     "specific": false,
+     "specific_families": [],
+     "check": {
+      "relevant": false,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   },
+   {
+    "index": 3,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The pod may be unable to mount the volume due to a failure in the volume setup process, such as incorrect path or permissions.",
+     "not_yet_verified": "The specific cause of the volume mount failure has not been verified.",
+     "evidence": [
+      "ev-0016",
+      "ev-0017",
+      "ev-0018",
+      "ev-0019",
+      "ev-0020"
+     ],
+     "resource": null,
+     "verification_check": "Check the volume setup process for any errors, including path correctness and permissions."
+    },
+    "outcome": "accepted",
+    "code": null,
+    "check_withheld": null,
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0
+     ],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   }
+  ],
+  "accepted": [
+   {
+    "raw": {
+     "possible_explanation": "The pod may be unable to mount the config_map volume due to a missing or misconfigured ConfigMap in the namespace.",
+     "not_yet_verified": "The existence and correct configuration of the ConfigMap referenced by the pod have not been verified.",
+     "verification_check": "Check if the ConfigMap referenced by the pod exists in the ai-ops-demo namespace and is correctly configured."
+    },
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0
+     ],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    },
+    "check_shown": true,
+    "check_withheld": null
+   },
+   {
+    "raw": {
+     "possible_explanation": "The pod may be unable to mount the volume due to a failure in the volume setup process, such as incorrect path or permissions.",
+     "not_yet_verified": "The specific cause of the volume mount failure has not been verified.",
+     "verification_check": "Check the volume setup process for any errors, including path correctness and permissions."
+    },
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0
+     ],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    },
+    "check_shown": true,
+    "check_withheld": null
+   },
+   {
+    "raw": {
+     "possible_explanation": "The pod may be unable to create the container due to an issue with the container's configuration or image pull.",
+     "not_yet_verified": "The specific cause of the container creation failure has not been verified.",
+     "verification_check": "Verify the container's configuration and ensure the image is correctly specified and accessible."
+    },
+    "grade": {
+     "technical_errors": [],
+     "relevant": false,
+     "specific": false,
+     "specific_families": [],
+     "check": {
+      "relevant": false,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    },
+    "check_shown": true,
+    "check_withheld": null
+   }
+  ]
+ },
+ {
+  "scenario": "crash_loop",
+  "repeat": 0,
+  "latency_s": 3.87,
+  "investigation_id": "c22fd691-144f-4774-be26-906053ca027b",
+  "analysis_state": "generated",
+  "analysis_reason": null,
+  "whole_response_code": null,
+  "omission_reasons": {},
+  "tools_called": [
+   "k8s.describe_pod",
+   "k8s.describe_workload_config",
+   "k8s.get_logs",
+   "k8s.get_pods"
+  ],
+  "tool_coverage": 0.6666666666666666,
+  "raw": [
+   {
+    "index": 0,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The container may be crashing due to an issue with the application's startup process or an error in the application's code that causes it to fail repeatedly.",
+     "not_yet_verified": "The underlying cause of the crash has not been verified.",
+     "evidence": [
+      "ev-0008",
+      "ev-0010",
+      "ev-0011",
+      "ev-0012"
+     ],
+     "resource": null,
+     "verification_check": "Check the application's code and startup process to identify the root cause of the crash."
+    },
+    "outcome": "accepted",
+    "code": null,
+    "check_withheld": null,
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0
+     ],
+     "check": {
+      "relevant": false,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   },
+   {
+    "index": 1,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The container may be failing due to an issue with the application's environment or configuration, such as missing environment variables or incorrect settings.",
+     "not_yet_verified": "The application's environment and configuration have not been verified.",
+     "evidence": [
+      "ev-0008",
+      "ev-0010",
+      "ev-0011",
+      "ev-0012"
+     ],
+     "resource": null,
+     "verification_check": "Review the application's environment and configuration to ensure they are correct and complete."
+    },
+    "outcome": "accepted",
+    "code": null,
+    "check_withheld": null,
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": false,
+     "specific_families": [],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   },
+   {
+    "index": 2,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The container may be failing due to an issue with the application's dependencies or external services it relies on, such as databases or APIs.",
+     "not_yet_verified": "The application's dependencies and external services have not been verified.",
+     "evidence": [
+      "ev-0008",
+      "ev-0010",
+      "ev-0011",
+      "ev-0012"
+     ],
+     "resource": null,
+     "verification_check": "Check the application's dependencies and external services to ensure they are available and functioning correctly."
+    },
+    "outcome": "accepted",
+    "code": null,
+    "check_withheld": null,
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": false,
+     "specific_families": [],
+     "check": {
+      "relevant": false,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   },
+   {
+    "index": 3,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The container may be failing due to an issue with the application's resource requests or limits, such as insufficient CPU or memory.",
+     "not_yet_verified": "The application's resource requests and limits have not been verified.",
+     "evidence": [
+      "ev-0008",
+      "ev-0010",
+      "ev-0011",
+      "ev-0012"
+     ],
+     "resource": null,
+     "verification_check": "Review the application's resource requests and limits to ensure they are appropriate for the workload."
+    },
+    "outcome": "accepted",
+    "code": null,
+    "check_withheld": null,
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": false,
+     "specific_families": [],
+     "check": {
+      "relevant": false,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   }
+  ],
+  "accepted": [
+   {
+    "raw": {
+     "possible_explanation": "The container may be crashing due to an issue with the application's startup process or an error in the application's code that causes it to fail repeatedly.",
+     "not_yet_verified": "The underlying cause of the crash has not been verified.",
+     "verification_check": "Check the application's code and startup process to identify the root cause of the crash."
+    },
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0
+     ],
+     "check": {
+      "relevant": false,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    },
+    "check_shown": true,
+    "check_withheld": null
+   },
+   {
+    "raw": {
+     "possible_explanation": "The container may be failing due to an issue with the application's environment or configuration, such as missing environment variables or incorrect settings.",
+     "not_yet_verified": "The application's environment and configuration have not been verified.",
+     "verification_check": "Review the application's environment and configuration to ensure they are correct and complete."
+    },
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": false,
+     "specific_families": [],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    },
+    "check_shown": true,
+    "check_withheld": null
+   },
+   {
+    "raw": {
+     "possible_explanation": "The container may be failing due to an issue with the application's dependencies or external services it relies on, such as databases or APIs.",
+     "not_yet_verified": "The application's dependencies and external services have not been verified.",
+     "verification_check": "Check the application's dependencies and external services to ensure they are available and functioning correctly."
+    },
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": false,
+     "specific_families": [],
+     "check": {
+      "relevant": false,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    },
+    "check_shown": true,
+    "check_withheld": null
+   },
+   {
+    "raw": {
+     "possible_explanation": "The container may be failing due to an issue with the application's resource requests or limits, such as insufficient CPU or memory.",
+     "not_yet_verified": "The application's resource requests and limits have not been verified.",
+     "verification_check": "Review the application's resource requests and limits to ensure they are appropriate for the workload."
+    },
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": false,
+     "specific_families": [],
+     "check": {
+      "relevant": false,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    },
+    "check_shown": true,
+    "check_withheld": null
+   }
+  ]
+ },
+ {
+  "scenario": "crash_loop",
+  "repeat": 1,
+  "latency_s": 4.125,
+  "investigation_id": "bd9870aa-5552-473b-a62d-cdbbb3fdfacd",
+  "analysis_state": "generated",
+  "analysis_reason": null,
+  "whole_response_code": null,
+  "omission_reasons": {},
+  "tools_called": [
+   "k8s.describe_pod",
+   "k8s.describe_workload_config",
+   "k8s.get_logs",
+   "k8s.get_pods"
+  ],
+  "tool_coverage": 0.6666666666666666,
+  "raw": [
+   {
+    "index": 0,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The container may be crashing due to an issue with the application's startup process or an error in the application's code that causes it to fail immediately after starting.",
+     "not_yet_verified": "The underlying cause of the crash has not been verified.",
+     "evidence": [
+      "ev-0010",
+      "ev-0011",
+      "ev-0012",
+      "ev-0008"
+     ],
+     "resource": null,
+     "verification_check": "Check the application's code and startup process to identify any issues that may cause it to fail immediately after starting."
+    },
+    "outcome": "accepted",
+    "code": null,
+    "check_withheld": null,
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0
+     ],
+     "check": {
+      "relevant": false,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   },
+   {
+    "index": 1,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The container may be failing due to an issue with the application's configuration, such as missing environment variables or incorrect settings that are required for the application to function properly.",
+     "not_yet_verified": "The specific configuration issue causing the failure has not been verified.",
+     "evidence": [
+      "ev-0010",
+      "ev-0011",
+      "ev-0012",
+      "ev-0008"
+     ],
+     "resource": null,
+     "verification_check": "Review the application's configuration and ensure that all required environment variables and settings are correctly specified."
+    },
+    "outcome": "accepted",
+    "code": null,
+    "check_withheld": null,
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": false,
+     "specific_families": [],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   },
+   {
+    "index": 2,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The container may be failing due to an issue with the application's dependencies, such as missing libraries or incorrect versions of required packages that are needed for the application to run.",
+     "not_yet_verified": "The specific dependency issue causing the failure has not been verified.",
+     "evidence": [
+      "ev-0010",
+      "ev-0011",
+      "ev-0012",
+      "ev-0008"
+     ],
+     "resource": null,
+     "verification_check": "Check the application's dependencies and ensure that all required libraries and packages are correctly installed and available."
+    },
+    "outcome": "accepted",
+    "code": null,
+    "check_withheld": null,
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": false,
+     "specific_families": [],
+     "check": {
+      "relevant": false,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   },
+   {
+    "index": 3,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The container may be failing due to an issue with the application's resource requests, such as insufficient CPU or memory allocated to the container, which may be causing it to crash or fail to start properly.",
+     "not_yet_verified": "The specific resource allocation issue causing the failure has not been verified.",
+     "evidence": [
+      "ev-0010",
+      "ev-0011",
+      "ev-0012",
+      "ev-0008"
+     ],
+     "resource": null,
+     "verification_check": "Review the resource requests and limits specified for the container and ensure that they are appropriate for the application's needs."
+    },
+    "outcome": "accepted",
+    "code": null,
+    "check_withheld": null,
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0
+     ],
+     "check": {
+      "relevant": false,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   }
+  ],
+  "accepted": [
+   {
+    "raw": {
+     "possible_explanation": "The container may be crashing due to an issue with the application's startup process or an error in the application's code that causes it to fail immediately after starting.",
+     "not_yet_verified": "The underlying cause of the crash has not been verified.",
+     "verification_check": "Check the application's code and startup process to identify any issues that may cause it to fail immediately after starting."
+    },
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0
+     ],
+     "check": {
+      "relevant": false,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    },
+    "check_shown": true,
+    "check_withheld": null
+   },
+   {
+    "raw": {
+     "possible_explanation": "The container may be failing due to an issue with the application's configuration, such as missing environment variables or incorrect settings that are required for the application to function properly.",
+     "not_yet_verified": "The specific configuration issue causing the failure has not been verified.",
+     "verification_check": "Review the application's configuration and ensure that all required environment variables and settings are correctly specified."
+    },
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": false,
+     "specific_families": [],
+     "check": {
+      "relevant": true,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    },
+    "check_shown": true,
+    "check_withheld": null
+   },
+   {
+    "raw": {
+     "possible_explanation": "The container may be failing due to an issue with the application's dependencies, such as missing libraries or incorrect versions of required packages that are needed for the application to run.",
+     "not_yet_verified": "The specific dependency issue causing the failure has not been verified.",
+     "verification_check": "Check the application's dependencies and ensure that all required libraries and packages are correctly installed and available."
+    },
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": false,
+     "specific_families": [],
+     "check": {
+      "relevant": false,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    },
+    "check_shown": true,
+    "check_withheld": null
+   },
+   {
+    "raw": {
+     "possible_explanation": "The container may be failing due to an issue with the application's resource requests, such as insufficient CPU or memory allocated to the container, which may be causing it to crash or fail to start properly.",
+     "not_yet_verified": "The specific resource allocation issue causing the failure has not been verified.",
+     "verification_check": "Review the resource requests and limits specified for the container and ensure that they are appropriate for the application's needs."
+    },
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": true,
+     "specific_families": [
+      0
+     ],
+     "check": {
+      "relevant": false,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    },
+    "check_shown": true,
+    "check_withheld": null
+   }
+  ]
+ },
+ {
+  "scenario": "healthy",
+  "repeat": 0,
+  "latency_s": 1.77,
+  "investigation_id": "b8c10678-2e00-48d8-ac75-5e184ee06bcd",
+  "analysis_state": "all_omitted",
+  "analysis_reason": null,
+  "whole_response_code": null,
+  "omission_reasons": {
+   "too_many_references": 1
+  },
+  "tools_called": [
+   "k8s.describe_pod",
+   "k8s.get_pods"
+  ],
+  "tool_coverage": 1.0,
+  "raw": [
+   {
+    "index": 0,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The pod 'fine' may be in a healthy state but has not yet started running due to an unknown reason, as the container has not been observed to have run.",
+     "not_yet_verified": "The reason the container has not started is not yet verified.",
+     "evidence": [
+      "ev-0001",
+      "ev-0002",
+      "ev-0005",
+      "ev-0006",
+      "ev-0007",
+      "ev-0008",
+      "ev-0009",
+      "ev-0010",
+      "ev-0011",
+      "ev-0012",
+      "ev-0013"
+     ],
+     "resource": null,
+     "verification_check": "Check the pod's status and events to determine why the container has not started, focusing on any scheduling or resource constraints that may prevent the container from running."
+    },
+    "outcome": "rejected",
+    "code": "too_many_references",
+    "grade": {
+     "technical_errors": [
+      "contradiction:\\b(?:fail(?:ed|s|ing)?\\s"
+     ],
+     "relevant": true,
+     "specific": false,
+     "specific_families": [],
+     "check": {
+      "relevant": false,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": false
+     },
+     "check_errors": [
+      "contradiction:\\b(?:fail(?:ed|s|ing)?\\s"
+     ]
+    }
+   }
+  ],
+  "accepted": []
+ },
+ {
+  "scenario": "healthy",
+  "repeat": 1,
+  "latency_s": 3.35,
+  "investigation_id": "a7280d1a-765d-461f-bc0e-88c03ce8fc92",
+  "analysis_state": "generated",
+  "analysis_reason": null,
+  "whole_response_code": null,
+  "omission_reasons": {
+   "duplicate_hypothesis": 2
+  },
+  "tools_called": [
+   "k8s.describe_pod",
+   "k8s.get_pods"
+  ],
+  "tool_coverage": 1.0,
+  "raw": [
+   {
+    "index": 0,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The pod may be in a healthy state but not yet ready due to a readiness probe configuration that has not been verified.",
+     "not_yet_verified": "The readiness probe configuration and its expected behavior have not been verified.",
+     "evidence": [
+      "ev-0007",
+      "ev-0013"
+     ],
+     "resource": null,
+     "verification_check": "Check the readiness probe configuration and ensure it aligns with the application's expected behavior."
+    },
+    "outcome": "accepted",
+    "code": null,
+    "check_withheld": null,
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": false,
+     "specific_families": [],
+     "check": {
+      "relevant": false,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   },
+   {
+    "index": 1,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The pod may be healthy but not yet ready due to a misconfigured readiness probe that has not been verified.",
+     "not_yet_verified": "The readiness probe configuration and its expected behavior have not been verified.",
+     "evidence": [
+      "ev-0007",
+      "ev-0013"
+     ],
+     "resource": null,
+     "verification_check": "Check the readiness probe configuration and ensure it aligns with the application's expected behavior."
+    },
+    "outcome": "accepted",
+    "code": null,
+    "check_withheld": null,
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": false,
+     "specific_families": [],
+     "check": {
+      "relevant": false,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   },
+   {
+    "index": 2,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The pod may be healthy but not yet ready due to a misconfigured readiness probe that has not been verified.",
+     "not_yet_verified": "The readiness probe configuration and its expected behavior have not been verified.",
+     "evidence": [
+      "ev-0007",
+      "ev-0013"
+     ],
+     "resource": null,
+     "verification_check": "Check the readiness probe configuration and ensure it aligns with the application's expected behavior."
+    },
+    "outcome": "rejected",
+    "code": "duplicate_hypothesis",
+    "check_withheld": null,
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": false,
+     "specific_families": [],
+     "check": {
+      "relevant": false,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   },
+   {
+    "index": 3,
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The pod may be healthy but not yet ready due to a misconfigured readiness probe that has not been verified.",
+     "not_yet_verified": "The readiness probe configuration and its expected behavior have not been verified.",
+     "evidence": [
+      "ev-0007",
+      "ev-0013"
+     ],
+     "resource": null,
+     "verification_check": "Check the readiness probe configuration and ensure it aligns with the application's expected behavior."
+    },
+    "outcome": "rejected",
+    "code": "duplicate_hypothesis",
+    "check_withheld": null,
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": false,
+     "specific_families": [],
+     "check": {
+      "relevant": false,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    }
+   }
+  ],
+  "accepted": [
+   {
+    "raw": {
+     "possible_explanation": "The pod may be in a healthy state but not yet ready due to a readiness probe configuration that has not been verified.",
+     "not_yet_verified": "The readiness probe configuration and its expected behavior have not been verified.",
+     "verification_check": "Check the readiness probe configuration and ensure it aligns with the application's expected behavior."
+    },
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": false,
+     "specific_families": [],
+     "check": {
+      "relevant": false,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    },
+    "check_shown": true,
+    "check_withheld": null
+   },
+   {
+    "raw": {
+     "possible_explanation": "The pod may be healthy but not yet ready due to a misconfigured readiness probe that has not been verified.",
+     "not_yet_verified": "The readiness probe configuration and its expected behavior have not been verified.",
+     "verification_check": "Check the readiness probe configuration and ensure it aligns with the application's expected behavior."
+    },
+    "grade": {
+     "technical_errors": [],
+     "relevant": true,
+     "specific": false,
+     "specific_families": [],
+     "check": {
+      "relevant": false,
+      "read_only": true,
+      "scoped": true,
+      "technically_clean": true
+     },
+     "check_errors": []
+    },
+    "check_shown": true,
+    "check_withheld": null
+   }
+  ]
+ }
+]

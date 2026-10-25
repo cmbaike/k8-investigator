@@ -1,0 +1,181 @@
+{
+ "payload": {
+  "application_configuration_statements": {
+   "items": [],
+   "trust": "written_by_the_application_from_verified_evidence"
+  },
+  "application_failure_classification": {
+   "items": [
+    {
+     "category": "unschedulable",
+     "container": null,
+     "ever_ran": false,
+     "kubernetes_reason": "Unschedulable",
+     "namespace": "ai-ops-demo",
+     "pod": "needs-data"
+    }
+   ],
+   "trust": "written_by_the_application_from_verified_evidence"
+  },
+  "application_logs_available": false,
+  "authorized_namespace": "ai-ops-demo",
+  "data_classification": "untrusted_application_log_data",
+  "evidence_focus_groups": {
+   "items": [
+    {
+     "container": null,
+     "evidence_ids": [
+      "ev-0005",
+      "ev-0007",
+      "ev-0008",
+      "ev-0009"
+     ],
+     "focus": "scheduling_status",
+     "pod": "needs-data"
+    },
+    {
+     "container": null,
+     "evidence_ids": [
+      "ev-0015",
+      "ev-0016"
+     ],
+     "focus": "scheduler_events",
+     "pod": "needs-data"
+    }
+   ],
+   "trust": "selected_by_the_application_for_relevance_only"
+  },
+  "excerpts_omitted": 0,
+  "investigation_id": "0d363b83-a92c-47b5-9ee7-673906fb469a",
+  "investigation_scope": {
+   "mode": "namespace",
+   "pods_in_scope": [],
+   "requested_workload": null,
+   "workload": null
+  },
+  "kubernetes_verified_observations": {
+   "items": [
+    {
+     "evidence_id": "ev-0001",
+     "field": "pods[].name",
+     "namespace": "ai-ops-demo",
+     "pod": "needs-data",
+     "tool": "k8s.get_pods",
+     "value": "needs-data"
+    },
+    {
+     "evidence_id": "ev-0002",
+     "field": "pod.name",
+     "namespace": "ai-ops-demo",
+     "pod": "needs-data",
+     "tool": "k8s.describe_pod",
+     "value": "needs-data"
+    },
+    {
+     "evidence_id": "ev-0005",
+     "field": "pod.phase",
+     "namespace": "ai-ops-demo",
+     "pod": "needs-data",
+     "tool": "k8s.describe_pod",
+     "value": "Pending"
+    },
+    {
+     "evidence_id": "ev-0006",
+     "field": "containers[].name",
+     "namespace": "ai-ops-demo",
+     "pod": "needs-data",
+     "tool": "k8s.describe_pod",
+     "value": "app"
+    },
+    {
+     "evidence_id": "ev-0007",
+     "field": "conditions[PodScheduled].status",
+     "namespace": "ai-ops-demo",
+     "pod": "needs-data",
+     "tool": "k8s.describe_pod",
+     "value": "False"
+    },
+    {
+     "evidence_id": "ev-0008",
+     "field": "conditions[PodScheduled].reason",
+     "namespace": "ai-ops-demo",
+     "pod": "needs-data",
+     "tool": "k8s.describe_pod",
+     "value": "Unschedulable"
+    },
+    {
+     "evidence_id": "ev-0009",
+     "field": "conditions[PodScheduled].signal[unbound_volume_claim]",
+     "namespace": "ai-ops-demo",
+     "pod": "needs-data",
+     "tool": "k8s.describe_pod",
+     "value": true
+    },
+    {
+     "evidence_id": "ev-0010",
+     "field": "volumes[data].source",
+     "namespace": "ai-ops-demo",
+     "pod": "needs-data",
+     "tool": "k8s.describe_pod",
+     "value": "persistent_volume_claim"
+    },
+    {
+     "evidence_id": "ev-0011",
+     "field": "scheduling.node_selector_declared",
+     "namespace": "ai-ops-demo",
+     "pod": "needs-data",
+     "tool": "k8s.describe_pod",
+     "value": false
+    },
+    {
+     "evidence_id": "ev-0012",
+     "field": "scheduling.affinity_declared",
+     "namespace": "ai-ops-demo",
+     "pod": "needs-data",
+     "tool": "k8s.describe_pod",
+     "value": false
+    },
+    {
+     "evidence_id": "ev-0013",
+     "field": "containers[app].liveness_probe.declared",
+     "namespace": "ai-ops-demo",
+     "pod": "needs-data",
+     "tool": "k8s.describe_pod",
+     "value": false
+    },
+    {
+     "evidence_id": "ev-0014",
+     "field": "events[FailedScheduling].type",
+     "namespace": "ai-ops-demo",
+     "pod": "needs-data",
+     "tool": "k8s.get_events",
+     "value": "Warning"
+    },
+    {
+     "evidence_id": "ev-0015",
+     "field": "events[FailedScheduling].count",
+     "namespace": "ai-ops-demo",
+     "pod": "needs-data",
+     "tool": "k8s.get_events",
+     "value": 3
+    },
+    {
+     "evidence_id": "ev-0016",
+     "field": "events[FailedScheduling].signal[unbound_volume_claim]",
+     "namespace": "ai-ops-demo",
+     "pod": "needs-data",
+     "tool": "k8s.get_events",
+     "value": true
+    }
+   ],
+   "trust": "verified_by_application_from_authorized_read_only_tools"
+  },
+  "untrusted_logs": [],
+  "verified_configuration_evidence": {
+   "items": [],
+   "trust": "verified_by_application_from_authorized_read_only_tools",
+   "values_are_never_included": true
+  }
+ },
+ "scenario": "sched_missing_pvc"
+}

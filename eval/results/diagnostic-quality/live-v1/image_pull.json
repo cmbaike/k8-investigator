@@ -1,0 +1,204 @@
+{
+ "investigation_id": "da7f01ad-c6df-4c97-bdad-707a825bef97",
+ "summary": "Investigation of namespace 'ai-ops-demo': 11 verified finding(s) (1 warning, 10 info) from 48 trusted evidence item(s).\nScope: only namespace 'ai-ops-demo' and the resources observed during this investigation. This is not an assessment of the rest of the cluster or of other namespaces.\nTarget: Deployment 'broken-image', verified through Kubernetes owner references. Inspected only its 1 pod(s): 'broken-image-8666686c99-44hdt'. The other 6 pod(s) listed in the namespace were not inspected.\nMost significant findings, in priority order:\n1. [warning] Container could not be started: Container 'app' has not started: Kubernetes reports it waiting with reason 'ErrImagePull' (corroborated by independent evidence from events and pod state and workload configuration; evidence ev-0009, ev-0010, ev-0008, ev-0005 and 3 more).\n2. [info] Container state reason observed: Kubernetes reported container 'app' state reason as 'ErrImagePull' (single source: pod state; evidence ev-0010).\n3. [info] Container readiness observed: Kubernetes reported container 'app' readiness as False (single source: pod state; evidence ev-0007).\n4. [info] Pod identified: Kubernetes returned pod 'broken-image-8666686c99-44hdt' in a pod description (single source: pod state; evidence ev-0002).\n7 further finding(s), including informational observations such as pod discovery, are listed in the report.\n5 uncertaint(ies) are recorded. These findings describe observed behavior only: the underlying cause is not established by this report, and any AI-generated hypotheses are listed separately and remain unverified.",
+ "findings": [
+  {
+   "title": "Pod discovered",
+   "description": "Pod 'broken-image-8666686c99-44hdt' appeared in a successful Kubernetes pod listing. Resource: namespace 'ai-ops-demo', pod 'broken-image-8666686c99-44hdt'. Observed during tool execution '686d2ddb-7e60-4be1-aded-9ea6657430fb-step-1'.",
+   "severity": "info",
+   "evidence": [
+    {
+     "evidence_id": "ev-0001"
+    }
+   ],
+   "scheduling_constraints": []
+  },
+  {
+   "title": "Pod identified",
+   "description": "Kubernetes returned pod 'broken-image-8666686c99-44hdt' in a pod description. Resource: namespace 'ai-ops-demo', pod 'broken-image-8666686c99-44hdt'. Observed during tool execution '686d2ddb-7e60-4be1-aded-9ea6657430fb-step-2'.",
+   "severity": "info",
+   "evidence": [
+    {
+     "evidence_id": "ev-0002"
+    }
+   ],
+   "scheduling_constraints": []
+  },
+  {
+   "title": "Pod phase observed",
+   "description": "Kubernetes reported pod phase 'Pending'. Resource: namespace 'ai-ops-demo', pod 'broken-image-8666686c99-44hdt'. Observed during tool execution '686d2ddb-7e60-4be1-aded-9ea6657430fb-step-2'.",
+   "severity": "info",
+   "evidence": [
+    {
+     "evidence_id": "ev-0005"
+    }
+   ],
+   "scheduling_constraints": []
+  },
+  {
+   "title": "Container readiness observed",
+   "description": "Kubernetes reported container 'app' readiness as False. Resource: namespace 'ai-ops-demo', pod 'broken-image-8666686c99-44hdt'. Observed during tool execution '686d2ddb-7e60-4be1-aded-9ea6657430fb-step-2'.",
+   "severity": "info",
+   "evidence": [
+    {
+     "evidence_id": "ev-0007"
+    }
+   ],
+   "scheduling_constraints": []
+  },
+  {
+   "title": "Container restart count observed",
+   "description": "Kubernetes reported container 'app' restart count as 0. Resource: namespace 'ai-ops-demo', pod 'broken-image-8666686c99-44hdt'. Observed during tool execution '686d2ddb-7e60-4be1-aded-9ea6657430fb-step-2'.",
+   "severity": "info",
+   "evidence": [
+    {
+     "evidence_id": "ev-0008"
+    }
+   ],
+   "scheduling_constraints": []
+  },
+  {
+   "title": "Container state observed",
+   "description": "Kubernetes reported container 'app' state as 'waiting'. Resource: namespace 'ai-ops-demo', pod 'broken-image-8666686c99-44hdt'. Observed during tool execution '686d2ddb-7e60-4be1-aded-9ea6657430fb-step-2'.",
+   "severity": "info",
+   "evidence": [
+    {
+     "evidence_id": "ev-0009"
+    }
+   ],
+   "scheduling_constraints": []
+  },
+  {
+   "title": "Container state reason observed",
+   "description": "Kubernetes reported container 'app' state reason as 'ErrImagePull'. Resource: namespace 'ai-ops-demo', pod 'broken-image-8666686c99-44hdt'. Observed during tool execution '686d2ddb-7e60-4be1-aded-9ea6657430fb-step-2'.",
+   "severity": "info",
+   "evidence": [
+    {
+     "evidence_id": "ev-0010"
+    }
+   ],
+   "scheduling_constraints": []
+  },
+  {
+   "title": "Owning workload identified",
+   "description": "Pod 'broken-image-8666686c99-44hdt' is controlled by Deployment 'broken-image', verified through Kubernetes owner references and UIDs. Resource: namespace 'ai-ops-demo', pod 'broken-image-8666686c99-44hdt'.",
+   "severity": "info",
+   "evidence": [
+    {
+     "evidence_id": "ev-0023"
+    },
+    {
+     "evidence_id": "ev-0024"
+    }
+   ],
+   "scheduling_constraints": []
+  },
+  {
+   "title": "Container configuration observed",
+   "description": "Container 'app': image 'nonexistent-registry.example.invalid/ghost/app:999'; declares no environment variables and no ConfigMap or Secret environment sources; declares no readiness probe; no startup command override is declared (the image default applies and was not inspected). Environment values and command text are never collected, and this describes the declared spec only, not the complete runtime environment. Resource: namespace 'ai-ops-demo', pod 'broken-image-8666686c99-44hdt'.",
+   "severity": "info",
+   "evidence": [
+    {
+     "evidence_id": "ev-0029"
+    },
+    {
+     "evidence_id": "ev-0030"
+    },
+    {
+     "evidence_id": "ev-0032"
+    },
+    {
+     "evidence_id": "ev-0035"
+    }
+   ],
+   "scheduling_constraints": []
+  },
+  {
+   "title": "Container could not be started",
+   "description": "Container 'app' has not started: Kubernetes reports it waiting with reason 'ErrImagePull'. Kubernetes reports that pulling the container image failed. It has restarted 0 times. The pod phase is 'Pending'. The configured image reference is 'nonexistent-registry.example.invalid/ghost/app:999' (from the Deployment spec). Kubernetes also recorded Warning events for this pod: 'Failed' (x3). This report establishes the state Kubernetes reports, not its cause: it does not by itself show that the image does not exist or that the configuration is wrong. Resource: namespace 'ai-ops-demo', pod 'broken-image-8666686c99-44hdt'.",
+   "severity": "warning",
+   "evidence": [
+    {
+     "evidence_id": "ev-0009"
+    },
+    {
+     "evidence_id": "ev-0010"
+    },
+    {
+     "evidence_id": "ev-0008"
+    },
+    {
+     "evidence_id": "ev-0005"
+    },
+    {
+     "evidence_id": "ev-0029"
+    },
+    {
+     "evidence_id": "ev-0037"
+    },
+    {
+     "evidence_id": "ev-0038"
+    }
+   ],
+   "scheduling_constraints": []
+  },
+  {
+   "title": "Kubernetes events recorded for the pod",
+   "description": "Kubernetes recorded 4 event reasons for pod 'broken-image-8666686c99-44hdt': Warning 'Failed' (x3), Normal 'BackOff' (x3), Normal 'Pulling' (x3), Normal 'Scheduled' (x1). Only each event's reason, type and count are used. The event messages are untrusted text and are not part of this report. These records show that Kubernetes logged the events, not why they occurred. Resource: namespace 'ai-ops-demo', pod 'broken-image-8666686c99-44hdt'.",
+   "severity": "info",
+   "evidence": [
+    {
+     "evidence_id": "ev-0037"
+    },
+    {
+     "evidence_id": "ev-0038"
+    },
+    {
+     "evidence_id": "ev-0040"
+    },
+    {
+     "evidence_id": "ev-0041"
+    },
+    {
+     "evidence_id": "ev-0043"
+    },
+    {
+     "evidence_id": "ev-0044"
+    },
+    {
+     "evidence_id": "ev-0045"
+    },
+    {
+     "evidence_id": "ev-0046"
+    }
+   ],
+   "scheduling_constraints": []
+  }
+ ],
+ "uncertainties": [
+  "Pod 'broken-image-8666686c99-44hdt' in namespace 'ai-ops-demo': environment variable values, ConfigMap contents and Secret contents are never inspected, so whether any variable is set correctly has not been established.",
+  "Pod 'broken-image-8666686c99-44hdt' in namespace 'ai-ops-demo', container 'app': startup behavior could not be established by static analysis. This is not evidence that startup is correct.",
+  "Pod 'broken-image-8666686c99-44hdt' in namespace 'ai-ops-demo', container 'app': no environment variables are declared in its spec, which does not establish the complete runtime environment (variables may come from the image or other mechanisms).",
+  "Pod 'broken-image-8666686c99-44hdt', container 'app': application logs were not requested because Kubernetes reports the container has not started; there is no application-level evidence about it.",
+  "Underlying failure causes and log-derived failures have not been established by trusted report evidence."
+ ],
+ "suggested_checks": [
+  "Read the event messages Kubernetes recorded for pod 'broken-image-8666686c99-44hdt' (for example with kubectl describe pod): they name the specific error. They are not retained in this report.",
+  "Confirm that the image reference 'nonexistent-registry.example.invalid/ghost/app:999' for container 'app' in pod 'broken-image-8666686c99-44hdt' names an image and tag that exist in the registry it points to. Compare it with the registry's published tags (read-only).",
+  "Check that the registry host for container 'app' in pod 'broken-image-8666686c99-44hdt' is reachable from the cluster's nodes, and whether the pod spec lists image pull secret names. Names only: never read Secret contents."
+ ],
+ "ai_hypotheses": [],
+ "ai_analysis": {
+  "state": "all_omitted",
+  "reason": null,
+  "message": "AI analysis ran, but all 4 proposed hypothesis(es) were omitted by validation; none are shown. See omission_reasons.",
+  "log_excerpts_used": 0,
+  "log_excerpts_omitted": 0,
+  "hypotheses_omitted": 4,
+  "hypotheses_proposed": 4,
+  "omission_reasons": {
+   "too_many_references": 4
+  },
+  "rejection_category": null
+ }
+}

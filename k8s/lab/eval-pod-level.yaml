@@ -1,0 +1,161 @@
+# Evaluation workloads for pod-level diagnostics. Lab only; all live in
+# ai-ops-demo because the restricted investigator can only read that namespace.
+# Every workload carries the label eval=pod-level so it can be removed with:
+#   kubectl delete deploy -n ai-ops-demo -l eval=pod-level
+#
+# eval-unschedulable   memory request no node can satisfy
+# eval-node-selector   node selector that matches no node
+# eval-missing-config  volume from a ConfigMap that does not exist
+# eval-missing-secret  volume from a Secret that does not exist
+# eval-missing-claim   volume from a PersistentVolumeClaim that does not exist
+# eval-bad-liveness    liveness probe against a port nothing listens on
+# eval-past-restart    exits once, restarts, then stays up (no probes at all)
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: eval-unschedulable
+  namespace: ai-ops-demo
+  labels: {eval: pod-level}
+spec:
+  replicas: 1
+  selector: {matchLabels: {app: eval-unschedulable}}
+  template:
+    metadata:
+      labels: {app: eval-unschedulable, eval: pod-level}
+    spec:
+      containers:
+        - name: app
+          image: nginx:1.27
+          resources:
+            requests: {memory: 900Gi}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: eval-node-selector
+  namespace: ai-ops-demo
+  labels: {eval: pod-level}
+spec:
+  replicas: 1
+  selector: {matchLabels: {app: eval-node-selector}}
+  template:
+    metadata:
+      labels: {app: eval-node-selector, eval: pod-level}
+    spec:
+      nodeSelector: {disktype: no-such-label}
+      containers:
+        - name: app
+          image: nginx:1.27
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: eval-missing-config
+  namespace: ai-ops-demo
+  labels: {eval: pod-level}
+spec:
+  replicas: 1
+  selector: {matchLabels: {app: eval-missing-config}}
+  template:
+    metadata:
+      labels: {app: eval-missing-config, eval: pod-level}
+    spec:
+      containers:
+        - name: app
+          image: nginx:1.27
+          volumeMounts: [{name: settings, mountPath: /etc/settings}]
+      volumes:
+        - name: settings
+          configMap: {name: eval-settings-does-not-exist}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: eval-missing-secret
+  namespace: ai-ops-demo
+  labels: {eval: pod-level}
+spec:
+  replicas: 1
+  selector: {matchLabels: {app: eval-missing-secret}}
+  template:
+    metadata:
+      labels: {app: eval-missing-secret, eval: pod-level}
+    spec:
+      containers:
+        - name: app
+          image: nginx:1.27
+          volumeMounts: [{name: credentials, mountPath: /etc/credentials}]
+      volumes:
+        - name: credentials
+          secret: {secretName: eval-credentials-does-not-exist}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: eval-missing-claim
+  namespace: ai-ops-demo
+  labels: {eval: pod-level}
+spec:
+  replicas: 1
+  selector: {matchLabels: {app: eval-missing-claim}}
+  template:
+    metadata:
+      labels: {app: eval-missing-claim, eval: pod-level}
+    spec:
+      containers:
+        - name: app
+          image: nginx:1.27
+          volumeMounts: [{name: data, mountPath: /var/data}]
+      volumes:
+        - name: data
+          persistentVolumeClaim: {claimName: eval-claim-does-not-exist}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: eval-bad-liveness
+  namespace: ai-ops-demo
+  labels: {eval: pod-level}
+spec:
+  replicas: 1
+  selector: {matchLabels: {app: eval-bad-liveness}}
+  template:
+    metadata:
+      labels: {app: eval-bad-liveness, eval: pod-level}
+    spec:
+      terminationGracePeriodSeconds: 1
+      containers:
+        - name: app
+          image: busybox:1.36
+          command: ["sh", "-c", "sleep 3600"]
+          livenessProbe:
+            httpGet: {path: /healthz, port: 8080}
+            initialDelaySeconds: 3
+            periodSeconds: 3
+            failureThreshold: 1
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: eval-past-restart
+  namespace: ai-ops-demo
+  labels: {eval: pod-level}
+spec:
+  replicas: 1
+  selector: {matchLabels: {app: eval-past-restart}}
+  template:
+    metadata:
+      labels: {app: eval-past-restart, eval: pod-level}
+    spec:
+      containers:
+        - name: app
+          image: busybox:1.36
+          command:
+            - sh
+            - -c
+            - 'if [ -f /marker/ran ]; then sleep 3600; else touch /marker/ran; exit 1; fi'
+          volumeMounts: [{name: marker, mountPath: /marker}]
+      volumes:
+        - name: marker
+          emptyDir: {}

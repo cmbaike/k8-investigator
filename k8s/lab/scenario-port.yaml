@@ -1,0 +1,41 @@
+# ============================================================
+# Scenario 10: Broken Service Port
+# ============================================================
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: scenario-port
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web
+  namespace: scenario-port
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      containers:
+        - name: app
+          image: nginx:1.27
+          ports:
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-service
+  namespace: scenario-port
+spec:
+  selector:
+    app: web
+  ports:
+    - port: 80
+      targetPort: 8080

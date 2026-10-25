@@ -1,0 +1,400 @@
+{
+ "payload": {
+  "application_configuration_statements": {
+   "items": [],
+   "trust": "written_by_the_application_from_verified_evidence"
+  },
+  "application_failure_classification": {
+   "items": [
+    {
+     "category": "restarted_running",
+     "container": "app",
+     "ever_ran": true,
+     "kubernetes_reason": "Error",
+     "namespace": "ai-ops-demo",
+     "pod": "live"
+    }
+   ],
+   "trust": "written_by_the_application_from_verified_evidence"
+  },
+  "application_logs_available": false,
+  "authorized_namespace": "ai-ops-demo",
+  "data_classification": "untrusted_application_log_data",
+  "established_abnormality": {
+   "items": [
+    {
+     "abnormal_stage": "past_restart",
+     "completed_stages": [
+      {
+       "evidence_ids": [
+        "ev-0012"
+       ],
+       "stage": "scheduling",
+       "statement": "the pod was scheduled to a node"
+      },
+      {
+       "evidence_ids": [
+        "ev-0011",
+        "ev-0009"
+       ],
+       "stage": "container_started",
+       "statement": "the image was pulled and the container started"
+      },
+      {
+       "evidence_ids": [
+        "ev-0007"
+       ],
+       "stage": "readiness",
+       "statement": "the container is ready now"
+      }
+     ],
+     "container": "app",
+     "evidence_ids": [
+      "ev-0007",
+      "ev-0009",
+      "ev-0008",
+      "ev-0011",
+      "ev-0010",
+      "ev-0025",
+      "ev-0026",
+      "ev-0028",
+      "ev-0029"
+     ],
+     "kubernetes_reason": "Error",
+     "namespace": "ai-ops-demo",
+     "not_yet_established": [
+      "why the container was restarted"
+     ],
+     "pod": "live",
+     "previous_termination": {
+      "exit_code": 137,
+      "reason": "Error"
+     },
+     "previous_termination_means": "The process exited with a non-zero exit code. Kubernetes does not report why.",
+     "restart_count": 3,
+     "verified_not_declared": [
+      {
+       "evidence_ids": [
+        "ev-0023"
+       ],
+       "item": "readiness_probe"
+      },
+      {
+       "evidence_ids": [
+        "ev-0013"
+       ],
+       "item": "node_selector"
+      },
+      {
+       "evidence_ids": [
+        "ev-0014"
+       ],
+       "item": "affinity"
+      }
+     ],
+     "what_it_establishes": "The container is running and ready now. Kubernetes records that it was restarted after the previous termination below; the restart is history, not a current failure."
+    }
+   ],
+   "trust": "written_by_the_application_from_verified_evidence"
+  },
+  "evidence_focus_groups": {
+   "items": [
+    {
+     "container": "app",
+     "evidence_ids": [
+      "ev-0007",
+      "ev-0009",
+      "ev-0008"
+     ],
+     "focus": "current_container_state",
+     "pod": "live"
+    },
+    {
+     "container": "app",
+     "evidence_ids": [
+      "ev-0011",
+      "ev-0010",
+      "ev-0008"
+     ],
+     "focus": "previous_termination",
+     "pod": "live"
+    },
+    {
+     "container": null,
+     "evidence_ids": [
+      "ev-0025",
+      "ev-0026",
+      "ev-0028",
+      "ev-0029"
+     ],
+     "focus": "kubernetes_events",
+     "pod": "live"
+    },
+    {
+     "container": "app",
+     "evidence_ids": [
+      "ev-0015",
+      "ev-0016",
+      "ev-0017",
+      "ev-0018",
+      "ev-0019",
+      "ev-0020"
+     ],
+     "focus": "liveness_probe_configuration",
+     "pod": "live"
+    },
+    {
+     "container": "app",
+     "evidence_ids": [
+      "ev-0025",
+      "ev-0026",
+      "ev-0028",
+      "ev-0029",
+      "ev-0008",
+      "ev-0011"
+     ],
+     "focus": "liveness_failure_history",
+     "pod": "live"
+    }
+   ],
+   "trust": "selected_by_the_application_for_relevance_only"
+  },
+  "excerpts_omitted": 0,
+  "investigation_id": "07d8d6dd-9e20-40a2-9c04-7da2006c815d",
+  "investigation_scope": {
+   "mode": "namespace",
+   "pods_in_scope": [],
+   "requested_workload": null,
+   "workload": null
+  },
+  "kubernetes_verified_observations": {
+   "items": [
+    {
+     "evidence_id": "ev-0001",
+     "field": "pods[].name",
+     "namespace": "ai-ops-demo",
+     "pod": "live",
+     "tool": "k8s.get_pods",
+     "value": "live"
+    },
+    {
+     "evidence_id": "ev-0002",
+     "field": "pod.name",
+     "namespace": "ai-ops-demo",
+     "pod": "live",
+     "tool": "k8s.describe_pod",
+     "value": "live"
+    },
+    {
+     "evidence_id": "ev-0005",
+     "field": "pod.phase",
+     "namespace": "ai-ops-demo",
+     "pod": "live",
+     "tool": "k8s.describe_pod",
+     "value": "Running"
+    },
+    {
+     "evidence_id": "ev-0006",
+     "field": "containers[].name",
+     "namespace": "ai-ops-demo",
+     "pod": "live",
+     "tool": "k8s.describe_pod",
+     "value": "app"
+    },
+    {
+     "evidence_id": "ev-0007",
+     "field": "containers[app].ready",
+     "namespace": "ai-ops-demo",
+     "pod": "live",
+     "tool": "k8s.describe_pod",
+     "value": true
+    },
+    {
+     "evidence_id": "ev-0008",
+     "field": "containers[app].restart_count",
+     "namespace": "ai-ops-demo",
+     "pod": "live",
+     "tool": "k8s.describe_pod",
+     "value": 3
+    },
+    {
+     "evidence_id": "ev-0009",
+     "field": "containers[app].state",
+     "namespace": "ai-ops-demo",
+     "pod": "live",
+     "tool": "k8s.describe_pod",
+     "value": "running"
+    },
+    {
+     "evidence_id": "ev-0010",
+     "field": "containers[app].last_termination.exit_code",
+     "namespace": "ai-ops-demo",
+     "pod": "live",
+     "tool": "k8s.describe_pod",
+     "value": 137
+    },
+    {
+     "evidence_id": "ev-0011",
+     "field": "containers[app].last_termination.reason",
+     "namespace": "ai-ops-demo",
+     "pod": "live",
+     "tool": "k8s.describe_pod",
+     "value": "Error"
+    },
+    {
+     "evidence_id": "ev-0012",
+     "field": "conditions[PodScheduled].status",
+     "namespace": "ai-ops-demo",
+     "pod": "live",
+     "tool": "k8s.describe_pod",
+     "value": "True"
+    },
+    {
+     "evidence_id": "ev-0013",
+     "field": "scheduling.node_selector_declared",
+     "namespace": "ai-ops-demo",
+     "pod": "live",
+     "tool": "k8s.describe_pod",
+     "value": false
+    },
+    {
+     "evidence_id": "ev-0014",
+     "field": "scheduling.affinity_declared",
+     "namespace": "ai-ops-demo",
+     "pod": "live",
+     "tool": "k8s.describe_pod",
+     "value": false
+    },
+    {
+     "evidence_id": "ev-0015",
+     "field": "containers[app].liveness_probe.declared",
+     "namespace": "ai-ops-demo",
+     "pod": "live",
+     "tool": "k8s.describe_pod",
+     "value": true
+    },
+    {
+     "evidence_id": "ev-0016",
+     "field": "containers[app].liveness_probe.kind",
+     "namespace": "ai-ops-demo",
+     "pod": "live",
+     "tool": "k8s.describe_pod",
+     "value": "http"
+    },
+    {
+     "evidence_id": "ev-0017",
+     "field": "containers[app].liveness_probe.port",
+     "namespace": "ai-ops-demo",
+     "pod": "live",
+     "tool": "k8s.describe_pod",
+     "value": 8080
+    },
+    {
+     "evidence_id": "ev-0018",
+     "field": "containers[app].liveness_probe.path",
+     "namespace": "ai-ops-demo",
+     "pod": "live",
+     "tool": "k8s.describe_pod",
+     "value": "/healthz"
+    },
+    {
+     "evidence_id": "ev-0019",
+     "field": "containers[app].liveness_probe.initial_delay_seconds",
+     "namespace": "ai-ops-demo",
+     "pod": "live",
+     "tool": "k8s.describe_pod",
+     "value": 0
+    },
+    {
+     "evidence_id": "ev-0020",
+     "field": "containers[app].liveness_probe.period_seconds",
+     "namespace": "ai-ops-demo",
+     "pod": "live",
+     "tool": "k8s.describe_pod",
+     "value": 2
+    },
+    {
+     "evidence_id": "ev-0021",
+     "field": "containers[app].liveness_probe.timeout_seconds",
+     "namespace": "ai-ops-demo",
+     "pod": "live",
+     "tool": "k8s.describe_pod",
+     "value": 1
+    },
+    {
+     "evidence_id": "ev-0022",
+     "field": "containers[app].liveness_probe.failure_threshold",
+     "namespace": "ai-ops-demo",
+     "pod": "live",
+     "tool": "k8s.describe_pod",
+     "value": 3
+    },
+    {
+     "evidence_id": "ev-0023",
+     "field": "containers[app].readiness_probe.declared",
+     "namespace": "ai-ops-demo",
+     "pod": "live",
+     "tool": "k8s.describe_pod",
+     "value": false
+    },
+    {
+     "evidence_id": "ev-0024",
+     "field": "events[Killing].type",
+     "namespace": "ai-ops-demo",
+     "pod": "live",
+     "tool": "k8s.get_events",
+     "value": "Warning"
+    },
+    {
+     "evidence_id": "ev-0025",
+     "field": "events[Killing].count",
+     "namespace": "ai-ops-demo",
+     "pod": "live",
+     "tool": "k8s.get_events",
+     "value": 3
+    },
+    {
+     "evidence_id": "ev-0026",
+     "field": "events[Killing].signal[liveness_restart]",
+     "namespace": "ai-ops-demo",
+     "pod": "live",
+     "tool": "k8s.get_events",
+     "value": true
+    },
+    {
+     "evidence_id": "ev-0027",
+     "field": "events[Unhealthy].type",
+     "namespace": "ai-ops-demo",
+     "pod": "live",
+     "tool": "k8s.get_events",
+     "value": "Warning"
+    },
+    {
+     "evidence_id": "ev-0028",
+     "field": "events[Unhealthy].count",
+     "namespace": "ai-ops-demo",
+     "pod": "live",
+     "tool": "k8s.get_events",
+     "value": 3
+    },
+    {
+     "evidence_id": "ev-0029",
+     "field": "events[Unhealthy].signal[liveness_probe_failed]",
+     "namespace": "ai-ops-demo",
+     "pod": "live",
+     "tool": "k8s.get_events",
+     "value": true
+    }
+   ],
+   "trust": "verified_by_application_from_authorized_read_only_tools"
+  },
+  "log_refs_available": [],
+  "untrusted_logs": [],
+  "verified_configuration_evidence": {
+   "items": [],
+   "trust": "verified_by_application_from_authorized_read_only_tools",
+   "values_are_never_included": true
+  }
+ },
+ "scenario": "liveness_failure"
+}

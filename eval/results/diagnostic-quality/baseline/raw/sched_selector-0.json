@@ -1,0 +1,4 @@
+{
+ "content": "{\n  \"investigation_id\": \"0f049ec5-15a5-4e56-bac6-581269e8e21b\",\n  \"hypotheses\": [\n    {\n      \"reported\": null,\n      \"possible_explanation\": \"The pod may not be able to schedule due to a mismatch between the node selector declared in the pod specification and the available nodes in the cluster.\",\n      \"not_yet_verified\": \"It has not been verified whether the node selector in the pod specification matches the available nodes in the cluster.\",\n      \"evidence\": [\"ev-0009\", \"ev-0010\", \"ev-0015\"],\n      \"resource\": null,\n      \"verification_check\": \"Check the node selector declared in the pod specification and compare it with the labels of the available nodes in the cluster to confirm a match.\"\n    }\n  ]\n}",
+ "latency_s": 1.363
+}

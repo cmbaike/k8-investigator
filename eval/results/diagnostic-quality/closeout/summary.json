@@ -1,0 +1,329 @@
+{
+ "headline": {
+  "proposed": 177,
+  "accepted": 121,
+  "accepted_with_technical_inaccuracy": 5,
+  "accepted_technical_inaccuracies_by_type": {
+   "contradiction:\\b(?:is|are|was|remains?": 2,
+   "undeclared_probe_blamed": 3
+  },
+  "false_positive_rejections_candidate": 4,
+  "evidence_attribution_errors_in_accepted": 0,
+  "evidence_attribution_errors_in_raw": 0,
+  "attribution_omissions_by_application": 0,
+  "useful_accepted": 101,
+  "top_accepted_relevant_rate": 0.929,
+  "ai_stage_latency_s_mean": 3.91,
+  "ai_stage_latency_s_max": 9.53
+ },
+ "lifecycle": {
+  "raw_with_error": 12,
+  "raw_errors_by_type": {
+   "not_ready_but_ready": 12
+  },
+  "accepted_with_error": 0
+ },
+ "rubric_version": "2",
+ "rubric_sha256": "fe8c65c841ee137f29929b73972a16cacd76fbc62efb15a4acea8c5eed9152bb",
+ "runs": 45,
+ "technical": {
+  "raw_hypotheses": 177,
+  "raw_with_error": 44,
+  "raw_errors_by_type": {
+   "contradiction": 9,
+   "selector_absence_blamed_for_unschedulable": 21,
+   "undeclared_probe_blamed": 14
+  },
+  "check_errors_in_raw": 13,
+  "accepted_hypotheses": 121,
+  "escapes_accepted_with_error": 5,
+  "escape_rate": 0.041,
+  "escapes": [
+   {
+    "scenario": "oom_killed",
+    "repeat": 0,
+    "errors": [
+     "undeclared_probe_blamed"
+    ],
+    "raw": {
+     "possible_explanation": "The container may be failing due to a misconfigured readiness probe, as the container is not ready and has not been successfully probed.",
+     "not_yet_verified": "The readiness probe configuration has not been verified.",
+     "verification_check": "Check the readiness probe configuration and verify if the probe is correctly set up to determine the container's readiness."
+    }
+   },
+   {
+    "scenario": "oom_killed",
+    "repeat": 1,
+    "errors": [
+     "undeclared_probe_blamed"
+    ],
+    "raw": {
+     "possible_explanation": "The container may be experiencing issues with its readiness probe configuration, leading to it being marked as not ready, even though it is running and has restarted multiple times.",
+     "not_yet_verified": "The readiness probe configuration and whether the container is properly responding to the probe have not been verified.",
+     "verification_check": null
+    }
+   },
+   {
+    "scenario": "running_not_ready",
+    "repeat": 0,
+    "errors": [
+     "contradiction:\\b(?:is|are|was|remains?"
+    ],
+    "raw": {
+     "possible_explanation": "The container may be unable to meet the readiness probe requirements, which could be due to incorrect probe configuration or the application not being ready to serve requests.",
+     "not_yet_verified": "The readiness probe configuration and the application's readiness to serve requests have not been verified.",
+     "verification_check": "Check the readiness probe configuration and verify if the application is ready to serve requests."
+    }
+   },
+   {
+    "scenario": "running_not_ready",
+    "repeat": 1,
+    "errors": [
+     "contradiction:\\b(?:is|are|was|remains?"
+    ],
+    "raw": {
+     "possible_explanation": "The container may be unable to meet the readiness probe requirements, which could be due to incorrect probe configuration or the application not being ready to serve traffic.",
+     "not_yet_verified": "The readiness probe configuration and the application's readiness to serve traffic have not been verified.",
+     "verification_check": "Check the readiness probe configuration and verify if the application is ready to serve traffic."
+    }
+   },
+   {
+    "scenario": "crash_loop",
+    "repeat": 0,
+    "errors": [
+     "undeclared_probe_blamed"
+    ],
+    "raw": {
+     "possible_explanation": "The container may be failing due to an issue with the application's readiness probe, which could be misconfigured or not correctly detecting the application's readiness.",
+     "not_yet_verified": "The specific issue with the readiness probe has not been verified.",
+     "verification_check": null
+    }
+   }
+  ]
+ },
+ "relevance": {
+  "raw_relevant_rate": 0.881,
+  "raw_specific_rate": 0.486,
+  "accepted_relevant_rate": 0.868,
+  "accepted_specific_rate": 0.628,
+  "top_accepted_relevant": 0.929,
+  "top_accepted_specific": 0.929,
+  "runs_with_distinct_alternatives": "31/37",
+  "multi_constraint_coverage": {
+   "sched_multiple#0": "3/3",
+   "sched_multiple#1": "3/3",
+   "sched_multiple#2": "3/3"
+  }
+ },
+ "checks": {
+  "raw_checks": 177,
+  "raw_relevant": 0.627,
+  "raw_not_read_only": 4,
+  "raw_out_of_scope": 0,
+  "raw_technically_unclean": 13,
+  "shown_checks": 104,
+  "withheld_checks": 17,
+  "withheld_by_reason": {
+   "remediation_in_check": 17
+  },
+  "withheld_rubric_confirms_defect": 4,
+  "withheld_but_rubric_clean": 13,
+  "accepted_relevant": 0.721,
+  "accepted_not_read_only": 0,
+  "accepted_out_of_scope": 0,
+  "accepted_technically_unclean": 2
+ },
+ "validation": {
+  "proposed": 177,
+  "accepted": 121,
+  "rejected": 56,
+  "rejected_by_reason": {
+   "contradicts_container_state": 1,
+   "contradicts_established_evidence": 23,
+   "incorrect_kubernetes_semantics": 31,
+   "too_many_references": 1
+  },
+  "whole_response_failures": 0,
+  "whole_response_codes": {},
+  "candidate_false_positive_rejections": 4,
+  "candidate_false_positives": [
+   {
+    "scenario": "crash_loop",
+    "repeat": 2,
+    "code": "contradicts_established_evidence",
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The container may fail to start due to an issue with the application's startup process, such as a missing dependency or an incorrect configuration that prevents it from running properly.",
+     "not_yet_verified": "The startup behaviour of the container has not been inspected.",
+     "evidence": [
+      "ev-0007",
+      "ev-0009",
+      "ev-0010",
+      "ev-0008",
+      "ev-0012",
+      "ev-0011"
+     ],
+     "resource": null,
+     "verification_check": "Inspect the application's startup process to determine if any dependencies or configurations are missing or incorrect."
+    }
+   },
+   {
+    "scenario": "restart_history",
+    "repeat": 1,
+    "code": "contradicts_established_evidence",
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The container may have restarted due to a temporary issue with the application's readiness or liveness probes, though the exact cause has not been verified.",
+     "not_yet_verified": "The exact cause of the probe failure has not been verified.",
+     "evidence": [
+      "ev-0015",
+      "ev-0011",
+      "ev-0010"
+     ],
+     "resource": null,
+     "verification_check": "Verify the liveness probe configuration and ensure the endpoint is accessible and matches the expected path and port."
+    }
+   },
+   {
+    "scenario": "oom_recovered",
+    "repeat": 0,
+    "code": "incorrect_kubernetes_semantics",
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The container may have been terminated due to an out-of-memory (OOM) condition, which could be caused by the application using more memory than the requested 64Mi limit.",
+     "not_yet_verified": "The actual memory usage pattern of the application has not been verified.",
+     "evidence": [
+      "ev-0011",
+      "ev-0010",
+      "ev-0012"
+     ],
+     "resource": null,
+     "verification_check": "Check the memory usage of the application during runtime to confirm if it exceeds the 64Mi request and 128Mi limit."
+    }
+   },
+   {
+    "scenario": "oom_recovered",
+    "repeat": 1,
+    "code": "incorrect_kubernetes_semantics",
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The container may have been terminated due to an out-of-memory (OOM) condition, which could be caused by the application using more memory than the requested 64Mi limit.",
+     "not_yet_verified": "The actual memory usage pattern of the application has not been verified.",
+     "evidence": [
+      "ev-0011",
+      "ev-0010",
+      "ev-0012"
+     ],
+     "resource": null,
+     "verification_check": "Check the memory usage of the application during runtime to confirm if it exceeds the 64Mi request and 128Mi limit."
+    }
+   }
+  ]
+ },
+ "operations": {
+  "runs_needing_a_second_model_attempt": 2,
+  "completion_rate": 1.0,
+  "analysis_states": {
+   "generated": 42,
+   "all_omitted": 3
+  },
+  "tool_coverage_mean": 0.956,
+  "ai_stage_latency_s_mean": 3.91,
+  "ai_stage_latency_s_max": 9.53
+ },
+ "per_scenario": {
+  "sched_cpu": {
+   "runs": 3,
+   "accepted": 9,
+   "proposed": 12,
+   "whole_response_failures": 0
+  },
+  "sched_memory": {
+   "runs": 3,
+   "accepted": 3,
+   "proposed": 12,
+   "whole_response_failures": 0
+  },
+  "sched_taint": {
+   "runs": 3,
+   "accepted": 6,
+   "proposed": 12,
+   "whole_response_failures": 0
+  },
+  "sched_selector": {
+   "runs": 3,
+   "accepted": 8,
+   "proposed": 12,
+   "whole_response_failures": 0
+  },
+  "sched_multiple": {
+   "runs": 3,
+   "accepted": 5,
+   "proposed": 9,
+   "whole_response_failures": 0
+  },
+  "sched_missing_pvc": {
+   "runs": 3,
+   "accepted": 9,
+   "proposed": 12,
+   "whole_response_failures": 0
+  },
+  "image_pull": {
+   "runs": 3,
+   "accepted": 12,
+   "proposed": 12,
+   "whole_response_failures": 0
+  },
+  "oom_killed": {
+   "runs": 3,
+   "accepted": 10,
+   "proposed": 12,
+   "whole_response_failures": 0
+  },
+  "running_not_ready": {
+   "runs": 3,
+   "accepted": 12,
+   "proposed": 12,
+   "whole_response_failures": 0
+  },
+  "liveness_failure": {
+   "runs": 3,
+   "accepted": 11,
+   "proposed": 12,
+   "whole_response_failures": 0
+  },
+  "mount_failure": {
+   "runs": 3,
+   "accepted": 11,
+   "proposed": 12,
+   "whole_response_failures": 0
+  },
+  "crash_loop": {
+   "runs": 3,
+   "accepted": 9,
+   "proposed": 12,
+   "whole_response_failures": 0
+  },
+  "healthy": {
+   "runs": 3,
+   "accepted": 0,
+   "proposed": 12,
+   "whole_response_failures": 0
+  },
+  "restart_history": {
+   "runs": 3,
+   "accepted": 8,
+   "proposed": 12,
+   "whole_response_failures": 0
+  },
+  "oom_recovered": {
+   "runs": 3,
+   "accepted": 8,
+   "proposed": 12,
+   "whole_response_failures": 0
+  }
+ },
+ "system_prompt_sha256": "9012ecc9b322d2fd238e889c47d5b8745340808d6a34aa50a602e93b001f8d52",
+ "label": "closeout",
+ "replay_of": null
+}

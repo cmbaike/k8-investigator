@@ -1,0 +1,409 @@
+{
+ "source": "relevance-final-revalidated",
+ "method": "Hand-labelled by reading each hypothesis against the scenario's recorded facts, before looking at the grader's label. accepted_sample: 4 random accepted hypotheses per scenario (seed 7). rejected: every rejected hypothesis of the run.",
+ "accepted_sample": [
+  {
+   "scenario": "crash_loop",
+   "text": "The container may have failed due to an issue with the application's environment variables or configuration, even though no environment variables are declared.",
+   "label": "generic"
+  },
+  {
+   "scenario": "crash_loop",
+   "text": "The container may have failed due to an issue with the application's dependencies, such as a missing library or an incorrect version, which could cause it to exit with a non-zero code.",
+   "label": "relevant"
+  },
+  {
+   "scenario": "crash_loop",
+   "text": "The container may have encountered an error during startup, such as a failure to bind to a required port or an issue with the application's initialization script, which could lead to an exit with a non-zero code.",
+   "label": "relevant"
+  },
+  {
+   "scenario": "crash_loop",
+   "text": "The container may have exited with a non-zero exit code due to an error in the application logic or configuration, though the exact cause is not established.",
+   "label": "generic"
+  },
+  {
+   "scenario": "image_pull",
+   "text": "The image pull failure may be due to the image being incorrectly tagged or named, leading to it not being found in the registry.",
+   "label": "relevant"
+  },
+  {
+   "scenario": "image_pull",
+   "text": "The image pull failure may be due to the image reference not existing in the registry or the registry being unreachable from the nodes.",
+   "label": "relevant"
+  },
+  {
+   "scenario": "image_pull",
+   "text": "The image pull failure may be due to network issues preventing communication with the registry.",
+   "label": "relevant"
+  },
+  {
+   "scenario": "image_pull",
+   "text": "The image pull failure may be due to incorrect credentials or authentication issues when pulling the image from the registry.",
+   "label": "relevant"
+  },
+  {
+   "scenario": "liveness_failure",
+   "text": "The container may have been restarted due to an application crash or failure, which could be caused by an error in the application logic or resource constraints.",
+   "label": "generic"
+  },
+  {
+   "scenario": "liveness_failure",
+   "text": "The container may have been restarted due to an unexpected exit code, which could indicate a problem with the application or its dependencies.",
+   "label": "generic"
+  },
+  {
+   "scenario": "liveness_failure",
+   "text": "The container may have been restarted due to a resource exhaustion issue, such as memory or CPU limits being exceeded, leading to an OOMKilled or similar termination.",
+   "label": "irrelevant",
+   "note": "claims OOMKilled; the recorded termination reason is Error with liveness events"
+  },
+  {
+   "scenario": "liveness_failure",
+   "text": "The container may have been restarted due to a misconfiguration in the liveness probe, such as an incorrect path or port, which could prevent the probe from reaching the application.",
+   "label": "relevant"
+  },
+  {
+   "scenario": "mount_failure",
+   "text": "The volume mount failure may be due to an issue with mounting the ConfigMap, as indicated by the 'mount_setup_failed' signal in the events.",
+   "label": "relevant"
+  },
+  {
+   "scenario": "mount_failure",
+   "text": "The volume mount failure may be due to the ConfigMap referenced by the pod not being found in the namespace, as indicated by the 'config_map_not_found' signal in the events.",
+   "label": "relevant"
+  },
+  {
+   "scenario": "mount_failure",
+   "text": "The volume mount failure may be due to the pod's volume configuration not being properly set up, as indicated by the 'FailedMount' events.",
+   "label": "generic"
+  },
+  {
+   "scenario": "mount_failure",
+   "text": "The volume mount failure may be due to an issue with mounting the ConfigMap, such as incorrect path or permissions, as indicated by the 'mount_setup_failed' signal in the events.",
+   "label": "relevant"
+  },
+  {
+   "scenario": "oom_killed",
+   "text": "The container may be crashing due to an unexpected error or exception in the application code that is not being handled properly, leading to an out-of-memory condition.",
+   "label": "relevant"
+  },
+  {
+   "scenario": "oom_killed",
+   "text": "The container may be crashing due to an application-specific issue, such as a bug or configuration error, that causes excessive memory usage.",
+   "label": "relevant"
+  },
+  {
+   "scenario": "oom_killed",
+   "text": "The container may be crashing due to an unexpected increase in memory demand, which exceeds the allocated limit of 128Mi.",
+   "label": "relevant"
+  },
+  {
+   "scenario": "oom_killed",
+   "text": "The container may be encountering an out-of-memory condition due to a memory leak or excessive resource consumption by the application.",
+   "label": "relevant"
+  },
+  {
+   "scenario": "oom_recovered",
+   "text": "The container may have been terminated due to an out-of-memory (OOM) event, which is a common cause for OOMKilled termination reasons in Kubernetes. The container's memory request is 64Mi and limit is 128Mi, which may not be sufficient for the workload's needs.",
+   "label": "relevant"
+  },
+  {
+   "scenario": "oom_recovered",
+   "text": "The container may have been terminated due to a memory-intensive operation that exceeded the allocated memory limit, leading to the OOMKilled termination. The memory limit of 128Mi may be insufficient for the workload's requirements.",
+   "label": "relevant"
+  },
+  {
+   "scenario": "oom_recovered",
+   "text": "The container may have been terminated due to a memory-intensive operation that exceeded the allocated memory limit. The memory limit of 128Mi may not be sufficient for the workload's requirements.",
+   "label": "relevant"
+  },
+  {
+   "scenario": "oom_recovered",
+   "text": "The container may have been terminated due to an out-of-memory (OOM) event, which is a common cause for OOMKilled termination reasons in Kubernetes. The container's memory request is 64Mi and limit is 128Mi, which may not be sufficient for the workload's needs.",
+   "label": "relevant"
+  },
+  {
+   "scenario": "restart_history",
+   "text": "The container may have been restarted due to a scheduled event or a system-level process that caused it to exit, even though it completed successfully. The restart policy may have been configured to automatically restart containers that exit with a zero exit code.",
+   "label": "generic"
+  },
+  {
+   "scenario": "restart_history",
+   "text": "The container may have exited normally due to a process completion, and Kubernetes restarted it according to the pod's restart policy. The exit code 0 indicates the process finished successfully, but the restart policy may have caused it to be restarted.",
+   "label": "relevant"
+  },
+  {
+   "scenario": "restart_history",
+   "text": "The container may have exited due to a normal process termination, and Kubernetes restarted it based on the pod's restart policy. The exit code 0 indicates the process completed successfully, but the restart policy may have been configured to restart containers that exit with a zero exit code.",
+   "label": "relevant"
+  },
+  {
+   "scenario": "restart_history",
+   "text": "The container may have been restarted due to a scheduled event or a system-level process that caused it to exit, even though it completed successfully. The restart policy may have been configured to automatically restart containers that exit with a zero exit code.",
+   "label": "generic"
+  },
+  {
+   "scenario": "running_not_ready",
+   "text": "The readiness probe may have been configured with an incorrect initial delay, causing it to start checking the endpoint too early before the application is ready.",
+   "label": "relevant",
+   "note": "relevant; the frozen v2 rubric flags 'before the application is ready' as a contradiction (a rubric false positive)"
+  },
+  {
+   "scenario": "running_not_ready",
+   "text": "The readiness probe may have failed to respond to the expected endpoint due to a misconfiguration in the probe's path or port.",
+   "label": "relevant"
+  },
+  {
+   "scenario": "running_not_ready",
+   "text": "The readiness probe may be failing to reach the expected endpoint, possibly due to incorrect path or port configuration, or the application may not be responding as expected on the specified port.",
+   "label": "relevant"
+  },
+  {
+   "scenario": "running_not_ready",
+   "text": "The readiness probe may be encountering network issues, such as connectivity problems or firewall rules blocking access to the endpoint.",
+   "label": "generic"
+  },
+  {
+   "scenario": "sched_cpu",
+   "text": "The pod may be unschedulable due to a mismatch between the pod's resource requirements and the available resources on the nodes, as indicated by the scheduler's reported constraint.",
+   "label": "relevant"
+  },
+  {
+   "scenario": "sched_cpu",
+   "text": "The pod may be unschedulable because the nodes do not have enough CPU resources to accommodate the pod's requested CPU limit.",
+   "label": "relevant",
+   "note": "says 'requested CPU limit': request/limit imprecision the validator does not catch"
+  },
+  {
+   "scenario": "sched_cpu",
+   "text": "The pod may be unschedulable due to insufficient CPU resources on the available nodes, as indicated by the scheduler's reported constraint.",
+   "label": "relevant"
+  },
+  {
+   "scenario": "sched_cpu",
+   "text": "The pod may be unschedulable because the nodes do not have the necessary CPU resources to run the pod, as indicated by the scheduler's reported constraint.",
+   "label": "relevant"
+  },
+  {
+   "scenario": "sched_memory",
+   "text": "The pod may be unable to schedule due to a lack of suitable nodes with sufficient memory, as indicated by the scheduler's reported constraint.",
+   "label": "relevant"
+  },
+  {
+   "scenario": "sched_memory",
+   "text": "The pod may be unable to schedule due to a mismatch between the memory request and the available resources on the nodes, as the scheduler reported insufficient memory.",
+   "label": "relevant"
+  },
+  {
+   "scenario": "sched_memory",
+   "text": "The pod may not be schedulable due to insufficient memory on all available nodes, as indicated by the scheduler's reported constraint.",
+   "label": "relevant"
+  },
+  {
+   "scenario": "sched_memory",
+   "text": "The pod may not be schedulable due to a lack of available nodes with sufficient memory, as the scheduler reported insufficient memory.",
+   "label": "relevant"
+  },
+  {
+   "scenario": "sched_missing_pvc",
+   "text": "The scheduler may not be able to place the pod on any node because the volume claim for 'data' is unbound, which could indicate that the PersistentVolumeClaim is not properly configured or is not available in the namespace.",
+   "label": "relevant"
+  },
+  {
+   "scenario": "sched_missing_pvc",
+   "text": "The scheduler may not be able to place the pod on any node because the volume claim for 'data' is unbound, which could indicate that the PersistentVolumeClaim is not properly configured or is not available in the namespace.",
+   "label": "relevant"
+  },
+  {
+   "scenario": "sched_missing_pvc",
+   "text": "The scheduler may not be able to place the pod on any node because the volume claim for 'data' is unbound, which could indicate that the PersistentVolumeClaim is not properly configured or is not available in the namespace.",
+   "label": "relevant"
+  },
+  {
+   "scenario": "sched_multiple",
+   "text": "The pod may not be schedulable due to an untolerated taint on the nodes, as indicated by the scheduler's reported constraints.",
+   "label": "relevant"
+  },
+  {
+   "scenario": "sched_multiple",
+   "text": "The pod may not be schedulable due to an untolerated taint on the nodes, as indicated by the scheduler's reported constraints.",
+   "label": "relevant"
+  },
+  {
+   "scenario": "sched_multiple",
+   "text": "The pod may not be schedulable due to insufficient CPU or memory resources on the available nodes, as indicated by the scheduler's reported constraints.",
+   "label": "relevant"
+  },
+  {
+   "scenario": "sched_multiple",
+   "text": "The pod may not be schedulable due to insufficient CPU or memory resources on the available nodes, as indicated by the scheduler's reported constraints.",
+   "label": "relevant"
+  },
+  {
+   "scenario": "sched_selector",
+   "text": "The pod may not be schedulable because the node selector declared in the pod's configuration is not compatible with any node's labels, as the scheduler reported a node_selector_mismatch constraint.",
+   "label": "relevant"
+  },
+  {
+   "scenario": "sched_selector",
+   "text": "The pod may not be schedulable due to a node selector mismatch, as the scheduler reported this constraint and the pod's configuration declares a node selector.",
+   "label": "relevant"
+  },
+  {
+   "scenario": "sched_selector",
+   "text": "The scheduler may not be able to place the pod on any node because the node selector declared in the pod's configuration does not match any available nodes' labels.",
+   "label": "relevant"
+  },
+  {
+   "scenario": "sched_selector",
+   "text": "The scheduler may not be able to place the pod on any node because the node selector mismatch is a reported constraint, which could indicate that the pod's node selector does not match any available node's labels.",
+   "label": "relevant"
+  },
+  {
+   "scenario": "sched_taint",
+   "text": "The scheduler may have failed to schedule the pod due to a node taint that is not tolerated by the pod, as reported by the scheduler.",
+   "label": "relevant"
+  },
+  {
+   "scenario": "sched_taint",
+   "text": "The scheduler may have failed to place the pod on any node due to a combination of taints, resource constraints, and node availability issues.",
+   "label": "generic",
+   "note": "kitchen-sink: names taints but also unreported constraints"
+  },
+  {
+   "scenario": "sched_taint",
+   "text": "The scheduler may have failed to schedule the pod due to insufficient resources on all available nodes, as the pod is in a Pending state with no container started.",
+   "label": "irrelevant",
+   "note": "a capacity constraint the scheduler did not report (only an untolerated taint was)"
+  },
+  {
+   "scenario": "sched_taint",
+   "text": "The pod may not be schedulable because the node it is trying to schedule on has a taint that the pod does not tolerate, as reported by the scheduler.",
+   "label": "relevant",
+   "note": "relevant; wording slightly garbled"
+  }
+ ],
+ "rejected": [
+  {
+   "scenario": "sched_taint",
+   "code": "contradicts_established_evidence",
+   "text": "The pod may not be schedulable due to a node selector or affinity constraint that is not declared but may be inferred from the pod's configuration.",
+   "hand_verdict": "correct"
+  },
+  {
+   "scenario": "sched_taint",
+   "code": "contradicts_established_evidence",
+   "text": "The pod may not be schedulable due to a node selector or affinity constraint that is not declared, as the scheduler reported an untolerated taint.",
+   "hand_verdict": "correct"
+  },
+  {
+   "scenario": "sched_selector",
+   "code": "duplicate_hypothesis",
+   "text": "The pod may not be schedulable because the node selector declared in the pod's configuration does not match any available nodes' labels, as the scheduler reported a node_selector_mismatch constraint.",
+   "hand_verdict": "correct (duplicate)"
+  },
+  {
+   "scenario": "sched_selector",
+   "code": "duplicate_hypothesis",
+   "text": "The scheduler may not be able to place the pod on any node because the node selector is declared but no nodes in the cluster have the required labels, leading to a mismatch.",
+   "hand_verdict": "correct (duplicate)"
+  },
+  {
+   "scenario": "sched_selector",
+   "code": "duplicate_hypothesis",
+   "text": "The scheduler may not be able to place the pod on any node because the node selector is declared but no nodes in the cluster have the required labels, leading to a mismatch.",
+   "hand_verdict": "correct (duplicate)"
+  },
+  {
+   "scenario": "sched_multiple",
+   "code": "inverted_scheduling_terms",
+   "text": "The pod may not be schedulable due to an untolerated taint on the nodes, as indicated by the scheduler's reported constraints.",
+   "hand_verdict": "correct (not_yet_verified places tolerations on nodes)"
+  },
+  {
+   "scenario": "sched_multiple",
+   "code": "incorrect_kubernetes_semantics",
+   "text": "The pod may not be schedulable due to the absence of a node selector or affinity configuration, as indicated by the scheduler's reported constraints.",
+   "hand_verdict": "correct"
+  },
+  {
+   "scenario": "sched_multiple",
+   "code": "incorrect_kubernetes_semantics",
+   "text": "The pod may not be schedulable due to the lack of declared liveness or readiness probes, which could affect scheduling decisions.",
+   "hand_verdict": "correct"
+  },
+  {
+   "scenario": "sched_multiple",
+   "code": "incorrect_kubernetes_semantics",
+   "text": "The pod may not be schedulable due to the absence of a node selector or affinity configuration, as indicated by the scheduler's reported constraints.",
+   "hand_verdict": "correct"
+  },
+  {
+   "scenario": "sched_multiple",
+   "code": "incorrect_kubernetes_semantics",
+   "text": "The pod may not be schedulable due to the lack of declared liveness or readiness probes, which could affect scheduling decisions.",
+   "hand_verdict": "correct"
+  },
+  {
+   "scenario": "sched_multiple",
+   "code": "incorrect_kubernetes_semantics",
+   "text": "The pod may not be schedulable due to the absence of a node selector or affinity configuration, as indicated by the scheduler's reported constraints.",
+   "hand_verdict": "correct"
+  },
+  {
+   "scenario": "sched_multiple",
+   "code": "incorrect_kubernetes_semantics",
+   "text": "The pod may not be schedulable due to the lack of declared liveness or readiness probes, which could affect the scheduler's decision-making process.",
+   "hand_verdict": "correct"
+  },
+  {
+   "scenario": "liveness_failure",
+   "code": "insufficiently_cautious",
+   "text": "The container may have encountered an internal error that caused it to exit with a non-zero code, leading to a restart. The exact cause of the error is not known.",
+   "hand_verdict": "form only: relevant-but-generic, second sentence unhedged"
+  },
+  {
+   "scenario": "liveness_failure",
+   "code": "too_many_references",
+   "text": "The container may have been restarted due to liveness probe failures, which could indicate that the application is not responding to health checks as expected.",
+   "hand_verdict": "form only: 7 references, relevant"
+  },
+  {
+   "scenario": "mount_failure",
+   "code": "contradicts_established_evidence",
+   "text": "The volume mount failure may be due to the pod's scheduling or resource constraints, as indicated by the 'ContainerCreating' state and the 'FailedMount' events.",
+   "hand_verdict": "correct"
+  },
+  {
+   "scenario": "crash_loop",
+   "code": "contradicts_established_evidence",
+   "text": "The container may have failed due to an issue with the application's readiness or liveness probes, though no probes are declared in the configuration.",
+   "hand_verdict": "correct"
+  },
+  {
+   "scenario": "crash_loop",
+   "code": "contradicts_established_evidence",
+   "text": "The container may have failed due to an issue with the application's readiness or liveness probes, even though they are not declared in the configuration.",
+   "hand_verdict": "correct"
+  },
+  {
+   "scenario": "restart_history",
+   "code": "contradicts_established_evidence",
+   "text": "The container may have been restarted due to a scheduling or resource allocation issue that was resolved after the container restarted, leading to it being ready and running again.",
+   "hand_verdict": "correct"
+  },
+  {
+   "scenario": "restart_history",
+   "code": "too_long",
+   "text": "The container may have exited due to a normal process termination, and Kubernetes restarted it according to the pod's restart policy. The exit code 0 indicates the process finished successfully, but the restart policy may have been configured to automatically restart containers that exit with a zero exit code.",
+   "hand_verdict": "form only: relevant, too_long"
+  },
+  {
+   "scenario": "restart_history",
+   "code": "too_long",
+   "text": "The container may have exited due to a normal process termination, and Kubernetes restarted it according to the pod's restart policy. The exit code 0 indicates the process finished successfully, but the restart policy may have been configured to automatically restart containers that exit with a zero exit code.",
+   "hand_verdict": "form only: relevant, too_long"
+  }
+ ]
+}

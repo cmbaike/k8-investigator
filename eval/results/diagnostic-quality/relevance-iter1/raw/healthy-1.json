@@ -1,0 +1,7 @@
+{
+ "content": "{\n  \"investigation_id\": \"6e18948f-f06f-4641-a35a-e885cc9ed7b4\",\n  \"hypotheses\": []\n}",
+ "model_attempts": 1,
+ "earlier_attempts": [],
+ "latency_s": 0.386,
+ "requested_investigation_id": "6e18948f-f06f-4641-a35a-e885cc9ed7b4"
+}

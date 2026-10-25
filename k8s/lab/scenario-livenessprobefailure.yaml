@@ -1,0 +1,36 @@
+# ============================================================
+# Scenario 4: Liveness Probe Failure
+# ============================================================
+#---
+# apiVersion: v1
+# kind: Namespace
+# metadata:
+#   name: scenario-liveness
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bad-liveness
+  namespace: ai-ops-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bad-liveness
+  template:
+    metadata:
+      labels:
+        app: bad-liveness
+    spec:
+      containers:
+        - name: app
+          image: nginx:1.27
+          ports:
+            - containerPort: 80
+          livenessProbe:
+            httpGet:
+              path: /nonexistent-health-check
+              port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            failureThreshold: 2

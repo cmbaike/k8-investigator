@@ -1,0 +1,41 @@
+# ============================================================
+# Scenario 9: OOMKilled
+# ============================================================
+# ---
+# apiVersion: v1
+# kind: Namespace
+# metadata:
+#   name: ai-ops-demo
+# ---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hog
+  namespace: ai-ops-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hog
+  template:
+    metadata:
+      labels:
+        app: hog
+    spec:
+      containers:
+        - name: app
+          image: python:3.12-alpine
+          command:
+            - python
+            - -c
+            - |
+              import time
+              chunks = []
+              while True:
+                  chunks.append(bytearray(10 * 1024 * 1024))
+                  time.sleep(0.1)
+          resources:
+            requests:
+              memory: 16Mi
+            limits:
+              memory: 32Mi

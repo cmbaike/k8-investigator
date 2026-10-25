@@ -1,0 +1,249 @@
+{
+ "payload": {
+  "application_configuration_statements": {
+   "items": [],
+   "trust": "written_by_the_application_from_verified_evidence"
+  },
+  "application_failure_classification": {
+   "items": [
+    {
+     "category": "restarted_running",
+     "container": "app",
+     "ever_ran": true,
+     "kubernetes_reason": "OOMKilled",
+     "namespace": "ai-ops-demo",
+     "pod": "recovered"
+    }
+   ],
+   "trust": "written_by_the_application_from_verified_evidence"
+  },
+  "application_logs_available": false,
+  "authorized_namespace": "ai-ops-demo",
+  "data_classification": "untrusted_application_log_data",
+  "established_abnormality": {
+   "items": [
+    {
+     "abnormal_stage": "past_restart",
+     "completed_stages": [
+      {
+       "stage": "scheduling",
+       "statement": "the pod was scheduled to a node"
+      },
+      {
+       "stage": "container_started",
+       "statement": "the image was pulled and the container started"
+      },
+      {
+       "stage": "readiness",
+       "statement": "the container is ready now"
+      }
+     ],
+     "container": "app",
+     "kubernetes_reason": "OOMKilled",
+     "namespace": "ai-ops-demo",
+     "open_question": "why the container was restarted",
+     "pod": "recovered",
+     "previous_termination": {
+      "exit_code": 137,
+      "reason": "OOMKilled"
+     },
+     "previous_termination_means": "The kernel's out-of-memory killer terminated the container's process: a memory event. It is not a probe, image-pull or scheduling event.",
+     "restart_count": 1,
+     "verified_not_declared": [
+      {
+       "item": "liveness_probe"
+      },
+      {
+       "item": "readiness_probe"
+      }
+     ],
+     "what_it_establishes": "The container is running and ready now. Kubernetes records that it was restarted after the previous termination below; the restart is history, not a current failure."
+    }
+   ],
+   "trust": "written_by_the_application_from_verified_evidence"
+  },
+  "evidence_focus_groups": {
+   "items": [
+    {
+     "container": "app",
+     "evidence_ids": [
+      "ev-0007",
+      "ev-0009",
+      "ev-0008"
+     ],
+     "focus": "current_container_state",
+     "pod": "recovered"
+    },
+    {
+     "container": "app",
+     "evidence_ids": [
+      "ev-0011",
+      "ev-0010",
+      "ev-0008",
+      "ev-0013"
+     ],
+     "focus": "previous_termination",
+     "pod": "recovered"
+    },
+    {
+     "container": "app",
+     "evidence_ids": [
+      "ev-0017"
+     ],
+     "focus": "liveness_probe_configuration",
+     "pod": "recovered"
+    }
+   ],
+   "trust": "selected_by_the_application_for_relevance_only"
+  },
+  "excerpts_omitted": 0,
+  "investigation_id": "09395767-4234-4369-a37e-c4727b3027cc",
+  "investigation_scope": {
+   "mode": "namespace",
+   "pods_in_scope": [],
+   "requested_workload": null,
+   "workload": null
+  },
+  "kubernetes_verified_observations": {
+   "items": [
+    {
+     "evidence_id": "ev-0001",
+     "field": "pods[].name",
+     "namespace": "ai-ops-demo",
+     "pod": "recovered",
+     "tool": "k8s.get_pods",
+     "value": "recovered"
+    },
+    {
+     "evidence_id": "ev-0002",
+     "field": "pod.name",
+     "namespace": "ai-ops-demo",
+     "pod": "recovered",
+     "tool": "k8s.describe_pod",
+     "value": "recovered"
+    },
+    {
+     "evidence_id": "ev-0005",
+     "field": "pod.phase",
+     "namespace": "ai-ops-demo",
+     "pod": "recovered",
+     "tool": "k8s.describe_pod",
+     "value": "Running"
+    },
+    {
+     "evidence_id": "ev-0006",
+     "field": "containers[].name",
+     "namespace": "ai-ops-demo",
+     "pod": "recovered",
+     "tool": "k8s.describe_pod",
+     "value": "app"
+    },
+    {
+     "evidence_id": "ev-0007",
+     "field": "containers[app].ready",
+     "namespace": "ai-ops-demo",
+     "pod": "recovered",
+     "tool": "k8s.describe_pod",
+     "value": true
+    },
+    {
+     "evidence_id": "ev-0008",
+     "field": "containers[app].restart_count",
+     "namespace": "ai-ops-demo",
+     "pod": "recovered",
+     "tool": "k8s.describe_pod",
+     "value": 1
+    },
+    {
+     "evidence_id": "ev-0009",
+     "field": "containers[app].state",
+     "namespace": "ai-ops-demo",
+     "pod": "recovered",
+     "tool": "k8s.describe_pod",
+     "value": "running"
+    },
+    {
+     "evidence_id": "ev-0010",
+     "field": "containers[app].last_termination.exit_code",
+     "namespace": "ai-ops-demo",
+     "pod": "recovered",
+     "tool": "k8s.describe_pod",
+     "value": 137
+    },
+    {
+     "evidence_id": "ev-0011",
+     "field": "containers[app].last_termination.reason",
+     "namespace": "ai-ops-demo",
+     "pod": "recovered",
+     "tool": "k8s.describe_pod",
+     "value": "OOMKilled"
+    },
+    {
+     "evidence_id": "ev-0012",
+     "field": "containers[app].resources.memory_request",
+     "namespace": "ai-ops-demo",
+     "pod": "recovered",
+     "tool": "k8s.describe_pod",
+     "value": "64Mi"
+    },
+    {
+     "evidence_id": "ev-0013",
+     "field": "containers[app].resources.memory_limit",
+     "namespace": "ai-ops-demo",
+     "pod": "recovered",
+     "tool": "k8s.describe_pod",
+     "value": "128Mi"
+    },
+    {
+     "evidence_id": "ev-0014",
+     "field": "conditions[PodScheduled].status",
+     "namespace": "ai-ops-demo",
+     "pod": "recovered",
+     "tool": "k8s.describe_pod",
+     "value": "True"
+    },
+    {
+     "evidence_id": "ev-0015",
+     "field": "scheduling.node_selector_declared",
+     "namespace": "ai-ops-demo",
+     "pod": "recovered",
+     "tool": "k8s.describe_pod",
+     "value": false
+    },
+    {
+     "evidence_id": "ev-0016",
+     "field": "scheduling.affinity_declared",
+     "namespace": "ai-ops-demo",
+     "pod": "recovered",
+     "tool": "k8s.describe_pod",
+     "value": false
+    },
+    {
+     "evidence_id": "ev-0017",
+     "field": "containers[app].liveness_probe.declared",
+     "namespace": "ai-ops-demo",
+     "pod": "recovered",
+     "tool": "k8s.describe_pod",
+     "value": false
+    },
+    {
+     "evidence_id": "ev-0018",
+     "field": "containers[app].readiness_probe.declared",
+     "namespace": "ai-ops-demo",
+     "pod": "recovered",
+     "tool": "k8s.describe_pod",
+     "value": false
+    }
+   ],
+   "trust": "verified_by_application_from_authorized_read_only_tools"
+  },
+  "log_refs_available": [],
+  "untrusted_logs": [],
+  "verified_configuration_evidence": {
+   "items": [],
+   "trust": "verified_by_application_from_authorized_read_only_tools",
+   "values_are_never_included": true
+  }
+ },
+ "scenario": "oom_recovered"
+}

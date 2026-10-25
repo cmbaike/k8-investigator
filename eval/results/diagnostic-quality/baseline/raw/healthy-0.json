@@ -1,0 +1,4 @@
+{
+ "content": "{\n  \"investigation_id\": \"2b5b3270-e43e-4f5b-9309-85a522732712\",\n  \"hypotheses\": [\n    {\n      \"reported\": null,\n      \"possible_explanation\": \"The pod may be in a healthy state but has not yet started running due to an unknown reason, as the container has not been observed to have run.\",\n      \"not_yet_verified\": \"It has not been verified whether the container has started running or if there is an underlying issue preventing it from starting.\",\n      \"evidence\": [\"ev-0001\", \"ev-0002\", \"ev-0005\", \"ev-0006\", \"ev-0007\", \"ev-0008\", \"ev-0009\", \"ev-0010\", \"ev-0011\", \"ev-0012\", \"ev-0013\"],\n      \"resource\": null,\n      \"verification_check\": \"Check the pod's status and container logs to confirm if the container has started running and if there are any errors preventing it from starting.\"\n    }\n  ]\n}",
+ "latency_s": 1.852
+}

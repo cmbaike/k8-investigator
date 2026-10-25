@@ -1,0 +1,42 @@
+Private AI Platform Operations Runbook
+
+Kubernetes Deployment Failures
+
+When an application deployment fails, first inspect the deployment and its pods.
+Use kubectl get pods to identify pods that are Pending, Error, or CrashLoopBackOff.
+Use kubectl describe pod to inspect scheduling problems, failed mounts, image pull
+errors, and container configuration.
+
+For application failures, inspect container logs using kubectl logs. Do not restart
+a deployment until the cause of the failure has been investigated. Production
+restart operations require human approval.
+
+PostgreSQL Recovery
+
+If PostgreSQL becomes unavailable, first determine whether the database process is
+running and whether the storage volume is accessible. Check PostgreSQL logs before
+attempting recovery.
+
+A database must not be deleted or reinitialised as an initial recovery action.
+Before any destructive recovery operation, verify that a valid backup exists and
+obtain human approval.
+
+Elasticsearch Red Cluster
+
+A red Elasticsearch cluster indicates that at least one primary shard is
+unassigned. First inspect cluster health and shard allocation.
+
+Determine why the primary shard cannot be allocated before changing allocation
+settings. Possible causes include unavailable nodes, disk capacity problems, and
+allocation constraints.
+
+AI Operational Safety
+
+The AI operations assistant may inspect infrastructure, retrieve documentation,
+analyse logs, and recommend remediation actions.
+
+Read-only diagnostic operations may be executed automatically.
+
+Changes to production infrastructure, service restarts, deletion of resources,
+database recovery operations, and other destructive actions require explicit
+human approval.

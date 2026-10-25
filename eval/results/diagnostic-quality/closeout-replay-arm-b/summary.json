@@ -1,0 +1,384 @@
+{
+ "headline": {
+  "proposed": 91,
+  "accepted": 59,
+  "accepted_with_technical_inaccuracy": 1,
+  "accepted_technical_inaccuracies_by_type": {
+   "contradiction:\\b(?:is|are|was|remains?": 1
+  },
+  "false_positive_rejections_candidate": 8,
+  "evidence_attribution_errors_in_accepted": 0,
+  "evidence_attribution_errors_in_raw": 0,
+  "attribution_omissions_by_application": 0,
+  "useful_accepted": 51,
+  "top_accepted_relevant_rate": 0.909,
+  "ai_stage_latency_s_mean": 3.65,
+  "ai_stage_latency_s_max": 5.73
+ },
+ "lifecycle": {
+  "raw_with_error": 0,
+  "raw_errors_by_type": {},
+  "accepted_with_error": 0
+ },
+ "rubric_version": "2",
+ "rubric_sha256": "fe8c65c841ee137f29929b73972a16cacd76fbc62efb15a4acea8c5eed9152bb",
+ "runs": 26,
+ "technical": {
+  "raw_hypotheses": 91,
+  "raw_with_error": 20,
+  "raw_errors_by_type": {
+   "contradiction": 4,
+   "selector_absence_blamed_for_unschedulable": 14,
+   "undeclared_probe_blamed": 3
+  },
+  "check_errors_in_raw": 7,
+  "accepted_hypotheses": 59,
+  "escapes_accepted_with_error": 1,
+  "escape_rate": 0.017,
+  "escapes": [
+   {
+    "scenario": "running_not_ready",
+    "repeat": 0,
+    "errors": [
+     "contradiction:\\b(?:is|are|was|remains?"
+    ],
+    "raw": {
+     "possible_explanation": "The container may be unable to meet the readiness probe requirements, which could be due to incorrect probe configuration or the application not being ready to serve requests.",
+     "not_yet_verified": "The readiness probe configuration and the application's readiness to serve requests have not been verified.",
+     "verification_check": "Check the readiness probe configuration and verify if the application is ready to serve requests."
+    }
+   }
+  ]
+ },
+ "relevance": {
+  "raw_relevant_rate": 0.868,
+  "raw_specific_rate": 0.407,
+  "accepted_relevant_rate": 0.881,
+  "accepted_specific_rate": 0.508,
+  "top_accepted_relevant": 0.909,
+  "top_accepted_specific": 0.864,
+  "runs_with_distinct_alternatives": "14/18",
+  "multi_constraint_coverage": {
+   "sched_multiple#0": "3/3",
+   "sched_multiple#1": "3/3"
+  }
+ },
+ "checks": {
+  "raw_checks": 91,
+  "raw_relevant": 0.648,
+  "raw_not_read_only": 1,
+  "raw_out_of_scope": 3,
+  "raw_technically_unclean": 7,
+  "shown_checks": 47,
+  "withheld_checks": 14,
+  "withheld_by_reason": {
+   "incorrect_kubernetes_semantics": 3,
+   "remediation_in_check": 11
+  },
+  "withheld_rubric_confirms_defect": 4,
+  "withheld_but_rubric_clean": 10,
+  "accepted_relevant": 0.66,
+  "accepted_not_read_only": 0,
+  "accepted_out_of_scope": 0,
+  "accepted_technically_unclean": 1
+ },
+ "validation": {
+  "proposed": 91,
+  "accepted": 61,
+  "rejected": 29,
+  "rejected_by_reason": {
+   "contradicts_established_evidence": 4,
+   "incorrect_kubernetes_semantics": 17,
+   "too_many_references": 8
+  },
+  "whole_response_failures": 1,
+  "whole_response_codes": {
+   "reference_count": 1
+  },
+  "candidate_false_positive_rejections": 8,
+  "candidate_false_positives": [
+   {
+    "scenario": "sched_memory",
+    "repeat": 0,
+    "code": "contradicts_established_evidence",
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The pod may be unschedulable due to a lack of resource requests, as the memory request is set to 900Gi but the node's allocatable memory may not meet this requirement.",
+     "not_yet_verified": "The actual memory capacity of the nodes and the memory requests of other pods in the namespace have not been verified.",
+     "evidence": [
+      "ev-0007",
+      "ev-0009",
+      "ev-0010"
+     ],
+     "resource": null,
+     "verification_check": "Check the memory capacity of the nodes and the memory requests of other pods in the 'ai-ops-demo' namespace to confirm if there is a memory shortage."
+    }
+   },
+   {
+    "scenario": "liveness_failure",
+    "repeat": 0,
+    "code": "too_many_references",
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The container may have failed due to liveness probe failures, which could be caused by the application not responding to the /healthz endpoint on port 8080 as expected.",
+     "not_yet_verified": "The actual reason the application is not responding to the liveness probe is not verified.",
+     "evidence": [
+      "ev-0015",
+      "ev-0016",
+      "ev-0017",
+      "ev-0018",
+      "ev-0019",
+      "ev-0020",
+      "ev-0024",
+      "ev-0025",
+      "ev-0027",
+      "ev-0028",
+      "ev-0011",
+      "ev-0010"
+     ],
+     "resource": null,
+     "verification_check": "Check if the application is correctly serving the /healthz endpoint on port 8080 and ensure the endpoint is accessible."
+    }
+   },
+   {
+    "scenario": "liveness_failure",
+    "repeat": 0,
+    "code": "too_many_references",
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The container may have been restarted due to an unexpected exit code (137), which could be caused by an out-of-memory condition or a signal-based termination.",
+     "not_yet_verified": "The exact cause of the exit code 137 is not verified.",
+     "evidence": [
+      "ev-0010",
+      "ev-0011",
+      "ev-0008",
+      "ev-0024",
+      "ev-0025",
+      "ev-0027",
+      "ev-0028"
+     ],
+     "resource": null,
+     "verification_check": "Check the system's memory usage and ensure the application is not encountering memory issues."
+    }
+   },
+   {
+    "scenario": "liveness_failure",
+    "repeat": 0,
+    "code": "too_many_references",
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The container may have been restarted due to liveness probe failures, which could be caused by the application not being ready or not responding to the probe as expected.",
+     "not_yet_verified": "The actual reason the application is not responding to the liveness probe is not verified.",
+     "evidence": [
+      "ev-0015",
+      "ev-0016",
+      "ev-0017",
+      "ev-0018",
+      "ev-0019",
+      "ev-0020",
+      "ev-0024",
+      "ev-0025",
+      "ev-0027",
+      "ev-0028",
+      "ev-0011",
+      "ev-0010"
+     ],
+     "resource": null,
+     "verification_check": "Check if the application is correctly serving the /healthz endpoint on port 8080 and ensure the endpoint is accessible."
+    }
+   },
+   {
+    "scenario": "liveness_failure",
+    "repeat": 0,
+    "code": "too_many_references",
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The container may have been restarted due to an unexpected exit code (137), which could be caused by an out-of-memory condition or a signal-based termination.",
+     "not_yet_verified": "The exact cause of the exit code 137 is not verified.",
+     "evidence": [
+      "ev-0010",
+      "ev-0011",
+      "ev-0008",
+      "ev-0024",
+      "ev-0025",
+      "ev-0027",
+      "ev-0028"
+     ],
+     "resource": null,
+     "verification_check": "Check the system's memory usage and ensure the application is not encountering memory issues."
+    }
+   },
+   {
+    "scenario": "liveness_failure",
+    "repeat": 1,
+    "code": "too_many_references",
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The container may have failed due to liveness probe failures, which could be caused by the application not responding to the /healthz endpoint on port 8080 as expected.",
+     "not_yet_verified": "The actual reason the application is not responding to the liveness probe is not verified.",
+     "evidence": [
+      "ev-0015",
+      "ev-0016",
+      "ev-0017",
+      "ev-0018",
+      "ev-0019",
+      "ev-0020",
+      "ev-0024",
+      "ev-0025",
+      "ev-0027",
+      "ev-0028",
+      "ev-0011",
+      "ev-0010"
+     ],
+     "resource": null,
+     "verification_check": "Check if the application is correctly serving the /healthz endpoint on port 8080 and ensure the endpoint is accessible from the pod's network."
+    }
+   },
+   {
+    "scenario": "healthy",
+    "repeat": 0,
+    "code": "too_many_references",
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The pod may be in a healthy state but the application's logs may not have been captured due to the container never starting or not generating any output.",
+     "not_yet_verified": "The startup behaviour of the container has not been inspected.",
+     "evidence": [
+      "ev-0001",
+      "ev-0002",
+      "ev-0005",
+      "ev-0006",
+      "ev-0007",
+      "ev-0008",
+      "ev-0009",
+      "ev-0010",
+      "ev-0011",
+      "ev-0012",
+      "ev-0013"
+     ],
+     "resource": null,
+     "verification_check": "Check the container's startup behaviour and ensure the application is configured to generate logs when the container starts."
+    }
+   },
+   {
+    "scenario": "healthy",
+    "repeat": 1,
+    "code": "too_many_references",
+    "raw": {
+     "reported": null,
+     "possible_explanation": "The pod may be in a healthy state but the application may not have started correctly due to an unverified configuration issue.",
+     "not_yet_verified": "The startup behaviour of the application has not been inspected.",
+     "evidence": [
+      "ev-0001",
+      "ev-0002",
+      "ev-0005",
+      "ev-0006",
+      "ev-0007",
+      "ev-0008",
+      "ev-0009",
+      "ev-0010",
+      "ev-0011",
+      "ev-0012",
+      "ev-0013"
+     ],
+     "resource": null,
+     "verification_check": "Check the application's startup behaviour and configuration to determine if there are any issues preventing it from starting correctly."
+    }
+   }
+  ]
+ },
+ "operations": {
+  "runs_needing_a_second_model_attempt": 0,
+  "completion_rate": 0.962,
+  "analysis_states": {
+   "generated": 22,
+   "unavailable": 1,
+   "all_omitted": 3
+  },
+  "tool_coverage_mean": 0.949,
+  "ai_stage_latency_s_mean": 3.65,
+  "ai_stage_latency_s_max": 5.73
+ },
+ "per_scenario": {
+  "sched_cpu": {
+   "runs": 2,
+   "accepted": 6,
+   "proposed": 8,
+   "whole_response_failures": 0
+  },
+  "sched_memory": {
+   "runs": 2,
+   "accepted": 2,
+   "proposed": 8,
+   "whole_response_failures": 0
+  },
+  "sched_taint": {
+   "runs": 2,
+   "accepted": 4,
+   "proposed": 8,
+   "whole_response_failures": 0
+  },
+  "sched_selector": {
+   "runs": 2,
+   "accepted": 4,
+   "proposed": 5,
+   "whole_response_failures": 0
+  },
+  "sched_multiple": {
+   "runs": 2,
+   "accepted": 4,
+   "proposed": 8,
+   "whole_response_failures": 0
+  },
+  "sched_missing_pvc": {
+   "runs": 2,
+   "accepted": 4,
+   "proposed": 5,
+   "whole_response_failures": 0
+  },
+  "image_pull": {
+   "runs": 2,
+   "accepted": 8,
+   "proposed": 8,
+   "whole_response_failures": 0
+  },
+  "oom_killed": {
+   "runs": 2,
+   "accepted": 3,
+   "proposed": 7,
+   "whole_response_failures": 1
+  },
+  "running_not_ready": {
+   "runs": 2,
+   "accepted": 8,
+   "proposed": 8,
+   "whole_response_failures": 0
+  },
+  "liveness_failure": {
+   "runs": 2,
+   "accepted": 2,
+   "proposed": 8,
+   "whole_response_failures": 0
+  },
+  "mount_failure": {
+   "runs": 2,
+   "accepted": 7,
+   "proposed": 8,
+   "whole_response_failures": 0
+  },
+  "crash_loop": {
+   "runs": 2,
+   "accepted": 7,
+   "proposed": 8,
+   "whole_response_failures": 0
+  },
+  "healthy": {
+   "runs": 2,
+   "accepted": 0,
+   "proposed": 2,
+   "whole_response_failures": 0
+  }
+ },
+ "system_prompt_sha256": "9012ecc9b322d2fd238e889c47d5b8745340808d6a34aa50a602e93b001f8d52",
+ "label": "closeout-replay-arm-b",
+ "replay_of": "eval/results/diagnostic-quality/arm-b"
+}

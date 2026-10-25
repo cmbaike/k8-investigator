@@ -1,0 +1,274 @@
+{
+ "investigation_id": "fdf107da-4ac3-4db8-8d2a-3225b9a9a695",
+ "summary": "Investigation of namespace 'ai-ops-demo': 14 verified finding(s) (1 critical, 13 info) from 66 trusted evidence item(s).\nScope: only namespace 'ai-ops-demo' and the resources observed during this investigation. This is not an assessment of the rest of the cluster or of other namespaces.\nTarget: Deployment 'bad-liveness', verified through Kubernetes owner references. Inspected only its 1 pod(s): 'bad-liveness-794795bdf7-4bplr'. The other 6 pod(s) listed in the namespace were not inspected.\nMost significant findings, in priority order:\n1. [critical] Container is crash-looping: Container 'app' started and then failed: Kubernetes reports it not ready, state 'waiting', reason 'CrashLoopBackOff' (corroborated by independent evidence from events and pod state; evidence ev-0007, ev-0009, ev-0010, ev-0012 and 11 more).\n2. [info] Container restart count observed: Kubernetes reported container 'app' restart count as 6 (single source: pod state; evidence ev-0008).\n3. [info] Container state reason observed: Kubernetes reported container 'app' state reason as 'CrashLoopBackOff' (single source: pod state; evidence ev-0010).\n4. [info] Container readiness observed: Kubernetes reported container 'app' readiness as False (single source: pod state; evidence ev-0007).\n10 further finding(s), including informational observations such as pod discovery, are listed in the report.\n5 uncertaint(ies) are recorded. These findings describe observed behavior only: the underlying cause is not established by this report, and any AI-generated hypotheses are listed separately and remain unverified.",
+ "findings": [
+  {
+   "title": "Pod discovered",
+   "description": "Pod 'bad-liveness-794795bdf7-4bplr' appeared in a successful Kubernetes pod listing. Resource: namespace 'ai-ops-demo', pod 'bad-liveness-794795bdf7-4bplr'. Observed during tool execution '6fbeb744-9a57-44a7-b14f-8eea60e6211a-step-1'.",
+   "severity": "info",
+   "evidence": [
+    {
+     "evidence_id": "ev-0001"
+    }
+   ],
+   "scheduling_constraints": []
+  },
+  {
+   "title": "Pod identified",
+   "description": "Kubernetes returned pod 'bad-liveness-794795bdf7-4bplr' in a pod description. Resource: namespace 'ai-ops-demo', pod 'bad-liveness-794795bdf7-4bplr'. Observed during tool execution '6fbeb744-9a57-44a7-b14f-8eea60e6211a-step-2'.",
+   "severity": "info",
+   "evidence": [
+    {
+     "evidence_id": "ev-0002"
+    }
+   ],
+   "scheduling_constraints": []
+  },
+  {
+   "title": "Pod phase observed",
+   "description": "Kubernetes reported pod phase 'Running'. Resource: namespace 'ai-ops-demo', pod 'bad-liveness-794795bdf7-4bplr'. Observed during tool execution '6fbeb744-9a57-44a7-b14f-8eea60e6211a-step-2'.",
+   "severity": "info",
+   "evidence": [
+    {
+     "evidence_id": "ev-0005"
+    }
+   ],
+   "scheduling_constraints": []
+  },
+  {
+   "title": "Container readiness observed",
+   "description": "Kubernetes reported container 'app' readiness as False. Resource: namespace 'ai-ops-demo', pod 'bad-liveness-794795bdf7-4bplr'. Observed during tool execution '6fbeb744-9a57-44a7-b14f-8eea60e6211a-step-2'.",
+   "severity": "info",
+   "evidence": [
+    {
+     "evidence_id": "ev-0007"
+    }
+   ],
+   "scheduling_constraints": []
+  },
+  {
+   "title": "Container restart count observed",
+   "description": "Kubernetes reported container 'app' restart count as 6. Resource: namespace 'ai-ops-demo', pod 'bad-liveness-794795bdf7-4bplr'. Observed during tool execution '6fbeb744-9a57-44a7-b14f-8eea60e6211a-step-2'.",
+   "severity": "info",
+   "evidence": [
+    {
+     "evidence_id": "ev-0008"
+    }
+   ],
+   "scheduling_constraints": []
+  },
+  {
+   "title": "Container state observed",
+   "description": "Kubernetes reported container 'app' state as 'waiting'. Resource: namespace 'ai-ops-demo', pod 'bad-liveness-794795bdf7-4bplr'. Observed during tool execution '6fbeb744-9a57-44a7-b14f-8eea60e6211a-step-2'.",
+   "severity": "info",
+   "evidence": [
+    {
+     "evidence_id": "ev-0009"
+    }
+   ],
+   "scheduling_constraints": []
+  },
+  {
+   "title": "Container state reason observed",
+   "description": "Kubernetes reported container 'app' state reason as 'CrashLoopBackOff'. Resource: namespace 'ai-ops-demo', pod 'bad-liveness-794795bdf7-4bplr'. Observed during tool execution '6fbeb744-9a57-44a7-b14f-8eea60e6211a-step-2'.",
+   "severity": "info",
+   "evidence": [
+    {
+     "evidence_id": "ev-0010"
+    }
+   ],
+   "scheduling_constraints": []
+  },
+  {
+   "title": "Previous container exit code observed",
+   "description": "Kubernetes reported that container 'app' previously terminated with exit code 0. Resource: namespace 'ai-ops-demo', pod 'bad-liveness-794795bdf7-4bplr'. Observed during tool execution '6fbeb744-9a57-44a7-b14f-8eea60e6211a-step-2'.",
+   "severity": "info",
+   "evidence": [
+    {
+     "evidence_id": "ev-0011"
+    }
+   ],
+   "scheduling_constraints": []
+  },
+  {
+   "title": "Previous container termination reason observed",
+   "description": "Kubernetes reported that container 'app' previously terminated with reason 'Completed'. Resource: namespace 'ai-ops-demo', pod 'bad-liveness-794795bdf7-4bplr'. Observed during tool execution '6fbeb744-9a57-44a7-b14f-8eea60e6211a-step-2'.",
+   "severity": "info",
+   "evidence": [
+    {
+     "evidence_id": "ev-0012"
+    }
+   ],
+   "scheduling_constraints": []
+  },
+  {
+   "title": "Container logs retrieved",
+   "description": "Container logs were retrieved successfully. Log contents have not been established as verified root-cause evidence. Resource: namespace 'ai-ops-demo', pod 'bad-liveness-794795bdf7-4bplr'. Observed during tool execution '6fbeb744-9a57-44a7-b14f-8eea60e6211a-step-4'.",
+   "severity": "info",
+   "evidence": [
+    {
+     "evidence_id": "ev-0046"
+    }
+   ],
+   "scheduling_constraints": []
+  },
+  {
+   "title": "Owning workload identified",
+   "description": "Pod 'bad-liveness-794795bdf7-4bplr' is controlled by Deployment 'bad-liveness', verified through Kubernetes owner references and UIDs. Resource: namespace 'ai-ops-demo', pod 'bad-liveness-794795bdf7-4bplr'.",
+   "severity": "info",
+   "evidence": [
+    {
+     "evidence_id": "ev-0032"
+    },
+    {
+     "evidence_id": "ev-0033"
+    }
+   ],
+   "scheduling_constraints": []
+  },
+  {
+   "title": "Container configuration observed",
+   "description": "Container 'app': image 'nginx:1.27'; declares no environment variables and no ConfigMap or Secret environment sources; declares no readiness probe; no startup command override is declared (the image default applies and was not inspected). Environment values and command text are never collected, and this describes the declared spec only, not the complete runtime environment. Resource: namespace 'ai-ops-demo', pod 'bad-liveness-794795bdf7-4bplr'.",
+   "severity": "info",
+   "evidence": [
+    {
+     "evidence_id": "ev-0038"
+    },
+    {
+     "evidence_id": "ev-0039"
+    },
+    {
+     "evidence_id": "ev-0041"
+    },
+    {
+     "evidence_id": "ev-0044"
+    }
+   ],
+   "scheduling_constraints": []
+  },
+  {
+   "title": "Container is crash-looping",
+   "description": "Container 'app' started and then failed: Kubernetes reports it not ready, state 'waiting', reason 'CrashLoopBackOff'. Its previous termination reported reason 'Completed' and exit code 0. It has restarted 6 times. The pod phase is 'Running'. Kubernetes also recorded Warning events for this pod: 'Unhealthy' (x14), 'BackOff' (x9). Kubernetes also recorded events for this pod that were classified (fixed patterns; the messages are untrusted and not retained) as liveness-probe failures. They belong to the pod, not to one container, and do not by themselves establish that the probe caused this failure or why it failed. The cause of the failure is not established by this finding. Resource: namespace 'ai-ops-demo', pod 'bad-liveness-794795bdf7-4bplr'.",
+   "severity": "critical",
+   "evidence": [
+    {
+     "evidence_id": "ev-0007"
+    },
+    {
+     "evidence_id": "ev-0009"
+    },
+    {
+     "evidence_id": "ev-0010"
+    },
+    {
+     "evidence_id": "ev-0012"
+    },
+    {
+     "evidence_id": "ev-0011"
+    },
+    {
+     "evidence_id": "ev-0008"
+    },
+    {
+     "evidence_id": "ev-0005"
+    },
+    {
+     "evidence_id": "ev-0048"
+    },
+    {
+     "evidence_id": "ev-0049"
+    },
+    {
+     "evidence_id": "ev-0051"
+    },
+    {
+     "evidence_id": "ev-0052"
+    },
+    {
+     "evidence_id": "ev-0050"
+    },
+    {
+     "evidence_id": "ev-0058"
+    },
+    {
+     "evidence_id": "ev-0059"
+    },
+    {
+     "evidence_id": "ev-0060"
+    }
+   ],
+   "scheduling_constraints": []
+  },
+  {
+   "title": "Kubernetes events recorded for the pod",
+   "description": "Kubernetes recorded 7 event reasons for pod 'bad-liveness-794795bdf7-4bplr': Warning 'Unhealthy' (x14), Warning 'BackOff' (x9), Normal 'Pulled' (x7), Normal 'Created' (x6), Normal 'Killing' (x6), Normal 'Started' (x6) and 1 more. Only each event's reason, type and count are used. The event messages are untrusted text and are not part of this report. These records show that Kubernetes logged the events, not why they occurred. Resource: namespace 'ai-ops-demo', pod 'bad-liveness-794795bdf7-4bplr'.",
+   "severity": "info",
+   "evidence": [
+    {
+     "evidence_id": "ev-0048"
+    },
+    {
+     "evidence_id": "ev-0049"
+    },
+    {
+     "evidence_id": "ev-0051"
+    },
+    {
+     "evidence_id": "ev-0052"
+    },
+    {
+     "evidence_id": "ev-0054"
+    },
+    {
+     "evidence_id": "ev-0055"
+    },
+    {
+     "evidence_id": "ev-0056"
+    },
+    {
+     "evidence_id": "ev-0057"
+    },
+    {
+     "evidence_id": "ev-0058"
+    },
+    {
+     "evidence_id": "ev-0059"
+    },
+    {
+     "evidence_id": "ev-0061"
+    },
+    {
+     "evidence_id": "ev-0062"
+    }
+   ],
+   "scheduling_constraints": []
+  }
+ ],
+ "uncertainties": [
+  "Log retrieval for pod 'bad-liveness-794795bdf7-4bplr' in namespace 'ai-ops-demo' during execution '6fbeb744-9a57-44a7-b14f-8eea60e6211a-step-4' (k8s.get_logs) was bounded. The retrieved excerpt may omit relevant log entries.",
+  "Pod 'bad-liveness-794795bdf7-4bplr' in namespace 'ai-ops-demo': environment variable values, ConfigMap contents and Secret contents are never inspected, so whether any variable is set correctly has not been established.",
+  "Pod 'bad-liveness-794795bdf7-4bplr' in namespace 'ai-ops-demo', container 'app': startup behavior could not be established by static analysis. This is not evidence that startup is correct.",
+  "Pod 'bad-liveness-794795bdf7-4bplr' in namespace 'ai-ops-demo', container 'app': no environment variables are declared in its spec, which does not establish the complete runtime environment (variables may come from the image or other mechanisms).",
+  "Underlying failure causes and log-derived failures have not been established by trusted report evidence."
+ ],
+ "suggested_checks": [
+  "Startup behavior of container 'app' in pod 'bad-liveness-794795bdf7-4bplr' could not be established by static analysis. Ask the workload owner to review its entrypoint and the image's default command.",
+  "If the application reports a required setting for container 'app' in pod 'bad-liveness-794795bdf7-4bplr', confirm with the workload owner how it is meant to be supplied (the Deployment manifest or deployment tooling, image defaults or an init step). The inspected spec declares no environment sources, which does not establish the complete runtime environment.",
+  "Compare what the application logs report for container 'app' in pod 'bad-liveness-794795bdf7-4bplr' (untrusted, not retained) with the declared environment variable names, and confirm any claimed missing setting in the Deployment definition before changing anything."
+ ],
+ "ai_hypotheses": [],
+ "ai_analysis": {
+  "state": "all_omitted",
+  "reason": null,
+  "message": "AI analysis ran, but all 4 proposed hypothesis(es) were omitted by validation; none are shown. See omission_reasons.",
+  "log_excerpts_used": 1,
+  "log_excerpts_omitted": 0,
+  "hypotheses_omitted": 4,
+  "hypotheses_proposed": 4,
+  "omission_reasons": {
+   "too_many_references": 2,
+   "reported_without_log_evidence": 2
+  },
+  "rejection_category": null
+ }
+}
